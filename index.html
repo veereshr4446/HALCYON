@@ -65,6 +65,7 @@
                 <li class="nav-label">Insights</li>
                 <li><a onclick="showPage('analytics')"><i class="fas fa-chart-pie"></i> Analytics</a></li>
                 <li><a onclick="showPage('tools')"><i class="fas fa-calculator"></i> Academic Tools</a></li>
+                <li><a onclick="showPage('notes')"><i class="fas fa-sticky-note"></i> Notes</a></li>
 
                 <li class="nav-label">Productivity</li>
                 <li><a onclick="showPage('planner')"><i class="fas fa-tasks"></i> Planner & Tasks</a></li>
@@ -962,6 +963,65 @@
         </div>
 
         <!-- ========================================================
+        NOTES PAGE (demo — Drive links only, no real uploads)
+        ======================================================== -->
+        <div id="page-notes" class="page-section">
+            <div class="page-topbar">
+                <h2><i class="fas fa-sticky-note"></i> My Notes</h2>
+                <div class="page-topbar-actions">
+                    <button class="btn-export" onclick="toggleNoteForm()"><i class="fas fa-plus"></i> Upload Notes</button>
+                    <span class="back-link" onclick="showPage('dashboard')">← Back</span>
+                </div>
+            </div>
+
+            <div class="card" id="noteFormCard" style="display:none;">
+                <div class="card-header"><h3>➕ Add a Note</h3></div>
+                <p class="note-form-hint">This is a demo — instead of uploading a real file, paste a Google Drive link to the note.</p>
+                <div class="note-form">
+                    <input type="text" id="noteTitleInput" placeholder="Note title, e.g. DSA Unit 3 summary">
+                    <select id="noteSubjectInput">
+                        <option>1BMATCS301</option><option>1BCS302</option><option>1BCS303</option>
+                        <option>1BCS304</option><option>1BCS305</option><option>1BCSL306</option>
+                        <option>1BCSL307A</option><option>1BCP308</option><option>General</option>
+                    </select>
+                    <input type="url" id="noteLinkInput" placeholder="Google Drive link (https://drive.google.com/...)">
+                    <textarea id="noteDescInput" rows="2" placeholder="Short description (optional)"></textarea>
+                    <div class="note-form-actions">
+                        <button class="btn btn-primary" onclick="addNote()"><i class="fas fa-save"></i> Save Note</button>
+                        <button class="btn btn-secondary" onclick="toggleNoteForm()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="notes-grid" id="notesGrid">
+                <div class="note-card">
+                    <div class="note-card-top">
+                        <span class="note-subject-tag">1BCS305</span>
+                        <button class="note-del" onclick="deleteNote(this)" title="Remove"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="note-title">DSA — Linked Lists &amp; Trees</div>
+                    <div class="note-desc">Handwritten notes covering singly/doubly linked lists and binary tree traversals.</div>
+                    <div class="note-card-footer">
+                        <span class="note-date">Added 09 Sep 2026</span>
+                        <a class="note-drive-link" href="https://drive.google.com" target="_blank"><i class="fab fa-google-drive"></i> Open</a>
+                    </div>
+                </div>
+                <div class="note-card">
+                    <div class="note-card-top">
+                        <span class="note-subject-tag">1BCS302</span>
+                        <button class="note-del" onclick="deleteNote(this)" title="Remove"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="note-title">Java OOP Concepts</div>
+                    <div class="note-desc">Inheritance, polymorphism, and interfaces — with code examples from lab.</div>
+                    <div class="note-card-footer">
+                        <span class="note-date">Added 05 Sep 2026</span>
+                        <a class="note-drive-link" href="https://drive.google.com" target="_blank"><i class="fab fa-google-drive"></i> Open</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================================
         POMODORO PAGE
         ======================================================== -->
         <div id="page-pomodoro" class="page-section">
@@ -1053,7 +1113,7 @@
                         <div class="settings-row-text"><strong>About Developer</strong><p>Viresh Ranjanagi · Founder of Xīng Chén </p></div>
                         <span class="settings-arrow">→</span>
                     </div>
-                    <div class="settings-version">✨ Version 2.3 · Xīng Chén · Built with ❤️</div>
+                    <div class="settings-version">✨ Version 2.3 · Xīng Chén  · Built with ❤️</div>
                 </div>
             </div>
         </div>
@@ -1061,7 +1121,7 @@
         <!-- (About Developer is now a modal — see below, opened via showAboutDeveloper()) -->
         <!-- FOOTER -->
         <footer class="footer">
-            <p>© 2026 Student Dashboard · Built with ❤️ by Viresh<br><span class="footer-sub">✨ Founder of <strong>Xīng Chén</strong></span></p>
+            <p>© 2026 Student Dashboard · Built with ❤️ by Viresh<br><span class="footer-sub">✨ Founder of <strong>Xīng Chén </strong></span></p>
         </footer>
     </div>
 
@@ -1132,7 +1192,7 @@
                     <div class="music-info">
                         <div class="now-playing-label">NOW PLAYING</div>
                         <div class="music-title">Lofi Focus</div>
-                        <div class="music-subtitle">Press play, stay a while ✨</div>
+                        <div class="music-subtitle">A little music for this profile ✨</div>
                     </div>
                     <button class="music-close-btn" onclick="closeMusicPlayer()">&times;</button>
                 </div>
