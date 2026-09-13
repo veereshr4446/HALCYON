@@ -546,6 +546,54 @@ function updatePlannerProgress() {
 }
 
 // ============================================================
+//  NOTES (demo — Drive links only, no real file uploads)
+// ============================================================
+function toggleNoteForm() {
+    const card = document.getElementById('noteFormCard');
+    const isHidden = card.style.display === 'none' || card.style.display === '';
+    card.style.display = isHidden ? 'block' : 'none';
+    if (isHidden) document.getElementById('noteTitleInput').focus();
+}
+
+function addNote() {
+    const title = document.getElementById('noteTitleInput').value.trim();
+    const subject = document.getElementById('noteSubjectInput').value;
+    const link = document.getElementById('noteLinkInput').value.trim();
+    const desc = document.getElementById('noteDescInput').value.trim();
+
+    if (!title) { showToast('⚠️ Give the note a title first'); return; }
+    if (!link) { showToast('⚠️ Paste a Google Drive link first'); return; }
+
+    const today = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    const grid = document.getElementById('notesGrid');
+    const card = document.createElement('div');
+    card.className = 'note-card';
+    card.innerHTML = `
+        <div class="note-card-top">
+            <span class="note-subject-tag">${subject}</span>
+            <button class="note-del" onclick="deleteNote(this)" title="Remove"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="note-title">${title}</div>
+        ${desc ? `<div class="note-desc">${desc}</div>` : ''}
+        <div class="note-card-footer">
+            <span class="note-date">Added ${today}</span>
+            <a class="note-drive-link" href="${link}" target="_blank"><i class="fab fa-google-drive"></i> Open</a>
+        </div>`;
+    grid.prepend(card);
+
+    document.getElementById('noteTitleInput').value = '';
+    document.getElementById('noteLinkInput').value = '';
+    document.getElementById('noteDescInput').value = '';
+    toggleNoteForm();
+    showToast('📝 Note added');
+}
+
+function deleteNote(btn) {
+    btn.closest('.note-card').remove();
+    showToast('🗑️ Note removed');
+}
+
+// ============================================================
 //  ACADEMIC TOOLS — GPA CALCULATOR
 // ============================================================
 function addGpaRow() {
@@ -1050,6 +1098,9 @@ window.addTask = addTask;
 window.toggleTask = toggleTask;
 window.deleteTask = deleteTask;
 window.setTaskFilter = setTaskFilter;
+window.toggleNoteForm = toggleNoteForm;
+window.addNote = addNote;
+window.deleteNote = deleteNote;
 window.addGpaRow = addGpaRow;
 window.removeGpaRow = removeGpaRow;
 window.calcGpa = calcGpa;
