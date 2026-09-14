@@ -1,5 +1,8 @@
 // ============================================================
 //  APP.JS — All interactive behavior for the demo dashboard.
+//  Depends on data.js and charts.js being loaded first.
+//  Everything here is local-only: localStorage + in-memory state.
+//  No network requests are made anywhere in this file.
 // ============================================================
 
 const LS_PREFIX = 'demoDash_';
@@ -836,13 +839,14 @@ const POMO_CIRCUMFERENCE = 597;
 
 let pomoState = {
     mode: 'focus', secondsLeft: 25 * 60, totalSeconds: 25 * 60,
-    isRunning: false, isPaused: false, timerId: null,
+    isRunning: false, isPaused: false, timerId: null, focusMinutes: 25,
     sessions: [], sessionsToday: 0, totalFocusMinutes: 0, streak: 0, lastDate: null
 };
 
 function pomoLoadState() {
     const saved = lsGet('pomodoroState', null);
     if (saved) pomoState = { ...pomoState, ...saved, timerId: null, isRunning: false };
+    POMO_DURATIONS.focus = (pomoState.focusMinutes || 25) * 60;
 }
 function pomoSaveState() {
     const toSave = { ...pomoState };
@@ -851,6 +855,27 @@ function pomoSaveState() {
 }
 function pomoSyncModeButtons() {
     document.querySelectorAll('.pomo-mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === pomoState.mode));
+    const row = document.getElementById('pomoDurationRow');
+    if (row) row.style.display = pomoState.mode === 'focus' ? 'flex' : 'none';
+}
+function pomoSyncDurationButtons() {
+    document.querySelectorAll('.pomo-duration-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.mins) === pomoState.focusMinutes));
+}
+function pomoSetFocusDuration(mins, btn) {
+    if (pomoState.isRunning) {
+        if (!confirm('Timer is running. Reset and change focus length?')) return;
+        pomoStop();
+    }
+    pomoState.focusMinutes = mins;
+    POMO_DURATIONS.focus = mins * 60;
+    pomoSyncDurationButtons();
+    if (pomoState.mode === 'focus') {
+        pomoState.secondsLeft = POMO_DURATIONS.focus;
+        pomoState.totalSeconds = POMO_DURATIONS.focus;
+        pomoUpdateUI();
+    }
+    pomoSaveState();
+    showToast(`🎯 Focus length set to ${mins} minutes`);
 }
 function pomoSetMode(mode) {
     if (pomoState.isRunning) {
@@ -1034,6 +1059,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     pomoLoadState();
     pomoSyncModeButtons();
+    pomoSyncDurationButtons();
     pomoUpdateUI();
     pomoUpdateStats();
     pomoRenderHistory();
@@ -1111,6 +1137,7 @@ window.toggleNotifications = toggleNotifications;
 window.refreshData = refreshData;
 window.exportPDF = exportPDF;
 window.pomoSetMode = pomoSetMode;
+window.pomoSetFocusDuration = pomoSetFocusDuration;
 window.pomoToggle = pomoToggle;
 window.pomoReset = pomoReset;
 window.pomoSkip = pomoSkip;
