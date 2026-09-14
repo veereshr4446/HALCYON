@@ -956,7 +956,7 @@ a { color: inherit; }
    RESPONSIVE
    ============================================================ */
 @media (max-width: 600px) {
-    body { padding: 8px 8px 78px 8px; }
+    body { padding: 8px 8px 110px 8px; }
     .container { padding: 0 4px; }
 
     .header { padding: 6px 10px; flex-wrap: nowrap; gap: 4px; }
