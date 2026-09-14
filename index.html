@@ -1037,6 +1037,15 @@
                     <button class="pomo-mode-btn" data-mode="long" onclick="pomoSetMode('long')">🛋️ Long Break</button>
                 </div>
 
+                <div class="pomo-duration-row" id="pomoDurationRow">
+                    <span class="pomo-duration-label">Focus length:</span>
+                    <button class="pomo-duration-btn active" data-mins="25" onclick="pomoSetFocusDuration(25, this)">25m</button>
+                    <button class="pomo-duration-btn" data-mins="30" onclick="pomoSetFocusDuration(30, this)">30m</button>
+                    <button class="pomo-duration-btn" data-mins="45" onclick="pomoSetFocusDuration(45, this)">45m</button>
+                    <button class="pomo-duration-btn" data-mins="60" onclick="pomoSetFocusDuration(60, this)">60m</button>
+                    <button class="pomo-duration-btn" data-mins="90" onclick="pomoSetFocusDuration(90, this)">90m</button>
+                </div>
+
                 <div class="pomo-timer-circle">
                     <svg width="220" height="220" viewBox="0 0 220 220">
                         <circle class="bg" cx="110" cy="110" r="95" />
@@ -1113,16 +1122,14 @@
                         <div class="settings-row-text"><strong>About Developer</strong><p>Viresh Ranjanagi · Founder of Xīng Chén </p></div>
                         <span class="settings-arrow">→</span>
                     </div>
-                    <div class="settings-version">✨ Version 2.3 · Xīng Chén  · Built with ❤️</div>
+                    <div class="settings-version">✨ Version 2.3 · Xīng Chén · Built with ❤️</div>
                 </div>
             </div>
         </div>
 
         <!-- (About Developer is now a modal — see below, opened via showAboutDeveloper()) -->
         <!-- FOOTER -->
-        <footer class="footer">
-            <p>© 2026 Student Dashboard · Built with ❤️ by Viresh<br><span class="footer-sub">✨ Founder of <strong>Xīng Chén </strong></span></p>
-        </footer>
+        <!-- Footer removed — redundant with About Developer info -->
     </div>
 
     <!-- ============================================================
@@ -1192,7 +1199,7 @@
                     <div class="music-info">
                         <div class="now-playing-label">NOW PLAYING</div>
                         <div class="music-title">Lofi Focus</div>
-                        <div class="music-subtitle">A little music for this profile ✨</div>
+                        <div class="music-subtitle">Press play, stay a while ✨</div>
                     </div>
                     <button class="music-close-btn" onclick="closeMusicPlayer()">&times;</button>
                 </div>
@@ -1211,7 +1218,7 @@
             <div class="developer-card">
                 <div class="dev-avatar">V</div>
                 <div class="dev-name">VIRESH RANJANAGI</div>
-                <div class="dev-role">✨ Founder of <strong style="color: var(--accent);">Xīng Chén</strong></div>
+                <div class="dev-role">✨ Founder of <strong style="color: var(--accent);">Xīng Chén </strong></div>
                 <div class="dev-bio">
                     Passionate about coding, building cool projects, and helping students track their academic progress. 🚀
                     <br><br>
