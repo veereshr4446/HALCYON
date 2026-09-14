@@ -671,6 +671,16 @@ a { color: inherit; }
 .pomo-mode-btn:hover { border-color: var(--accent); }
 .pomo-mode-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; }
 
+.pomo-duration-row { display: flex; align-items: center; justify-content: center; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.pomo-duration-label { font-size: 11px; color: var(--text-secondary); margin-right: 2px; }
+.pomo-duration-btn {
+    padding: 5px 12px; border: 1.5px solid var(--border-color); background: var(--bg-card);
+    color: var(--text-primary); border-radius: 20px; font-size: 11.5px; font-weight: 600;
+    cursor: pointer; transition: all var(--transition);
+}
+.pomo-duration-btn:hover { border-color: var(--accent); }
+.pomo-duration-btn.active { border-color: var(--accent); background: var(--accent); color: #fff; }
+
 .pomo-timer-circle { position: relative; width: 220px; height: 220px; margin: 0 auto; }
 .pomo-timer-circle svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .pomo-timer-circle .bg { fill: none; stroke: var(--border-color); stroke-width: 6; }
