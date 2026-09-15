@@ -1,8 +1,5 @@
 // ============================================================
 //  APP.JS — All interactive behavior for the demo dashboard.
-//  Depends on data.js and charts.js being loaded first.
-//  Everything here is local-only: localStorage + in-memory state.
-//  No network requests are made anywhere in this file.
 // ============================================================
 
 const LS_PREFIX = 'demoDash_';
@@ -19,12 +16,10 @@ function lsSet(key, val) {
 // ============================================================
 function handleLogin() {
     document.getElementById('loginOverlay').classList.add('hidden');
-    showToast('👋 Welcome to your dashboard!');
 }
 
 function handleLogout() {
     document.getElementById('loginOverlay').classList.remove('hidden');
-    showToast('👋 Logged out!');
 }
 
 // ============================================================
@@ -86,7 +81,6 @@ function toggleTheme() {
     if (icon) icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
     lsSet('theme', newTheme);
     updateChartColors();
-    showToast('🌓 Theme toggled!');
 }
 function loadTheme() {
     const saved = lsGet('theme', 'light');
@@ -438,7 +432,6 @@ function fetchAttendance() {
     setTimeout(() => {
         statusEl.textContent = '✅ Demo: data fetched successfully!';
         statusEl.style.color = 'var(--success-color)';
-        showToast('📊 Demo data loaded.');
         setTimeout(() => showPage('dashboard'), 1200);
     }, 1200);
 }
