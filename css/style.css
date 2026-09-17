@@ -93,11 +93,28 @@ a { color: inherit; }
 .login-box h1 span { color: var(--accent); }
 .login-box .subtitle { color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
 
-.login-box .google-demo-btn {
-    width: 100%; padding: 14px; font-size: 16px;
-    display: flex; align-items: center; justify-content: center; gap: 12px;
-    background: var(--accent); color: #fff; border: none; border-radius: 12px;
-    cursor: pointer; font-weight: 600; transition: all var(--transition);
+.login-box .google-signin-btn {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #fff;
+    color: #3c4043;
+    border: 1px solid #dadce0;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.login-box .google-signin-btn:hover {
+    box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+    border-color: #d2d3d4;
+}
+.login-box .google-signin-btn:active {
+    background: #f8f9fa;
 }
 .login-box .google-demo-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79, 125, 243, 0.25); }
 
