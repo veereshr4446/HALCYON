@@ -8,16 +8,21 @@
 // ----- SUBJECTS — Semester 3, Section A (updated from the official
 // timetable/course-handling sheet). No CIE marks exist for this semester
 // yet, so the old demo attendance/CIE numbers are carried over as
-// placeholders, just reassigned to these new subjects. -----
+// placeholders, just reassigned to these new subjects.
+//
+// EXAM PATTERN UPDATE: the college now runs 2 CIEs per subject
+// (50 marks each) instead of 3 CIEs (25 marks each), and only the
+// HIGHER of the two scores is considered — not a sum of the best two.
+// `cie` below is therefore a 2-element array, each value out of 50. -----
 const subjectsData = [
-    { code: '1BMATCS301', name: 'Distributions and Statistics Probability', faculty: 'Prof. G. Gangamma', attendance: 84, cie: [25, 10, 15] },
-    { code: '1BCS302', name: 'Object Oriented Programming with Java', faculty: 'Dr. H. Girisha', attendance: 90, cie: [24, 23, 22] },
-    { code: '1BCS303', name: 'Digital Design and Computer Organization', faculty: 'Prof. Radhika Y', attendance: 88, cie: [23, 25, 24] },
-    { code: '1BCS304', name: 'Operating Systems', faculty: 'Prof. Sharmila G K', attendance: 85, cie: [20, 22, 21] },
-    { code: '1BCS305', name: 'Data Structures and Applications', faculty: 'Prof. Rajeswari R.P', attendance: 82, cie: [22, 24, 23] },
-    { code: '1BCSL306', name: 'Data Structures Laboratory', faculty: 'Dr. Nagaveni Biradar', attendance: 83, cie: [21, 23, 22] },
-    { code: '1BCSL307A', name: 'Project Management (with Git)', faculty: 'Prof. Prasanna Kumar', attendance: 78, cie: [18, 20, 19] },
-    { code: '1BCP308', name: 'Community Project / Societal Project', faculty: 'Dr. H. Girisha', attendance: 92, cie: [24, 25, 25] }
+    { code: '1BMATCS301', name: 'Distributions and Statistics Probability', faculty: 'Prof. G. Gangamma', attendance: 84, cie: [40, 34] },
+    { code: '1BCS302', name: 'Object Oriented Programming with Java', faculty: 'Dr. H. Girisha', attendance: 90, cie: [47, 42] },
+    { code: '1BCS303', name: 'Digital Design and Computer Organization', faculty: 'Prof. Radhika Y', attendance: 88, cie: [49, 44] },
+    { code: '1BCS304', name: 'Operating Systems', faculty: 'Prof. Sharmila G K', attendance: 85, cie: [43, 38] },
+    { code: '1BCS305', name: 'Data Structures and Applications', faculty: 'Prof. Rajeswari R.P', attendance: 82, cie: [47, 41] },
+    { code: '1BCSL306', name: 'Data Structures Laboratory', faculty: 'Dr. Nagaveni Biradar', attendance: 83, cie: [45, 39] },
+    { code: '1BCSL307A', name: 'Project Management (with Git)', faculty: 'Prof. Prasanna Kumar', attendance: 78, cie: [39, 33] },
+    { code: '1BCP308', name: 'Community Project / Societal Project', faculty: 'Dr. H. Girisha', attendance: 92, cie: [50, 46] }
 ];
 
 // ----- FACULTY — Semester 3, Section A -----
@@ -80,13 +85,11 @@ function getStatus(att) {
     return 'danger';
 }
 
-function getAvgCIE(sub) {
-    return (sub.cie[0] + sub.cie[1] + sub.cie[2]) / 3;
-}
-
-function getBestTwo(sub) {
-    const sorted = [...sub.cie].sort((a, b) => b - a);
-    return sorted[0] + sorted[1];
+// The higher of the subject's 2 CIE scores (each out of 50) — this is
+// what actually counts toward the subject's CIE total under the new
+// 2-CIE pattern.
+function getBestCIE(sub) {
+    return Math.max(sub.cie[0], sub.cie[1]);
 }
 
 function getOverallAttendance() {
@@ -94,8 +97,9 @@ function getOverallAttendance() {
     return total / subjectsData.length;
 }
 
+// Average, across all subjects, of each subject's best CIE score (out of 50).
 function getOverallCIE() {
-    const total = subjectsData.reduce((sum, s) => sum + getAvgCIE(s), 0);
+    const total = subjectsData.reduce((sum, s) => sum + getBestCIE(s), 0);
     return total / subjectsData.length;
 }
 
@@ -123,8 +127,7 @@ window.examDates = examDates;
 window.gradePoints = gradePoints;
 
 window.getStatus = getStatus;
-window.getAvgCIE = getAvgCIE;
-window.getBestTwo = getBestTwo;
+window.getBestCIE = getBestCIE;
 window.getOverallAttendance = getOverallAttendance;
 window.getOverallCIE = getOverallCIE;
 window.getBelow85 = getBelow85;
