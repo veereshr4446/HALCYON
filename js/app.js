@@ -196,8 +196,9 @@ function showAttendanceDetails() {
     openModal('📊 Attendance Details', `Overall: ${getOverallAttendance().toFixed(1)}%`, html);
 }
 function showCIEDetails() {
-    const html = subjectsData.map(s => `<div class="modal-item"><span>${s.code}</span><span>CIE: ${s.cie.join(' / ')} · Best 2: ${getBestTwo(s)}/50</span></div>`).join('');
-    openModal('📝 CIE Marks', 'Best 2 of 3 exams are considered', html);
+    // 2 CIEs per subject (50 marks each) — only the higher of the two counts
+    const html = subjectsData.map(s => `<div class="modal-item"><span>${s.code}</span><span>CIE: ${s.cie.join(' / ')} · Best: ${getBestCIE(s)}/50</span></div>`).join('');
+    openModal('📝 CIE Marks', 'Best of 2 CIEs is considered', html);
 }
 function showBelow85() {
     const below = getBelow85();
@@ -765,7 +766,7 @@ function exportPDF() {
             <div class="section-title">📊 Performance Summary</div>
             <div class="stats-grid">
                 <div class="stat-box accent"><div class="number">${overallAtt}%</div><div class="label">Overall Attendance</div></div>
-                <div class="stat-box accent"><div class="number">${avgCIE}/25</div><div class="label">Avg CIE Marks</div></div>
+                <div class="stat-box accent"><div class="number">${avgCIE}/50</div><div class="label">Avg Best CIE Marks</div></div>
                 <div class="stat-box ${below85 > 0 ? 'danger' : 'good'}"><div class="number">${below85}</div><div class="label">Subjects Below 85%</div></div>
                 <div class="stat-box good"><div class="number">${above85}</div><div class="label">Subjects Above 85%</div></div>
             </div>
@@ -774,12 +775,12 @@ function exportPDF() {
         <div class="section">
             <div class="section-title">📚 Subject-Wise Report</div>
             <table>
-                <thead><tr><th>#</th><th>Subject Code</th><th>Subject Name</th><th>Attendance</th><th>CIE (Best 2)</th></tr></thead>
+                <thead><tr><th>#</th><th>Subject Code</th><th>Subject Name</th><th>Attendance</th><th>CIE (Best of 2)</th></tr></thead>
                 <tbody>
                     ${subjectsData.map((sub, i) => {
                         const status = getStatus(sub.attendance);
                         const cls = status === 'good' ? 'att-good' : status === 'warning' ? 'att-warning' : 'att-danger';
-                        return `<tr><td>${i + 1}</td><td>${sub.code}</td><td>${sub.name}</td><td class="${cls}">${sub.attendance}%</td><td>${getBestTwo(sub)}/50</td></tr>`;
+                        return `<tr><td>${i + 1}</td><td>${sub.code}</td><td>${sub.name}</td><td class="${cls}">${sub.attendance}%</td><td>${getBestCIE(sub)}/50</td></tr>`;
                     }).join('')}
                 </tbody>
             </table>
@@ -788,9 +789,9 @@ function exportPDF() {
         <div class="section">
             <div class="section-title">📝 CIE Marks Breakdown</div>
             <table>
-                <thead><tr><th>Subject</th><th>CIE-1</th><th>CIE-2</th><th>CIE-3</th><th>Best 2</th></tr></thead>
+                <thead><tr><th>Subject</th><th>CIE-1</th><th>CIE-2</th><th>Best (of 2)</th></tr></thead>
                 <tbody>
-                    ${subjectsData.map(sub => `<tr><td>${sub.code}</td><td>${sub.cie[0]}/25</td><td>${sub.cie[1]}/25</td><td>${sub.cie[2]}/25</td><td><strong>${getBestTwo(sub)}/50</strong></td></tr>`).join('')}
+                    ${subjectsData.map(sub => `<tr><td>${sub.code}</td><td>${sub.cie[0]}/50</td><td>${sub.cie[1]}/50</td><td><strong>${getBestCIE(sub)}/50</strong></td></tr>`).join('')}
                 </tbody>
             </table>
         </div>
@@ -800,7 +801,6 @@ function exportPDF() {
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; background:#f5f7fa; padding:16px 20px; border-radius:12px; font-size:14px;">
                 <div>📝 CIE-1: 15-09-2026</div>
                 <div>📝 CIE-2: 05-10-2026</div>
-                <div>📝 CIE-3: 02-11-2026</div>
                 <div>🔬 Practical Exam: 20-11-2026</div>
                 <div>📖 Theory Exam: 28-11-2026</div>
                 <div>🚀 85% attendance needed for eligibility</div>
