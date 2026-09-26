@@ -831,27 +831,19 @@ a { color: inherit; }
 }
 
 /* ---- About Developer music widget (scoped to this modal only) ---- */
-@keyframes spinDisc { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-.about-music-icon {
-    position: absolute; top: 16px; left: 18px; z-index: 5;
-    width: 46px; height: 46px; border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), #6c63ff);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 18px; cursor: pointer;
-    box-shadow: 0 0 0 6px rgba(79, 125, 243, 0.15), 0 4px 14px rgba(79, 125, 243, 0.4);
-    transition: transform 0.2s;
+@keyframes spinDisc {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
-.about-music-icon {
-    position: absolute; top: 16px; left: 18px; z-index: 5;
-    width: 46px; height: 46px; border-radius: 50%;
-    background: linear-gradient(135deg, #e53935, #ffffff);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 18px; cursor: pointer;
-    box-shadow: 0 0 0 6px rgba(229, 57, 53, 0.15), 0 4px 14px rgba(229, 57, 53, 0.4);
-    transition: transform 0.2s;
-}
-.about-music-icon.playing i { animation: spinDisc 3s linear infinite; }
+
+/* ==============================
+   MUSIC ICON
+   ============================== */
 
 .about-music-icon {
     position: absolute;
@@ -875,13 +867,12 @@ a { color: inherit; }
     align-items: center;
     justify-content: center;
 
-    /* White music symbol */
     color: #FFFFFF;
     font-size: 18px;
 
     cursor: pointer;
 
-    /* Soft Apple Music style glow */
+    /* Soft glow */
     box-shadow:
         0 0 0 6px rgba(255, 45, 85, 0.10),
         0 4px 14px rgba(255, 45, 85, 0.35);
@@ -891,6 +882,7 @@ a { color: inherit; }
         box-shadow 0.2s ease;
 }
 
+/* Hover */
 .about-music-icon:hover {
     transform: scale(1.06);
 
@@ -898,13 +890,69 @@ a { color: inherit; }
         0 0 0 7px rgba(255, 45, 85, 0.12),
         0 6px 18px rgba(255, 45, 85, 0.45);
 }
-.about-music-player.open { display: block; }
 
-.music-player-header { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; position: relative; }
+/* Rotate music icon only while audio is playing */
+.about-music-icon.playing i {
+    animation: spinDisc 3s linear infinite;
+}
+
+
+/* ==============================
+   MUSIC PLAYER
+   ============================== */
+
+/* Hidden by default */
+.about-music-player {
+    display: none;
+}
+
+/* Show only after clicking music icon */
+.about-music-player.open {
+    display: block;
+    animation: fadeUp 0.25s ease;
+}
+
+
+/* ==============================
+   PLAYER HEADER
+   ============================== */
+
+.music-player-header {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+
+/* ==============================
+   MUSIC ARTWORK
+   ============================== */
+
 .music-artwork {
-    width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-    background: linear-gradient(135deg, var(--accent), #6c63ff);
-    display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    background: linear-gradient(
+        135deg,
+        var(--accent),
+        #6c63ff
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    font-size: 15px;
+}
+
+/* Rotate artwork while playing */
+.music-artwork.playing {
+    animation: spinDisc 3s linear infinite;
 }
 .music-artwork.playing { animation: spinDisc 3s linear infinite; }
 .music-info { flex: 1; min-width: 0; }
