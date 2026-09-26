@@ -830,79 +830,41 @@ a { color: inherit; }
     padding: 6px 14px; border-radius: 20px; border: 1px solid rgba(79, 125, 243, 0.25);
 }
 
-/* ---- About Developer music widget (scoped to this modal only) ----
-   NOTE: previously this block was duplicated three times in a row
-   (each override winning over the last, with no functional
-   difference) — that has been collapsed into a single definition
-   here. Behavior is unchanged. */
+/* ---- About Developer music widget (scoped to this modal only) ---- */
 @keyframes spinDisc { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 .about-music-icon {
-    position: absolute;
-    top: 16px;
-    left: 18px;
-    z-index: 5;
-
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-
-    /* Apple Music inspired red/pink gradient */
-    background: linear-gradient(
-        135deg,
-        #FF375F 0%,
-        #FF2D55 50%,
-        #FA233B 100%
-    );
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    /* White music symbol */
-    color: #FFFFFF;
-    font-size: 18px;
-
-    cursor: pointer;
-
-    /* Soft Apple Music style glow */
-    box-shadow:
-        0 0 0 6px rgba(255, 45, 85, 0.10),
-        0 4px 14px rgba(255, 45, 85, 0.35);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    position: absolute; top: 16px; left: 18px; z-index: 5;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), #6c63ff);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px; cursor: pointer;
+    box-shadow: 0 0 0 6px rgba(79, 125, 243, 0.15), 0 4px 14px rgba(79, 125, 243, 0.4);
+    transition: transform 0.2s;
 }
-
-.about-music-icon:hover {
-    transform: scale(1.06);
-
-    box-shadow:
-        0 0 0 7px rgba(255, 45, 85, 0.12),
-        0 6px 18px rgba(255, 45, 85, 0.45);
-}
-
+.about-music-icon:hover { transform: scale(1.06); }
 .about-music-icon.playing i { animation: spinDisc 3s linear infinite; }
 
 .about-music-player {
     display: none;
+    position: absolute; top: 70px; left: 18px; z-index: 6;
+    width: 250px;
+    background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+    padding: 14px;
+    animation: fadeUp 0.2s ease;
 }
-
-.about-music-player.open {
-    display: block;
-    animation: fadeUp 0.25s ease;
-}
+.about-music-player.open { display: block; }
 
 .music-player-header { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; position: relative; }
 .music-artwork {
     width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-    background: linear-gradient(135deg, #FF375F 0%, #FF2D55 50%, #FA233B 100%);
+    background: linear-gradient(135deg, var(--accent), #6c63ff);
     display: flex; align-items: center; justify-content: center; color: #fff; font-size: 15px;
 }
 .music-artwork.playing { animation: spinDisc 3s linear infinite; }
 .music-info { flex: 1; min-width: 0; }
-.now-playing-label { font-size: 9px; font-weight: 800; color: #FF2D55; letter-spacing: 0.06em; }
+.now-playing-label { font-size: 9px; font-weight: 800; color: var(--accent); letter-spacing: 0.06em; }
 .music-title { font-weight: 700; font-size: 13px; color: var(--text-primary); }
 .music-subtitle { font-size: 10.5px; color: var(--text-secondary); }
 .music-close-btn { position: absolute; top: -6px; right: -6px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 15px; }
@@ -910,13 +872,11 @@ a { color: inherit; }
 
 .music-progress-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
 .music-time { font-size: 10px; color: var(--text-secondary); flex-shrink: 0; }
-.music-seek { flex: 1; accent-color: #FF2D55; cursor: pointer; }
+.music-seek { flex: 1; accent-color: var(--accent); cursor: pointer; }
 .music-controls-row { display: flex; align-items: center; justify-content: space-between; }
 .music-status { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
 .music-play-btn {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: linear-gradient(135deg, #FF375F 0%, #FF2D55 50%, #FA233B 100%);
-    color: #fff;
+    width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff;
     border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
     transition: transform 0.15s;
 }
@@ -939,15 +899,7 @@ a { color: inherit; }
     animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative;
 }
 .modal.modal-narrow { max-width: 400px; }
-
-/* Small popup variant — used for About Developer so it reads as a
-   compact card rather than stretching to the default wide modal width */
-.modal.modal-about {
-    max-width: 340px;
-    width: 90%;
-    padding: 28px 24px;
-}
-.modal .close-btn { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 20px; color: var(--text-secondary); cursor: pointer; transition: transform var(--transition); z-index: 10; }
+.modal .close-btn { position: absolute; top: 16px; right: 18px; background: none; border: none; font-size: 20px; color: var(--text-secondary); cursor: pointer; transition: transform var(--transition); }
 .modal .close-btn:hover { transform: rotate(90deg); }
 .modal h2 { margin-bottom: 4px; font-size: 19px; }
 .modal .subtitle { color: var(--text-secondary); margin-bottom: 16px; font-size: 14px; }
@@ -1056,8 +1008,6 @@ a { color: inherit; }
     .sidebar.open { left: 0; }
 
     .login-box { padding: 24px 16px; max-width: 95%; }
-
-    .modal.modal-about { max-width: 300px; width: 86%; padding: 22px 18px; }
 
     .faculty-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
     .badge-grid { grid-template-columns: repeat(3, 1fr); }
