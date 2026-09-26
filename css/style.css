@@ -853,14 +853,14 @@ a { color: inherit; }
 }
 .about-music-icon.playing i { animation: spinDisc 3s linear infinite; }
 
-.about-music-player {
-    display: none;
-    position: absolute; top: 70px; left: 18px; z-index: 6;
-    width: 250px;
-    background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
-    padding: 14px;
-    animation: fadeUp 0.2s ease;
+.about-music-icon {
+    position: absolute; top: 16px; left: 18px; z-index: 5;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, #e53935, #ffffff);
+    display: flex; align-items: center; justify-content: center;
+    color: #e53935; font-size: 18px; cursor: pointer;
+    box-shadow: 0 0 0 6px rgba(229, 57, 53, 0.15), 0 4px 14px rgba(229, 57, 53, 0.4);
+    transition: transform 0.2s;
 }
 .about-music-player.open { display: block; }
 
