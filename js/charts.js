@@ -56,14 +56,14 @@ function initDashboardCharts() {
         }
     });
 
+    // CIE Performance — 2 CIEs per subject now (50 marks each), not 3 (25 each)
     cieChartInstance = new Chart(canvas2.getContext('2d'), {
         type: 'bar',
         data: {
             labels: labels,
             datasets: [
                 { label: 'CIE-1', data: subjectsData.map(s => s.cie[0]), backgroundColor: 'rgba(79,125,243,0.55)', borderColor: '#4f7df3', borderWidth: 1, borderRadius: 3 },
-                { label: 'CIE-2', data: subjectsData.map(s => s.cie[1]), backgroundColor: 'rgba(108,99,255,0.55)', borderColor: '#6c63ff', borderWidth: 1, borderRadius: 3 },
-                { label: 'CIE-3', data: subjectsData.map(s => s.cie[2]), backgroundColor: 'rgba(16,185,129,0.55)', borderColor: '#10b981', borderWidth: 1, borderRadius: 3 }
+                { label: 'CIE-2', data: subjectsData.map(s => s.cie[1]), backgroundColor: 'rgba(108,99,255,0.55)', borderColor: '#6c63ff', borderWidth: 1, borderRadius: 3 }
             ]
         },
         options: {
@@ -71,10 +71,10 @@ function initDashboardCharts() {
             maintainAspectRatio: false,
             plugins: {
                 legend: { display: false },
-                tooltip: { callbacks: { label: (ctx) => ctx.dataset.label + ': ' + ctx.parsed.y + '/25' } }
+                tooltip: { callbacks: { label: (ctx) => ctx.dataset.label + ': ' + ctx.parsed.y + '/50' } }
             },
             scales: {
-                y: { min: 0, max: 25, ticks: { font: { size: 8 }, color: colors.text, stepSize: 5 }, grid: { color: colors.grid } },
+                y: { min: 0, max: 50, ticks: { font: { size: 8 }, color: colors.text, stepSize: 10 }, grid: { color: colors.grid } },
                 x: { ticks: { font: { size: 7 }, maxRotation: 45, minRotation: 45, color: colors.text }, grid: { display: false } }
             }
         }
@@ -99,7 +99,7 @@ function initAnalyticsCharts() {
             labels: ['Sem I', 'Sem II (Now)'],
             datasets: [
                 { label: 'Attendance %', data: [Math.max(currentAtt - 6.5, 0), currentAtt], borderColor: '#4f7df3', backgroundColor: 'rgba(79,125,243,0.12)', fill: true, tension: 0.35 },
-                { label: 'CIE Avg (/25)', data: [Math.max(currentCie - 2.2, 0), currentCie], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.12)', fill: true, tension: 0.35 }
+                { label: 'CIE Avg (/50)', data: [Math.max(currentCie - 4.4, 0), currentCie], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.12)', fill: true, tension: 0.35 }
             ]
         },
         options: {
