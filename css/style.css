@@ -432,6 +432,130 @@ a { color: inherit; }
 .badge-tile .tile-name { font-size: 9px; font-weight: 600; color: var(--text-secondary); margin-top: 2px; }
 .badge-tile.locked { opacity: 0.3; }
 
+/* ==========================================
+   STREAK DETAILS POPUP
+   ========================================== */
+
+.streak-modal {
+    width: 420px;
+    max-width: calc(100vw - 32px);
+    text-align: center;
+    padding: 30px;
+}
+
+.streak-popup-icon {
+    width: 72px;
+    height: 72px;
+    margin: 5px auto 14px;
+
+    border-radius: 22px;
+
+    background: rgba(245, 158, 11, 0.12);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 38px;
+
+    box-shadow:
+        0 8px 24px rgba(245, 158, 11, 0.15);
+}
+
+.streak-popup-title {
+    margin: 0;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    color: var(--text-primary);
+}
+
+.streak-popup-subtitle {
+    margin: 7px 0 22px;
+
+    color: var(--text-secondary);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* Stats */
+
+.streak-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.streak-stat {
+    padding: 14px 8px;
+
+    background: var(--bg-primary);
+
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.streak-stat-icon {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.streak-stat strong {
+    display: block;
+
+    font-size: 17px;
+    color: var(--text-primary);
+}
+
+.streak-stat span {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 9px;
+    color: var(--text-secondary);
+}
+
+
+/* Bottom message */
+
+.streak-message {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    text-align: left;
+
+    padding: 13px 14px;
+
+    background: rgba(245, 158, 11, 0.08);
+
+    border: 1px solid rgba(245, 158, 11, 0.15);
+
+    border-radius: 12px;
+}
+
+.streak-message > span {
+    font-size: 22px;
+}
+
+.streak-message strong {
+    font-size: 12px;
+    color: var(--text-primary);
+}
+
+.streak-message p {
+    margin: 3px 0 0;
+
+    font-size: 10px;
+    color: var(--text-secondary);
+}
 /* ============================================================
    FACULTY (preview + page)
    ============================================================ */
