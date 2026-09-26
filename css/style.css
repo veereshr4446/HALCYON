@@ -902,7 +902,7 @@ a { color: inherit; }
 }
 .music-artwork.playing { animation: spinDisc 3s linear infinite; }
 .music-info { flex: 1; min-width: 0; }
-.now-playing-label { font-size: 9px; font-weight: 800; color: var(--accent); letter-spacing: 0.06em; }
+.now-playing-label { font-size: 9px; font-weight: 800; color: #FF2D55; letter-spacing: 0.06em; }
 .music-title { font-weight: 700; font-size: 13px; color: var(--text-primary); }
 .music-subtitle { font-size: 10.5px; color: var(--text-secondary); }
 .music-close-btn { position: absolute; top: -6px; right: -6px; background: none; border: none; color: var(--text-secondary); cursor: pointer; font-size: 15px; }
@@ -910,11 +910,13 @@ a { color: inherit; }
 
 .music-progress-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
 .music-time { font-size: 10px; color: var(--text-secondary); flex-shrink: 0; }
-.music-seek { flex: 1; accent-color: var(--accent); cursor: pointer; }
+.music-seek { flex: 1; accent-color: #FF2D55; cursor: pointer; }
 .music-controls-row { display: flex; align-items: center; justify-content: space-between; }
 .music-status { font-size: 11px; color: var(--text-secondary); font-weight: 600; }
 .music-play-btn {
-    width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff;
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF375F 0%, #FF2D55 50%, #FA233B 100%);
+    color: #fff;
     border: none; cursor: pointer; display: flex; align-items: center; justify-content: center;
     transition: transform 0.15s;
 }
