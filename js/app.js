@@ -187,6 +187,15 @@ function showAllSubjects() {
     const html = subjectsData.map((s, i) => `<div class="modal-item"><span>${i + 1}. ${s.code}</span><span>${s.name}</span></div>`).join('');
     openModal('📚 All Subjects', `Total: ${subjectsData.length} subjects`, html);
 }
+
+function showStreakDetails() {
+    document.getElementById('streakModal').classList.add('active');
+}
+
+function closeStreakDetails() {
+    document.getElementById('streakModal').classList.remove('active');
+}
+
 function showAttendanceDetails() {
     const html = subjectsData.map(s => {
         const status = getStatus(s.attendance);
