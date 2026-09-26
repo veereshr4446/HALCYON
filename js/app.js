@@ -183,11 +183,6 @@ function closeModal() {
 }
 
 // ----- Stat card click handlers -----
-function showAllSubjects() {
-    const html = subjectsData.map((s, i) => `<div class="modal-item"><span>${i + 1}. ${s.code}</span><span>${s.name}</span></div>`).join('');
-    openModal('📚 All Subjects', `Total: ${subjectsData.length} subjects`, html);
-}
-
 function showStreakDetails() {
     document.getElementById('streakModal').classList.add('active');
 }
@@ -203,6 +198,11 @@ function showAttendanceDetails() {
         return `<div class="modal-item"><span>${emoji} ${s.code}</span><span class="attendance ${status}">${s.attendance}%</span></div>`;
     }).join('');
     openModal('📊 Attendance Details', `Overall: ${getOverallAttendance().toFixed(1)}%`, html);
+}
+
+function showAllSubjects() {
+    const html = subjectsData.map((s, i) => `<div class="modal-item"><span>${i + 1}. ${s.code}</span><span>${s.name}</span></div>`).join('');
+    openModal('📚 All Subjects', `Total: ${subjectsData.length} subjects`, html);
 }
 function showCIEDetails() {
     // 2 CIEs per subject (50 marks each) — only the higher of the two counts
