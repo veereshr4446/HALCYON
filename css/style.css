@@ -842,7 +842,15 @@ a { color: inherit; }
     box-shadow: 0 0 0 6px rgba(79, 125, 243, 0.15), 0 4px 14px rgba(79, 125, 243, 0.4);
     transition: transform 0.2s;
 }
-.about-music-icon:hover { transform: scale(1.06); }
+.about-music-icon {
+    position: absolute; top: 16px; left: 18px; z-index: 5;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, #e53935, #ffffff);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 18px; cursor: pointer;
+    box-shadow: 0 0 0 6px rgba(229, 57, 53, 0.15), 0 4px 14px rgba(229, 57, 53, 0.4);
+    transition: transform 0.2s;
+}
 .about-music-icon.playing i { animation: spinDisc 3s linear infinite; }
 
 .about-music-player {
