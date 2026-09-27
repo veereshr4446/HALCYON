@@ -1368,7 +1368,7 @@ if (feedbackSubmit) {
              */
 
             const googleFormURL =
-                'YOUR_GOOGLE_FORM_URL';
+                'https://forms.gle/qynARnBJsS2odeTd8';
 
 
             /*
@@ -1377,7 +1377,7 @@ if (feedbackSubmit) {
 
             if (
                 googleFormURL !==
-                'YOUR_GOOGLE_FORM_URL'
+                'https://forms.gle/qynARnBJsS2odeTd8'
             ) {
 
                 window.open(
