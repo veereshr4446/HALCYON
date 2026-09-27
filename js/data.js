@@ -15,14 +15,14 @@
 // HIGHER of the two scores is considered — not a sum of the best two.
 // `cie` below is therefore a 2-element array, each value out of 50. -----
 const subjectsData = [
-    { code: '1BMATCS301', name: 'Distributions and Statistics Probability', faculty: 'Prof. G. Gangamma', attendance: 84, cie: [40, 34] },
-    { code: '1BCS302', name: 'Object Oriented Programming with Java', faculty: 'Dr. H. Girisha', attendance: 90, cie: [47, 42] },
-    { code: '1BCS303', name: 'Digital Design and Computer Organization', faculty: 'Prof. Radhika Y', attendance: 88, cie: [49, 44] },
-    { code: '1BCS304', name: 'Operating Systems', faculty: 'Prof. Sharmila G K', attendance: 85, cie: [43, 38] },
-    { code: '1BCS305', name: 'Data Structures and Applications', faculty: 'Prof. Rajeswari R.P', attendance: 82, cie: [47, 41] },
-    { code: '1BCSL306', name: 'Data Structures Laboratory', faculty: 'Dr. Nagaveni Biradar', attendance: 83, cie: [45, 39] },
-    { code: '1BCSL307A', name: 'Project Management (with Git)', faculty: 'Prof. Prasanna Kumar', attendance: 78, cie: [39, 33] },
-    { code: '1BCP308', name: 'Community Project / Societal Project', faculty: 'Dr. H. Girisha', attendance: 92, cie: [50, 46] }
+    { code: '1BMATCS301', name: 'Distributions and Statistics Probability', faculty: 'Prof. G. Gangamma', attendance: 84, cie: [50, 50] },
+    { code: '1BCS302', name: 'Object Oriented Programming with Java', faculty: 'Dr. H. Girisha', attendance: 90, cie: [50, 50] },
+    { code: '1BCS303', name: 'Digital Design and Computer Organization', faculty: 'Prof. Radhika Y', attendance: 88, cie: [50, 48] },
+    { code: '1BCS304', name: 'Operating Systems', faculty: 'Prof. Sharmila G K', attendance: 85, cie: [50, 48] },
+    { code: '1BCS305', name: 'Data Structures and Applications', faculty: 'Prof. Rajeswari R.P', attendance: 82, cie: [50, 49] },
+    { code: '1BCSL306', name: 'Data Structures Laboratory', faculty: 'Dr. Nagaveni Biradar', attendance: 83, cie: [50, 49] },
+    { code: '1BCSL307A', name: 'Project Management (with Git)', faculty: 'Prof. Prasanna Kumar', attendance: 78, cie: [50, 45] },
+    { code: '1BCP308', name: 'Community Project / Societal Project', faculty: 'Dr. H. Girisha', attendance: 92, cie: [50, 49] }
 ];
 
 // ----- FACULTY — Semester 3, Section A -----
@@ -41,15 +41,15 @@ const facultyData = [
 
 // ----- FICTIONAL CLASSMATES (Social Hub — search & leaderboard) -----
 const classmatesData = [
-    { name: 'Ananya Rao', usn: '3VC25CS101', branch: 'CSE A', attendance: 88 },
-    { name: 'Rohan Kulkarni', usn: '3VC25CS103', branch: 'CSE A', attendance: 85 },
-    { name: 'Sneha Iyer', usn: '3VC25CS104', branch: 'CSE A', attendance: 82 },
-    { name: 'Kiran Patel', usn: '3VC25CS105', branch: 'CSE B', attendance: 79 },
-    { name: 'Anjali Rao', usn: '3VC25CS106', branch: 'CSE B', attendance: 91 },
-    { name: 'Vikram Naidu', usn: '3VC25CS108', branch: 'CSE B', attendance: 74 },
-    { name: 'Meera Reddy', usn: '3VC25CS109', branch: 'ECE', attendance: 86 },
-    { name: 'Deepika Joshi', usn: '3VC25EC101', branch: 'ECE', attendance: 83 },
-    { name: 'Nikhil Sharma', usn: '3VC25ME101', branch: 'ME', attendance: 77 }
+    { name: 'Aishwarya K', usn: '3VC25CS004', branch: 'CSE A', attendance: 98 },
+    { name: 'Chandan Kumar K', usn: '3VC25CS016', branch: 'CSE A', attendance: 85 },
+    { name: 'Sneha Iyer', usn: '3VC25CS904', branch: 'CSE A', attendance: 82 },
+    { name: 'Kiran Patel', usn: '3VC25CS905', branch: 'CSE B', attendance: 79 },
+    { name: 'Anjali Rao', usn: '3VC25CS906', branch: 'CSE B', attendance: 91 },
+    { name: 'Vikram Naidu', usn: '3VC25CS908', branch: 'CSE B', attendance: 74 },
+    { name: 'Meera Reddy', usn: '3VC25CS909', branch: 'ECE', attendance: 86 },
+    { name: 'Deepika Joshi', usn: '3VC25EC901', branch: 'ECE', attendance: 83 },
+    { name: 'Nikhil Sharma', usn: '3VC25ME901', branch: 'ME', attendance: 77 }
 ];
 
 // ----- STUDY GROUPS -----
