@@ -1201,6 +1201,245 @@ document.addEventListener(
 
     }
 );
+
+/* ============================================================
+   HALCYON FEEDBACK
+============================================================ */
+
+const feedbackTrigger =
+    document.getElementById('feedbackTrigger');
+
+const feedbackModal =
+    document.getElementById('feedbackModal');
+
+const feedbackClose =
+    document.getElementById('feedbackClose');
+
+const feedbackCancel =
+    document.getElementById('feedbackCancel');
+
+const feedbackSubmit =
+    document.getElementById('feedbackSubmit');
+
+const feedbackText =
+    document.getElementById('feedbackText');
+
+const feedbackCharCount =
+    document.getElementById('feedbackCharCount');
+
+const feedbackTypes =
+    document.querySelectorAll('.feedback-type');
+
+
+let selectedFeedbackType = 'Suggestion';
+
+
+/* ---------- Open ---------- */
+
+function openFeedbackModal() {
+
+    if (!feedbackModal) return;
+
+    feedbackModal.classList.add('show');
+
+    document.body.style.overflow = 'hidden';
+
+}
+
+
+/* ---------- Close ---------- */
+
+function closeFeedbackModal() {
+
+    if (!feedbackModal) return;
+
+    feedbackModal.classList.remove('show');
+
+    document.body.style.overflow = '';
+
+}
+
+
+/* ---------- Sidebar Feedback ---------- */
+
+if (feedbackTrigger) {
+
+    feedbackTrigger.addEventListener(
+        'click',
+        function (event) {
+
+            event.preventDefault();
+
+            openFeedbackModal();
+
+        }
+    );
+
+}
+
+
+/* ---------- Close buttons ---------- */
+
+if (feedbackClose) {
+
+    feedbackClose.addEventListener(
+        'click',
+        closeFeedbackModal
+    );
+
+}
+
+if (feedbackCancel) {
+
+    feedbackCancel.addEventListener(
+        'click',
+        closeFeedbackModal
+    );
+
+}
+
+
+/* ---------- Feedback type ---------- */
+
+feedbackTypes.forEach(function (button) {
+
+    button.addEventListener(
+        'click',
+        function () {
+
+            feedbackTypes.forEach(function (item) {
+
+                item.classList.remove('active');
+
+            });
+
+            button.classList.add('active');
+
+            selectedFeedbackType =
+                button.dataset.feedbackType;
+
+        }
+    );
+
+});
+
+
+/* ---------- Character counter ---------- */
+
+if (feedbackText) {
+
+    feedbackText.addEventListener(
+        'input',
+        function () {
+
+            feedbackCharCount.textContent =
+                feedbackText.value.length;
+
+        }
+    );
+
+}
+
+
+/* ---------- Submit ---------- */
+
+if (feedbackSubmit) {
+
+    feedbackSubmit.addEventListener(
+        'click',
+        function () {
+
+            const message =
+                feedbackText.value.trim();
+
+
+            if (!message) {
+
+                feedbackText.focus();
+
+                return;
+
+            }
+
+
+            /*
+             * Replace this URL with your
+             * HALCYON Google Form URL.
+             */
+
+            const googleFormURL =
+                'YOUR_GOOGLE_FORM_URL';
+
+
+            /*
+             * Open the Google Form.
+             */
+
+            if (
+                googleFormURL !==
+                'YOUR_GOOGLE_FORM_URL'
+            ) {
+
+                window.open(
+                    googleFormURL,
+                    '_blank'
+                );
+
+            } else {
+
+                alert(
+                    'Please add the HALCYON feedback form link.'
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ---------- Click outside ---------- */
+
+if (feedbackModal) {
+
+    feedbackModal.addEventListener(
+        'click',
+        function (event) {
+
+            if (
+                event.target === feedbackModal
+            ) {
+
+                closeFeedbackModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ---------- ESC ---------- */
+
+document.addEventListener(
+    'keydown',
+    function (event) {
+
+        if (
+            event.key === 'Escape' &&
+            feedbackModal &&
+            feedbackModal.classList.contains('show')
+        ) {
+
+            closeFeedbackModal();
+
+        }
+
+    }
+);
+
 // ============================================================
 //  EXPOSE GLOBALLY
 // ============================================================
