@@ -1388,7 +1388,7 @@ if (feedbackSubmit) {
             } else {
 
                 alert(
-                    'Please add the HALCYON feedback form link.'
+                    'https://forms.gle/qynARnBJsS2odeTd8'
                 );
 
             }
