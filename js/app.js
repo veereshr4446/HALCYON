@@ -1082,6 +1082,125 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('🚀 Student Dashboard demo ready — all local, no network calls.');
 });
 
+/* ============================================================
+   HALCYON PRO MODAL
+============================================================ */
+
+const proTrigger =
+    document.getElementById('proTrigger');
+
+const proModal =
+    document.getElementById('proModal');
+
+const proModalClose =
+    document.getElementById('proModalClose');
+
+const proGotIt =
+    document.getElementById('proGotIt');
+
+
+/* ---------- Open ---------- */
+
+function openProModal() {
+
+    if (!proModal) return;
+
+    proModal.classList.add('show');
+
+    document.body.style.overflow = 'hidden';
+
+}
+
+
+/* ---------- Close ---------- */
+
+function closeProModal() {
+
+    if (!proModal) return;
+
+    proModal.classList.remove('show');
+
+    document.body.style.overflow = '';
+
+}
+
+
+/* ---------- Pro button ---------- */
+
+if (proTrigger) {
+
+    proTrigger.addEventListener(
+        'click',
+        openProModal
+    );
+
+}
+
+
+/* ---------- X button ---------- */
+
+if (proModalClose) {
+
+    proModalClose.addEventListener(
+        'click',
+        closeProModal
+    );
+
+}
+
+
+/* ---------- Got it ---------- */
+
+if (proGotIt) {
+
+    proGotIt.addEventListener(
+        'click',
+        closeProModal
+    );
+
+}
+
+
+/* ---------- Click outside ---------- */
+
+if (proModal) {
+
+    proModal.addEventListener(
+        'click',
+        function (event) {
+
+            if (
+                event.target === proModal
+            ) {
+
+                closeProModal();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ---------- ESC key ---------- */
+
+document.addEventListener(
+    'keydown',
+    function (event) {
+
+        if (
+            event.key === 'Escape' &&
+            proModal &&
+            proModal.classList.contains('show')
+        ) {
+
+            closeProModal();
+
+        }
+
+    }
+);
 // ============================================================
 //  EXPOSE GLOBALLY
 // ============================================================
