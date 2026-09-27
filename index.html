@@ -203,7 +203,9 @@
                 <button class="search-btn" onclick="toggleSearch()" aria-label="Search">
                     <i class="fas fa-search"></i>
                 </button>
-                <span class="badge">Pro</span>
+                <button class="badge pro-trigger" id="proTrigger" type="button">
+    Pro
+</button>
             </div>
         </header>
 
@@ -1334,6 +1336,105 @@
             </div>
         </div>
     </div>
+
+<!-- HALCYON PRO MODAL -->
+<div class="pro-modal-overlay" id="proModal">
+
+    <div class="pro-modal" role="dialog" aria-modal="true">
+
+        <button
+            class="pro-modal-close"
+            id="proModalClose"
+            type="button"
+            aria-label="Close">
+            &times;
+        </button>
+
+        <div class="pro-modal-header">
+            <h2>HALCYON <span>PRO</span></h2>
+
+            <p>Plan • Revise • Own</p>
+        </div>
+
+
+        <div class="pro-modal-features">
+
+            <!-- P -->
+            <div class="pro-feature-card pro-plan">
+
+                <div class="pro-letter">P</div>
+
+                <div class="pro-feature-icon">📖</div>
+
+                <h3>Plan</h3>
+
+                <p>
+                    Plan your studies,
+                    tasks and goals.
+                </p>
+
+            </div>
+
+
+            <!-- R -->
+            <div class="pro-feature-card pro-revise">
+
+                <div class="pro-letter">R</div>
+
+                <div class="pro-feature-icon">📊</div>
+
+                <h3>Revise</h3>
+
+                <p>
+                    Revise and track
+                    your progress.
+                </p>
+
+            </div>
+
+
+            <!-- O -->
+            <div class="pro-feature-card pro-own">
+
+                <div class="pro-letter">O</div>
+
+                <div class="pro-feature-icon">🎯</div>
+
+                <h3>Own your progress</h3>
+
+                <p>
+                    Take control of
+                    your student journey.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Student message -->
+        <div class="pro-student-message">
+
+            <p>
+                <strong>PRO isn't premium.</strong>
+                It's for every student. 🎓
+            </p>
+
+        </div>
+
+
+        <button
+            class="pro-got-it"
+            id="proGotIt"
+            type="button">
+
+            Got it! <span>→</span>
+
+        </button>
+
+    </div>
+
+</div>
 
     <!-- ============================================================
          STREAK DETAILS MODAL
