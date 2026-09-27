@@ -1234,7 +1234,9 @@ const feedbackTypes =
 let selectedFeedbackType = 'Suggestion';
 
 
-/* ---------- Open ---------- */
+/* ============================================================
+   OPEN FEEDBACK MODAL
+============================================================ */
 
 function openFeedbackModal() {
 
@@ -1247,7 +1249,9 @@ function openFeedbackModal() {
 }
 
 
-/* ---------- Close ---------- */
+/* ============================================================
+   CLOSE FEEDBACK MODAL
+============================================================ */
 
 function closeFeedbackModal() {
 
@@ -1260,7 +1264,9 @@ function closeFeedbackModal() {
 }
 
 
-/* ---------- Sidebar Feedback ---------- */
+/* ============================================================
+   SIDEBAR FEEDBACK BUTTON
+============================================================ */
 
 if (feedbackTrigger) {
 
@@ -1278,7 +1284,9 @@ if (feedbackTrigger) {
 }
 
 
-/* ---------- Close buttons ---------- */
+/* ============================================================
+   CLOSE BUTTON
+============================================================ */
 
 if (feedbackClose) {
 
@@ -1288,6 +1296,11 @@ if (feedbackClose) {
     );
 
 }
+
+
+/* ============================================================
+   CANCEL BUTTON
+============================================================ */
 
 if (feedbackCancel) {
 
@@ -1299,7 +1312,9 @@ if (feedbackCancel) {
 }
 
 
-/* ---------- Feedback type ---------- */
+/* ============================================================
+   FEEDBACK TYPE SELECTION
+============================================================ */
 
 feedbackTypes.forEach(function (button) {
 
@@ -1307,13 +1322,21 @@ feedbackTypes.forEach(function (button) {
         'click',
         function () {
 
+            /* Remove active from all buttons */
+
             feedbackTypes.forEach(function (item) {
 
                 item.classList.remove('active');
 
             });
 
+
+            /* Add active to selected button */
+
             button.classList.add('active');
+
+
+            /* Save selected feedback type */
 
             selectedFeedbackType =
                 button.dataset.feedbackType;
@@ -1324,7 +1347,9 @@ feedbackTypes.forEach(function (button) {
 });
 
 
-/* ---------- Character counter ---------- */
+/* ============================================================
+   CHARACTER COUNTER
+============================================================ */
 
 if (feedbackText) {
 
@@ -1332,8 +1357,12 @@ if (feedbackText) {
         'input',
         function () {
 
-            feedbackCharCount.textContent =
-                feedbackText.value.length;
+            if (feedbackCharCount) {
+
+                feedbackCharCount.textContent =
+                    feedbackText.value.length;
+
+            }
 
         }
     );
@@ -1341,7 +1370,9 @@ if (feedbackText) {
 }
 
 
-/* ---------- Submit ---------- */
+/* ============================================================
+   SUBMIT FEEDBACK
+============================================================ */
 
 if (feedbackSubmit) {
 
@@ -1349,9 +1380,13 @@ if (feedbackSubmit) {
         'click',
         function () {
 
+            /* Get feedback message */
+
             const message =
                 feedbackText.value.trim();
 
+
+            /* Don't allow empty feedback */
 
             if (!message) {
 
@@ -1362,36 +1397,18 @@ if (feedbackSubmit) {
             }
 
 
-            /*
-             * Replace this URL with your
-             * HALCYON Google Form URL.
-             */
+            /* Your HALCYON Google Form */
 
             const googleFormURL =
                 'https://forms.gle/qynARnBJsS2odeTd8';
 
 
-            /*
-             * Open the Google Form.
-             */
+            /* Open Google Form */
 
-            if (
-                googleFormURL !==
-                'https://forms.gle/qynARnBJsS2odeTd8'
-            ) {
-
-                window.open(
-                    googleFormURL,
-                    '_blank'
-                );
-
-            } else {
-
-                alert(
-                    'https://forms.gle/qynARnBJsS2odeTd8'
-                );
-
-            }
+            window.open(
+                googleFormURL,
+                '_blank'
+            );
 
         }
     );
@@ -1399,7 +1416,9 @@ if (feedbackSubmit) {
 }
 
 
-/* ---------- Click outside ---------- */
+/* ============================================================
+   CLICK OUTSIDE MODAL TO CLOSE
+============================================================ */
 
 if (feedbackModal) {
 
@@ -1419,6 +1438,28 @@ if (feedbackModal) {
     );
 
 }
+
+
+/* ============================================================
+   ESC KEY TO CLOSE
+============================================================ */
+
+document.addEventListener(
+    'keydown',
+    function (event) {
+
+        if (
+            event.key === 'Escape' &&
+            feedbackModal &&
+            feedbackModal.classList.contains('show')
+        ) {
+
+            closeFeedbackModal();
+
+        }
+
+    }
+);
 
 
 /* ---------- ESC ---------- */
