@@ -1486,7 +1486,9 @@ document.addEventListener(
    ============================================================ */
 
 function openAvatarPicker() {
-    const picker = document.getElementById('avatarPicker');
+
+    const picker =
+        document.getElementById('avatarPicker');
 
     if (!picker) return;
 
@@ -1497,7 +1499,9 @@ function openAvatarPicker() {
 
 
 function closeAvatarPicker() {
-    const picker = document.getElementById('avatarPicker');
+
+    const picker =
+        document.getElementById('avatarPicker');
 
     if (!picker) return;
 
@@ -1506,24 +1510,29 @@ function closeAvatarPicker() {
 
 
 function selectAvatar(button) {
+
     if (!button) return;
 
-    const avatarPath = button.dataset.avatar;
+    const avatarPath =
+        button.dataset.avatar;
 
     if (!avatarPath) return;
 
-    const profileImage = document.getElementById('profileAvatarImg');
+    const profileImage =
+        document.getElementById('profileAvatarImg');
 
     if (profileImage) {
         profileImage.src = avatarPath;
     }
 
-    // Save selected avatar
+    /* Save selected avatar */
     lsSet('profileAvatar', avatarPath);
 
-    // Update selected state
+    /* Update selected state */
     document.querySelectorAll('.avatar-option').forEach(option => {
+
         option.classList.remove('selected');
+
     });
 
     button.classList.add('selected');
@@ -1533,10 +1542,12 @@ function selectAvatar(button) {
 
 
 function updateSelectedAvatar() {
-    const savedAvatar = lsGet(
-        'profileAvatar',
-        'images/avatar-boy-1.jpeg'
-    );
+
+    const savedAvatar =
+        lsGet(
+            'profileAvatar',
+            'images/avatar-boy-1.jpeg'
+        );
 
     const profileImage =
         document.getElementById('profileAvatarImg');
@@ -1556,19 +1567,252 @@ function updateSelectedAvatar() {
 }
 
 
-/* ================= LOAD SAVED AVATAR ================= */
+/* ============================================================
+   HALCYON EDIT PROFILE SYSTEM
+   ============================================================ */
 
-document.addEventListener('DOMContentLoaded', () => {
+function editProfile() {
+
+    const modal =
+        document.getElementById('editProfileModal');
+
+    const nameInput =
+        document.getElementById('editProfileName');
+
+    const bioInput =
+        document.getElementById('editProfileBio');
+
+    if (!modal || !nameInput || !bioInput) return;
+
+
+    const currentName =
+        document.querySelector('.profile-name')
+        ?.textContent.trim() || '';
+
+
+    const currentBio =
+        document.querySelector('.profile-bio')
+        ?.textContent.trim() || '';
+
+
+    /* Load current information */
+
+    nameInput.value = currentName;
+
+    bioInput.value = currentBio;
+
+
+    /* Update character counter */
+
+    updateBioCharacterCount();
+
+
+    /* Open modal */
+
+    modal.classList.add('show');
+}
+
+
+function closeEditProfile() {
+
+    const modal =
+        document.getElementById('editProfileModal');
+
+    if (!modal) return;
+
+    modal.classList.remove('show');
+}
+
+
+function saveProfileChanges() {
+
+    const nameInput =
+        document.getElementById('editProfileName');
+
+    const bioInput =
+        document.getElementById('editProfileBio');
+
+    if (!nameInput || !bioInput) return;
+
+
+    const profileName =
+        nameInput.value.trim();
+
+    const profileBio =
+        bioInput.value.trim();
+
+
+    /* ================= VALIDATION ================= */
+
+    if (!profileName) {
+
+        showToast('⚠️ Please enter your name');
+
+        nameInput.focus();
+
+        return;
+    }
+
+
+    if (!profileBio) {
+
+        showToast('⚠️ Please enter a bio');
+
+        bioInput.focus();
+
+        return;
+    }
+
+
+    /* ================= UPDATE PROFILE ================= */
+
+    const nameElement =
+        document.querySelector('.profile-name');
+
+    const bioElement =
+        document.querySelector('.profile-bio');
+
+
+    if (nameElement) {
+        nameElement.textContent = profileName;
+    }
+
+
+    if (bioElement) {
+        bioElement.textContent = profileBio;
+    }
+
+
+    /* ================= SAVE LOCALLY ================= */
+
+    lsSet('profileName', profileName);
+
+    lsSet('profileBio', profileBio);
+
+
+    /* ================= CLOSE ================= */
+
+    closeEditProfile();
+
+
+    showToast('✅ Profile updated successfully');
+}
+
+
+/* ============================================================
+   BIO CHARACTER COUNTER
+   ============================================================ */
+
+function updateBioCharacterCount() {
+
+    const bioInput =
+        document.getElementById('editProfileBio');
+
+    const counter =
+        document.getElementById('bioCharCount');
+
+    if (!bioInput || !counter) return;
+
+    counter.textContent =
+        bioInput.value.length;
+}
+
+
+/* ============================================================
+   LOAD SAVED PROFILE DATA
+   ============================================================ */
+
+function loadSavedProfile() {
+
+    const savedName =
+        lsGet('profileName', null);
+
+    const savedBio =
+        lsGet('profileBio', null);
+
+
+    /* Load saved name */
+
+    if (savedName) {
+
+        const nameElement =
+            document.querySelector('.profile-name');
+
+        if (nameElement) {
+            nameElement.textContent = savedName;
+        }
+    }
+
+
+    /* Load saved bio */
+
+    if (savedBio) {
+
+        const bioElement =
+            document.querySelector('.profile-bio');
+
+        if (bioElement) {
+            bioElement.textContent = savedBio;
+        }
+    }
+
+
+    /* Load saved avatar */
+
     updateSelectedAvatar();
+}
+
+
+/* ============================================================
+   BIO CHARACTER COUNT EVENT
+   ============================================================ */
+
+document.addEventListener('input', function(event) {
+
+    if (
+        event.target &&
+        event.target.id === 'editProfileBio'
+    ) {
+
+        updateBioCharacterCount();
+
+    }
+
 });
 
 
-/* ================= MAKE FUNCTIONS AVAILABLE ================= */
+/* ============================================================
+   LOAD PROFILE WHEN PAGE IS READY
+   ============================================================ */
 
-window.openAvatarPicker = openAvatarPicker;
-window.closeAvatarPicker = closeAvatarPicker;
-window.selectAvatar = selectAvatar;
+document.addEventListener('DOMContentLoaded', function() {
 
+    loadSavedProfile();
+
+});
+
+
+/* ============================================================
+   MAKE FUNCTIONS AVAILABLE TO HTML
+   ============================================================ */
+
+window.openAvatarPicker =
+    openAvatarPicker;
+
+window.closeAvatarPicker =
+    closeAvatarPicker;
+
+window.selectAvatar =
+    selectAvatar;
+
+window.editProfile =
+    editProfile;
+
+window.closeEditProfile =
+    closeEditProfile;
+
+window.saveProfileChanges =
+    saveProfileChanges;
 // ============================================================
 //  EXPOSE GLOBALLY
 // ============================================================
