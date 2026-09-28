@@ -709,44 +709,225 @@
         PROFILE PAGE
         ======================================================== -->
         <div id="page-profile" class="page-section">
+        
+            <!-- ===================== MY PROFILE ===================== -->
             <div class="card">
+        
                 <div class="card-header">
-                    <h3><i class="fas fa-id-card"></i> My Profile</h3>
-                    <span class="see-all" onclick="showPage('dashboard')">← Back</span>
+                    <h3>
+                        <i class="fas fa-id-card"></i>
+                        My Profile
+                    </h3>
+        
+                    <span
+                        class="see-all"
+                        onclick="showPage('dashboard')">
+                        ← Back
+                    </span>
                 </div>
+        
+        
                 <div class="profile-header-row">
-                    <div class="avatar-lg" onclick="editProfile()">V</div>
-                    <div class="profile-header-info">
-                        <div class="profile-name-row">
-                            <span class="profile-name">Viresh Ranjanagi</span>
-                            <button class="btn btn-sm btn-secondary" onclick="editProfile()">✏️ Edit</button>
+        
+                    <!-- PROFILE AVATAR -->
+                    <div class="profile-avatar-wrap">
+        
+                        <div
+                            class="avatar-lg profile-main-avatar"
+                            id="profileAvatar"
+                            onclick="openAvatarPicker()">
+        
+                            <img
+                                id="profileAvatarImg"
+                                src="images/avatar-boy-1.jpg"
+                                alt="Viresh Ranjanagi">
+        
                         </div>
-                        <div class="profile-bio">CSE Student | Tech Enthusiast | Building the future 🚀</div>
-                        <div class="profile-stats">
-                            <span>📚 <strong>8</strong> Subjects</span>
-                            <span>📊 <strong>78.5%</strong> Attendance</span>
-                            <span>🏅 <strong>4</strong> Badges</span>
-                        </div>
+        
+                        <!-- CAMERA BUTTON -->
+                        <button
+                            class="profile-camera-btn"
+                            type="button"
+                            onclick="openAvatarPicker()"
+                            aria-label="Change profile picture">
+        
+                            <i class="fas fa-camera"></i>
+        
+                        </button>
+        
                     </div>
+        
+        
+                    <!-- PROFILE INFORMATION -->
+                    <div class="profile-header-info">
+        
+                        <div class="profile-name-row">
+        
+                            <span class="profile-name">
+                                Viresh Ranjanagi
+                            </span>
+        
+                            <button
+                                class="btn btn-sm btn-secondary"
+                                type="button"
+                                onclick="editProfile()">
+        
+                                ✏️ Edit
+        
+                            </button>
+        
+                        </div>
+        
+        
+                        <div
+                            class="profile-bio"
+                            id="profileBio">
+        
+                            CSE Student | Tech Enthusiast | Building the future 🚀
+        
+                        </div>
+        
+        
+                        <div class="profile-stats">
+        
+                            <span>
+                                📚 <strong>8</strong> Subjects
+                            </span>
+        
+                            <span>
+                                📊 <strong>78.5%</strong> Attendance
+                            </span>
+        
+                            <span>
+                                🏅 <strong>4</strong> Badges
+                            </span>
+        
+                        </div>
+        
+                    </div>
+        
                 </div>
+        
             </div>
+        
+        
+            <!-- ===================== BADGES ===================== -->
             <div class="card">
+        
                 <div class="card-header">
-                    <h3><i class="fas fa-medal"></i> Badges Earned</h3>
-                    <span class="see-all">4 earned</span>
+        
+                    <h3>
+                        <i class="fas fa-medal"></i>
+                        Badges Earned
+                    </h3>
+        
+                    <span class="see-all">
+                        4 earned
+                    </span>
+        
                 </div>
+        
+        
                 <div class="badge-grid">
-                    <div class="badge-tile"><div class="tile-icon">🥈</div><div class="tile-name">Good Att.</div></div>
-                    <div class="badge-tile"><div class="tile-icon">⭐</div><div class="tile-name">Feedback Pro</div></div>
-                    <div class="badge-tile"><div class="tile-icon">💪</div><div class="tile-name">Consistent</div></div>
-                    <div class="badge-tile"><div class="tile-icon">👋</div><div class="tile-name">First Login</div></div>
-                    <div class="badge-tile locked"><div class="tile-icon">🥇</div><div class="tile-name">Perfect Att.</div></div>
-                    <div class="badge-tile locked"><div class="tile-icon">🔥</div><div class="tile-name">On Fire</div></div>
-                    <div class="badge-tile locked"><div class="tile-icon">📚</div><div class="tile-name">Academic Ex.</div></div>
+        
+                    <!-- EARNED -->
+                    <div class="badge-tile">
+        
+                        <div class="tile-icon">
+                            🥈
+                        </div>
+        
+                        <div class="tile-name">
+                            Good Att.
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="badge-tile">
+        
+                        <div class="tile-icon">
+                            ⭐
+                        </div>
+        
+                        <div class="tile-name">
+                            Feedback Pro
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="badge-tile">
+        
+                        <div class="tile-icon">
+                            💪
+                        </div>
+        
+                        <div class="tile-name">
+                            Consistent
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="badge-tile">
+        
+                        <div class="tile-icon">
+                            👋
+                        </div>
+        
+                        <div class="tile-name">
+                            First Login
+                        </div>
+        
+                    </div>
+        
+        
+                    <!-- LOCKED -->
+                    <div class="badge-tile locked">
+        
+                        <div class="tile-icon">
+                            🥇
+                        </div>
+        
+                        <div class="tile-name">
+                            Perfect Att.
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="badge-tile locked">
+        
+                        <div class="tile-icon">
+                            🔥
+                        </div>
+        
+                        <div class="tile-name">
+                            On Fire
+                        </div>
+        
+                    </div>
+        
+        
+                    <div class="badge-tile locked">
+        
+                        <div class="tile-icon">
+                            📚
+                        </div>
+        
+                        <div class="tile-name">
+                            Academic Ex.
+                        </div>
+        
+                    </div>
+        
                 </div>
+        
             </div>
+        
         </div>
-
+        
         <!-- ========================================================
         ANALYTICS PAGE
         ======================================================== -->
