@@ -927,8 +927,143 @@
             </div>
         
         </div>
-        
         <!-- ========================================================
+        HALCYON AVATAR PICKER
+        ======================================================== -->
+        <div class="avatar-picker-overlay" id="avatarPicker">
+        
+            <div class="avatar-picker-modal">
+        
+                <!-- CLOSE BUTTON -->
+                <button
+                    class="avatar-picker-close"
+                    type="button"
+                    onclick="closeAvatarPicker()"
+                    aria-label="Close">
+        
+                    &times;
+        
+                </button>
+        
+        
+                <!-- HEADER -->
+                <div class="avatar-picker-header">
+        
+                    <div class="avatar-picker-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+        
+                    <div>
+                        <h2>Choose your avatar</h2>
+                        <p>Select an avatar for your HALCYON profile.</p>
+                    </div>
+        
+                </div>
+        
+        
+                <!-- AVATAR GRID -->
+                <div class="avatar-picker-grid">
+        
+                    <!-- BOY 1 -->
+                    <button
+                        class="avatar-option"
+                        type="button"
+                        data-avatar="images/avatar-boy-1.jpg"
+                        onclick="selectAvatar(this)">
+        
+                        <img
+                            src="images/avatar-boy-1.jpg"
+                            alt="Boy Avatar 1">
+        
+                    </button>
+        
+        
+                    <!-- BOY 2 -->
+                    <button
+                        class="avatar-option"
+                        type="button"
+                        data-avatar="images/avatar-boy-2.jpg"
+                        onclick="selectAvatar(this)">
+        
+                        <img
+                            src="images/avatar-boy-2.jpg"
+                            alt="Boy Avatar 2">
+        
+                    </button>
+        
+        
+                    <!-- BOY 3 -->
+                    <button
+                        class="avatar-option"
+                        type="button"
+                        data-avatar="images/avatar-boy-3.jpg"
+                        onclick="selectAvatar(this)">
+        
+                        <img
+                            src="images/avatar-boy-3.jpg"
+                            alt="Boy Avatar 3">
+        
+                    </button>
+        
+        
+                    <!-- GIRL 1 -->
+                    <button
+                        class="avatar-option"
+                        type="button"
+                        data-avatar="images/avatar-girl-1.jpg"
+                        onclick="selectAvatar(this)">
+        
+                        <img
+                            src="images/avatar-girl-1.jpg"
+                            alt="Girl Avatar 1">
+        
+                    </button>
+        
+        
+                    <!-- GIRL 2 -->
+                    <button
+                        class="avatar-option"
+                        type="button"
+                        data-avatar="images/avatar-girl-2.jpg"
+                        onclick="selectAvatar(this)">
+        
+                        <img
+                            src="images/avatar-girl-2.jpg"
+                            alt="Girl Avatar 2">
+        
+                    </button>
+        
+        
+                    <!-- GIRL 3 -->
+                    <button
+                        class="avatar-option"
+                        type="button"
+                        data-avatar="images/avatar-girl-3.jpg"
+                        onclick="selectAvatar(this)">
+        
+                        <img
+                            src="images/avatar-girl-3.jpg"
+                            alt="Girl Avatar 3">
+        
+                    </button>
+        
+                </div>
+        
+        
+                <!-- DONE BUTTON -->
+                <button
+                    class="avatar-picker-done"
+                    type="button"
+                    onclick="closeAvatarPicker()">
+        
+                    Done <span>→</span>
+        
+                </button>
+        
+            </div>
+        
+        </div>
+                <!-- ========================================================
         ANALYTICS PAGE
         ======================================================== -->
         <div id="page-analytics" class="page-section">
