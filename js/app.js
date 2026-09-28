@@ -1820,3 +1820,4 @@ window.pomoToggle = pomoToggle;
 window.pomoReset = pomoReset;
 window.pomoSkip = pomoSkip;
 window.pomoClearHistory = pomoClearHistory;
+}
