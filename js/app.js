@@ -455,18 +455,6 @@ function setGoal(subjectCode, target) {
 }
 
 // ============================================================
-//  PROFILE
-// ============================================================
-function editProfile() {
-    const current = document.querySelector('.profile-bio')?.textContent || '';
-    const updated = prompt('Update your bio:', current);
-    if (updated !== null && document.querySelector('.profile-bio')) {
-        document.querySelector('.profile-bio').textContent = updated;
-        showToast('✅ Profile updated');
-    }
-}
-
-// ============================================================
 //  TABS (Social Hub) / TOOL TABS (Academic Tools)
 // ============================================================
 function switchTab(panelId, btn) {
@@ -1048,7 +1036,7 @@ function initProgressBars() {
 // ============================================================
 document.addEventListener('DOMContentLoaded', function () {
     loadTheme();
-
+    loadSavedProfile();
     const searchInput = document.getElementById('searchInput');
     if (searchInput) searchInput.addEventListener('input', (e) => performHeaderSearch(e.target.value));
 
@@ -1566,48 +1554,28 @@ function updateSelectedAvatar() {
     });
 }
 
-
 /* ============================================================
    HALCYON EDIT PROFILE SYSTEM
    ============================================================ */
 
 function editProfile() {
 
-    const modal =
-        document.getElementById('editProfileModal');
-
-    const nameInput =
-        document.getElementById('editProfileName');
-
-    const bioInput =
-        document.getElementById('editProfileBio');
+    const modal = document.getElementById('editProfileModal');
+    const nameInput = document.getElementById('editProfileName');
+    const bioInput = document.getElementById('editProfileBio');
 
     if (!modal || !nameInput || !bioInput) return;
 
-
     const currentName =
-        document.querySelector('.profile-name')
-        ?.textContent.trim() || '';
-
+        document.querySelector('.profile-name')?.textContent.trim() || '';
 
     const currentBio =
-        document.querySelector('.profile-bio')
-        ?.textContent.trim() || '';
-
-
-    /* Load current information */
+        document.querySelector('.profile-bio')?.textContent.trim() || '';
 
     nameInput.value = currentName;
-
     bioInput.value = currentBio;
 
-
-    /* Update character counter */
-
     updateBioCharacterCount();
-
-
-    /* Open modal */
 
     modal.classList.add('show');
 }
@@ -1634,7 +1602,6 @@ function saveProfileChanges() {
 
     if (!nameInput || !bioInput) return;
 
-
     const profileName =
         nameInput.value.trim();
 
@@ -1645,21 +1612,14 @@ function saveProfileChanges() {
     /* ================= VALIDATION ================= */
 
     if (!profileName) {
-
         showToast('⚠️ Please enter your name');
-
         nameInput.focus();
-
         return;
     }
 
-
     if (!profileBio) {
-
         showToast('⚠️ Please enter a bio');
-
         bioInput.focus();
-
         return;
     }
 
@@ -1672,11 +1632,9 @@ function saveProfileChanges() {
     const bioElement =
         document.querySelector('.profile-bio');
 
-
     if (nameElement) {
         nameElement.textContent = profileName;
     }
-
 
     if (bioElement) {
         bioElement.textContent = profileBio;
@@ -1686,14 +1644,12 @@ function saveProfileChanges() {
     /* ================= SAVE LOCALLY ================= */
 
     lsSet('profileName', profileName);
-
     lsSet('profileBio', profileBio);
 
 
-    /* ================= CLOSE ================= */
+    /* ================= CLOSE MODAL ================= */
 
     closeEditProfile();
-
 
     showToast('✅ Profile updated successfully');
 }
@@ -1731,8 +1687,6 @@ function loadSavedProfile() {
         lsGet('profileBio', null);
 
 
-    /* Load saved name */
-
     if (savedName) {
 
         const nameElement =
@@ -1744,8 +1698,6 @@ function loadSavedProfile() {
     }
 
 
-    /* Load saved bio */
-
     if (savedBio) {
 
         const bioElement =
@@ -1755,16 +1707,11 @@ function loadSavedProfile() {
             bioElement.textContent = savedBio;
         }
     }
-
-
-    /* Load saved avatar */
-
-    updateSelectedAvatar();
 }
 
 
 /* ============================================================
-   BIO CHARACTER COUNT EVENT
+   BIO CHARACTER COUNT
    ============================================================ */
 
 document.addEventListener('input', function(event) {
@@ -1773,46 +1720,11 @@ document.addEventListener('input', function(event) {
         event.target &&
         event.target.id === 'editProfileBio'
     ) {
-
         updateBioCharacterCount();
-
     }
 
 });
 
-
-/* ============================================================
-   LOAD PROFILE WHEN PAGE IS READY
-   ============================================================ */
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    loadSavedProfile();
-
-});
-
-
-/* ============================================================
-   MAKE FUNCTIONS AVAILABLE TO HTML
-   ============================================================ */
-
-window.openAvatarPicker =
-    openAvatarPicker;
-
-window.closeAvatarPicker =
-    closeAvatarPicker;
-
-window.selectAvatar =
-    selectAvatar;
-
-window.editProfile =
-    editProfile;
-
-window.closeEditProfile =
-    closeEditProfile;
-
-window.saveProfileChanges =
-    saveProfileChanges;
 // ============================================================
 //  EXPOSE GLOBALLY
 // ============================================================
