@@ -58,6 +58,7 @@ function showPage(pageId) {
     if (pageId === 'analytics') setTimeout(initAnalyticsCharts, 100);
     if (pageId === 'social') renderClassmates();
     if (pageId === 'planner') updatePlannerProgress();
+    if (pageId === 'profile') setTimeout(updateSelectedAvatar, 100);
     if (pageId === 'attendance') {
         setTimeout(() => { const el = document.getElementById('attendanceUSN'); if (el) el.focus(); }, 300);
     }
