@@ -1574,7 +1574,7 @@ function loadSelectedAvatar() {
     const savedAvatar =
         lsGet(
             PROFILE_AVATAR_KEY,
-            'images/avatar-boy-1.jpg'
+            'images/avatar-boy-1.jpeg'
         );
 
 
