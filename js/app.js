@@ -1728,7 +1728,7 @@ function loadSavedProfile() {
 
             updateGlobalProfileName(savedName);
         }
-        
+}
         
         if (savedBio) {
         
