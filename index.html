@@ -1063,7 +1063,101 @@
             </div>
         
         </div>
-                <!-- ========================================================
+
+        <!-- ========================================================
+        HALCYON EDIT PROFILE MODAL
+        ======================================================== -->
+        <div class="edit-profile-overlay" id="editProfileModal">
+        
+            <div class="edit-profile-modal">
+        
+                <!-- CLOSE -->
+                <button
+                    class="edit-profile-close"
+                    type="button"
+                    onclick="closeEditProfile()"
+                    aria-label="Close">
+        
+                    &times;
+        
+                </button>
+        
+                <!-- HEADER -->
+                <div class="edit-profile-header">
+        
+                    <div class="edit-profile-icon">
+                        <i class="fas fa-user-edit"></i>
+                    </div>
+        
+                    <div>
+                        <h2>Edit Profile</h2>
+                        <p>Update your profile information.</p>
+                    </div>
+        
+                </div>
+        
+                <!-- NAME -->
+                <div class="edit-profile-field">
+        
+                    <label for="editProfileName">
+                        Full Name
+                    </label>
+        
+                    <input
+                        type="text"
+                        id="editProfileName"
+                        placeholder="Enter your name"
+                        maxlength="50">
+        
+                </div>
+        
+                <!-- BIO -->
+                <div class="edit-profile-field">
+        
+                    <label for="editProfileBio">
+                        Bio
+                    </label>
+        
+                    <textarea
+                        id="editProfileBio"
+                        rows="4"
+                        maxlength="120"
+                        placeholder="Tell something about yourself..."></textarea>
+        
+                    <div class="edit-profile-counter">
+                        <span id="bioCharCount">0</span>/120
+                    </div>
+        
+                </div>
+        
+                <!-- ACTIONS -->
+                <div class="edit-profile-actions">
+        
+                    <button
+                        class="btn btn-secondary"
+                        type="button"
+                        onclick="closeEditProfile()">
+        
+                        Cancel
+        
+                    </button>
+        
+                    <button
+                        class="btn"
+                        type="button"
+                        onclick="saveProfileChanges()">
+        
+                        <i class="fas fa-check"></i>
+                        Save Changes
+        
+                    </button>
+        
+                </div>
+        
+            </div>
+        
+        </div>
+        <!-- ========================================================
         ANALYTICS PAGE
         ======================================================== -->
         <div id="page-analytics" class="page-section">
