@@ -1481,6 +1481,94 @@ document.addEventListener(
     }
 );
 
+/* ============================================================
+   HALCYON PROFILE AVATAR SYSTEM
+   ============================================================ */
+
+function openAvatarPicker() {
+    const picker = document.getElementById('avatarPicker');
+
+    if (!picker) return;
+
+    picker.classList.add('show');
+
+    updateSelectedAvatar();
+}
+
+
+function closeAvatarPicker() {
+    const picker = document.getElementById('avatarPicker');
+
+    if (!picker) return;
+
+    picker.classList.remove('show');
+}
+
+
+function selectAvatar(button) {
+    if (!button) return;
+
+    const avatarPath = button.dataset.avatar;
+
+    if (!avatarPath) return;
+
+    const profileImage = document.getElementById('profileAvatarImg');
+
+    if (profileImage) {
+        profileImage.src = avatarPath;
+    }
+
+    // Save selected avatar
+    lsSet('profileAvatar', avatarPath);
+
+    // Update selected state
+    document.querySelectorAll('.avatar-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+
+    button.classList.add('selected');
+
+    showToast('✅ Profile picture updated');
+}
+
+
+function updateSelectedAvatar() {
+    const savedAvatar = lsGet(
+        'profileAvatar',
+        'images/avatar-boy-1.jpeg'
+    );
+
+    const profileImage =
+        document.getElementById('profileAvatarImg');
+
+    if (profileImage) {
+        profileImage.src = savedAvatar;
+    }
+
+    document.querySelectorAll('.avatar-option').forEach(option => {
+
+        option.classList.toggle(
+            'selected',
+            option.dataset.avatar === savedAvatar
+        );
+
+    });
+}
+
+
+/* ================= LOAD SAVED AVATAR ================= */
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateSelectedAvatar();
+});
+
+
+/* ================= MAKE FUNCTIONS AVAILABLE ================= */
+
+window.openAvatarPicker = openAvatarPicker;
+window.closeAvatarPicker = closeAvatarPicker;
+window.selectAvatar = selectAvatar;
+
 // ============================================================
 //  EXPOSE GLOBALLY
 // ============================================================
