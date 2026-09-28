@@ -1637,7 +1637,7 @@ function saveProfileChanges() {
     if (nameElement) {
         nameElement.textContent = profileName;
     }
-
+    updateGlobalProfileName(profileName);
     if (bioElement) {
         bioElement.textContent = profileBio;
     }
@@ -1679,6 +1679,34 @@ function updateBioCharacterCount() {
 /* ============================================================
    LOAD SAVED PROFILE DATA
    ============================================================ */
+function updateGlobalProfileName(name) {
+
+    if (!name) return;
+
+    /* Top header */
+    const headerName =
+        document.querySelector('.student-name');
+
+    if (headerName) {
+
+        const parts = name.trim().split(/\s+/);
+        const firstName = parts.shift() || '';
+        const lastName = parts.join(' ');
+
+        headerName.innerHTML =
+            `${firstName} <span>${lastName}</span>`;
+    }
+
+
+    /* Sidebar */
+    const sidebarName =
+        document.querySelector('.sidebar-user .name');
+
+    if (sidebarName) {
+        sidebarName.textContent =
+            name.toUpperCase();
+    }
+}
 
 function loadSavedProfile() {
 
@@ -1689,27 +1717,28 @@ function loadSavedProfile() {
         lsGet('profileBio', null);
 
 
-    if (savedName) {
+        if (savedName) {
+        
+            const nameElement =
+                document.querySelector('.profile-name');
+        
+            if (nameElement) {
+                nameElement.textContent = savedName;
+            }
 
-        const nameElement =
-            document.querySelector('.profile-name');
-
-        if (nameElement) {
-            nameElement.textContent = savedName;
+            updateGlobalProfileName(savedName);
         }
-    }
-
-
-    if (savedBio) {
-
-        const bioElement =
-            document.querySelector('.profile-bio');
-
-        if (bioElement) {
-            bioElement.textContent = savedBio;
+        
+        
+        if (savedBio) {
+        
+            const bioElement =
+                document.querySelector('.profile-bio');
+        
+            if (bioElement) {
+                bioElement.textContent = savedBio;
+            }
         }
-    }
-}
 
 
 /* ============================================================
