@@ -1569,14 +1569,17 @@ function selectAvatar(button) {
 
 /* ================= LOAD SAVED AVATAR ================= */
 
-function loadSelectedAvatar() {
+let savedAvatar =
+    lsGet(
+        PROFILE_AVATAR_KEY,
+        'images/avatar-boy-1.jpeg'
+    );
 
-    const savedAvatar =
-        lsGet(
-            PROFILE_AVATAR_KEY,
-            'images/avatar-boy-1.jpeg'
-        );
-
+/* Fix old .jpg paths saved before the avatar files were uploaded */
+if (savedAvatar && savedAvatar.includes('avatar-') && savedAvatar.endsWith('.jpg')) {
+    savedAvatar = savedAvatar.replace('.jpg', '.jpeg');
+    lsSet(PROFILE_AVATAR_KEY, savedAvatar);
+}
 
     /* Update main profile image */
 
