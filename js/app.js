@@ -1015,22 +1015,196 @@ document.addEventListener('keydown', function (e) {
 
 // ============================================================
 //  PROGRESS BAR WIDTHS
-//  Fixed: elements like .fill, .goal-fill, .compare-bar-fill, and
-//  .planner-progress-fill all carry a data-target="NN" attribute
-//  meant to become their width, but nothing was ever reading it —
-//  so every bar sat at its CSS default of 0% width, showing only
-//  the percentage text with no visible color fill.
+//  Elements like .fill, .goal-fill, .compare-bar-fill and
+//  .planner-progress-fill carry a data-target="NN" attribute
+//  that becomes their width.
 // ============================================================
 function initProgressBars() {
     document.querySelectorAll('[data-target]').forEach(el => {
         const target = el.getAttribute('data-target');
         if (target !== null) {
-            // slight delay so the width transition animates in, matching
-            // the fill/goal-fill CSS transition already defined
             requestAnimationFrame(() => { el.style.width = target + '%'; });
         }
     });
 }
+
+// ============================================================
+//  HALCYON PRO MODAL
+// ============================================================
+function openProModal() {
+    const modal = document.getElementById('proModal');
+    if (!modal) return;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+function closeProModal() {
+    const modal = document.getElementById('proModal');
+    if (!modal) return;
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// ============================================================
+//  HALCYON FEEDBACK MODAL
+// ============================================================
+let selectedFeedbackType = 'Suggestion';
+
+function openFeedbackModal() {
+    const modal = document.getElementById('feedbackModal');
+    if (!modal) return;
+    modal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+}
+function closeFeedbackModal() {
+    const modal = document.getElementById('feedbackModal');
+    if (!modal) return;
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
+// ============================================================
+//  HALCYON PROFILE AVATAR SYSTEM
+// ============================================================
+function openAvatarPicker() {
+    const picker = document.getElementById('avatarPicker');
+    if (!picker) return;
+    picker.classList.add('show');
+    updateSelectedAvatar();
+}
+
+function closeAvatarPicker() {
+    const picker = document.getElementById('avatarPicker');
+    if (!picker) return;
+    picker.classList.remove('show');
+}
+
+function selectAvatar(button) {
+    if (!button) return;
+    const avatarPath = button.dataset.avatar;
+    if (!avatarPath) return;
+
+    const profileImage = document.getElementById('profileAvatarImg');
+    if (profileImage) profileImage.src = avatarPath;
+
+    lsSet('profileAvatar', avatarPath);
+
+    document.querySelectorAll('.avatar-option').forEach(option => option.classList.remove('selected'));
+    button.classList.add('selected');
+
+    showToast('✅ Profile picture updated');
+}
+
+function updateSelectedAvatar() {
+    const savedAvatar = lsGet('profileAvatar', 'images/avatar-boy-1.jpeg');
+
+    const profileImage = document.getElementById('profileAvatarImg');
+    if (profileImage) profileImage.src = savedAvatar;
+
+    document.querySelectorAll('.avatar-option').forEach(option => {
+        option.classList.toggle('selected', option.dataset.avatar === savedAvatar);
+    });
+}
+
+// ============================================================
+//  HALCYON EDIT PROFILE SYSTEM
+// ============================================================
+function editProfile() {
+    const modal = document.getElementById('editProfileModal');
+    const nameInput = document.getElementById('editProfileName');
+    const bioInput = document.getElementById('editProfileBio');
+    if (!modal || !nameInput || !bioInput) return;
+
+    nameInput.value = document.querySelector('.profile-name')?.textContent.trim() || '';
+    bioInput.value = document.querySelector('.profile-bio')?.textContent.trim() || '';
+
+    updateBioCharacterCount();
+    modal.classList.add('show');
+}
+
+function closeEditProfile() {
+    const modal = document.getElementById('editProfileModal');
+    if (!modal) return;
+    modal.classList.remove('show');
+}
+
+function saveProfileChanges() {
+    const nameInput = document.getElementById('editProfileName');
+    const bioInput = document.getElementById('editProfileBio');
+    if (!nameInput || !bioInput) return;
+
+    const profileName = nameInput.value.trim();
+    const profileBio = bioInput.value.trim();
+
+    if (!profileName) {
+        showToast('⚠️ Please enter your name');
+        nameInput.focus();
+        return;
+    }
+    if (!profileBio) {
+        showToast('⚠️ Please enter a bio');
+        bioInput.focus();
+        return;
+    }
+
+    const nameElement = document.querySelector('.profile-name');
+    const bioElement = document.querySelector('.profile-bio');
+
+    if (nameElement) nameElement.textContent = profileName;
+    updateGlobalProfileName(profileName);
+    if (bioElement) bioElement.textContent = profileBio;
+
+    lsSet('profileName', profileName);
+    lsSet('profileBio', profileBio);
+
+    closeEditProfile();
+    showToast('✅ Profile updated successfully');
+}
+
+function updateBioCharacterCount() {
+    const bioInput = document.getElementById('editProfileBio');
+    const counter = document.getElementById('bioCharCount');
+    if (!bioInput || !counter) return;
+    counter.textContent = bioInput.value.length;
+}
+
+function updateGlobalProfileName(name) {
+    if (!name) return;
+
+    // Top header
+    const headerName = document.querySelector('.student-name');
+    if (headerName) {
+        const parts = name.trim().split(/\s+/);
+        const firstName = parts.shift() || '';
+        const lastName = parts.join(' ');
+        headerName.innerHTML = `${firstName} <span>${lastName}</span>`;
+    }
+
+    // Sidebar
+    const sidebarName = document.querySelector('.sidebar-user .name');
+    if (sidebarName) sidebarName.textContent = name.toUpperCase();
+}
+
+// FIXED: the closing brace used to sit before the savedBio block, which
+// left savedBio out of scope and threw a ReferenceError at load time.
+function loadSavedProfile() {
+    const savedName = lsGet('profileName', null);
+    const savedBio = lsGet('profileBio', null);
+
+    if (savedName) {
+        const nameElement = document.querySelector('.profile-name');
+        if (nameElement) nameElement.textContent = savedName;
+        updateGlobalProfileName(savedName);
+    }
+
+    if (savedBio) {
+        const bioElement = document.querySelector('.profile-bio');
+        if (bioElement) bioElement.textContent = savedBio;
+    }
+}
+
+document.addEventListener('input', function (event) {
+    if (event.target && event.target.id === 'editProfileBio') updateBioCharacterCount();
+});
 
 // ============================================================
 //  INIT
@@ -1039,6 +1213,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadTheme();
     loadSavedProfile();
     updateSelectedAvatar();
+
     const searchInput = document.getElementById('searchInput');
     if (searchInput) searchInput.addEventListener('input', (e) => performHeaderSearch(e.target.value));
 
@@ -1058,6 +1233,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setTimeout(initDashboardCharts, 200);
 
+    // Click-outside-to-close for the classic modals
     const overlayCloseHandlers = {
         aboutModal: closeAboutModal,
         ratingModal: closeRatingModal,
@@ -1069,695 +1245,74 @@ document.addEventListener('DOMContentLoaded', function () {
         if (overlay) overlay.addEventListener('click', (e) => { if (e.target === overlay) overlayCloseHandlers[id](); });
     });
 
+    // ---------- Pro modal ----------
+    const proTrigger = document.getElementById('proTrigger');
+    const proModal = document.getElementById('proModal');
+    const proModalClose = document.getElementById('proModalClose');
+    const proGotIt = document.getElementById('proGotIt');
+
+    if (proTrigger) proTrigger.addEventListener('click', openProModal);
+    if (proModalClose) proModalClose.addEventListener('click', closeProModal);
+    if (proGotIt) proGotIt.addEventListener('click', closeProModal);
+    if (proModal) proModal.addEventListener('click', (e) => { if (e.target === proModal) closeProModal(); });
+
+    // ---------- Feedback modal ----------
+    const feedbackTrigger = document.getElementById('feedbackTrigger');
+    const feedbackModal = document.getElementById('feedbackModal');
+    const feedbackClose = document.getElementById('feedbackClose');
+    const feedbackCancel = document.getElementById('feedbackCancel');
+    const feedbackSubmit = document.getElementById('feedbackSubmit');
+    const feedbackText = document.getElementById('feedbackText');
+    const feedbackCharCount = document.getElementById('feedbackCharCount');
+    const feedbackTypes = document.querySelectorAll('.feedback-type');
+
+    if (feedbackTrigger) {
+        feedbackTrigger.addEventListener('click', (e) => { e.preventDefault(); openFeedbackModal(); });
+    }
+    if (feedbackClose) feedbackClose.addEventListener('click', closeFeedbackModal);
+    if (feedbackCancel) feedbackCancel.addEventListener('click', closeFeedbackModal);
+
+    feedbackTypes.forEach(function (button) {
+        button.addEventListener('click', function () {
+            feedbackTypes.forEach(item => item.classList.remove('active'));
+            button.classList.add('active');
+            selectedFeedbackType = button.dataset.feedbackType;
+        });
+    });
+
+    if (feedbackText) {
+        feedbackText.addEventListener('input', function () {
+            if (feedbackCharCount) feedbackCharCount.textContent = feedbackText.value.length;
+        });
+    }
+
+    if (feedbackSubmit) {
+        feedbackSubmit.addEventListener('click', function () {
+            const message = feedbackText ? feedbackText.value.trim() : '';
+            if (!message) {
+                if (feedbackText) feedbackText.focus();
+                return;
+            }
+            window.open('https://forms.gle/qynARnBJsS2odeTd8', '_blank');
+        });
+    }
+
+    if (feedbackModal) {
+        feedbackModal.addEventListener('click', (e) => { if (e.target === feedbackModal) closeFeedbackModal(); });
+    }
+
+    // ---------- ESC closes Pro / Feedback modals ----------
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Escape') return;
+        if (proModal && proModal.classList.contains('show')) closeProModal();
+        if (feedbackModal && feedbackModal.classList.contains('show')) closeFeedbackModal();
+    });
+
     console.log('🚀 Student Dashboard demo ready — all local, no network calls.');
 });
 
-/* ============================================================
-   HALCYON PRO MODAL
-============================================================ */
-
-const proTrigger =
-    document.getElementById('proTrigger');
-
-const proModal =
-    document.getElementById('proModal');
-
-const proModalClose =
-    document.getElementById('proModalClose');
-
-const proGotIt =
-    document.getElementById('proGotIt');
-
-
-/* ---------- Open ---------- */
-
-function openProModal() {
-
-    if (!proModal) return;
-
-    proModal.classList.add('show');
-
-    document.body.style.overflow = 'hidden';
-
-}
-
-
-/* ---------- Close ---------- */
-
-function closeProModal() {
-
-    if (!proModal) return;
-
-    proModal.classList.remove('show');
-
-    document.body.style.overflow = '';
-
-}
-
-
-/* ---------- Pro button ---------- */
-
-if (proTrigger) {
-
-    proTrigger.addEventListener(
-        'click',
-        openProModal
-    );
-
-}
-
-
-/* ---------- X button ---------- */
-
-if (proModalClose) {
-
-    proModalClose.addEventListener(
-        'click',
-        closeProModal
-    );
-
-}
-
-
-/* ---------- Got it ---------- */
-
-if (proGotIt) {
-
-    proGotIt.addEventListener(
-        'click',
-        closeProModal
-    );
-
-}
-
-
-/* ---------- Click outside ---------- */
-
-if (proModal) {
-
-    proModal.addEventListener(
-        'click',
-        function (event) {
-
-            if (
-                event.target === proModal
-            ) {
-
-                closeProModal();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* ---------- ESC key ---------- */
-
-document.addEventListener(
-    'keydown',
-    function (event) {
-
-        if (
-            event.key === 'Escape' &&
-            proModal &&
-            proModal.classList.contains('show')
-        ) {
-
-            closeProModal();
-
-        }
-
-    }
-);
-
-/* ============================================================
-   HALCYON FEEDBACK
-============================================================ */
-
-const feedbackTrigger =
-    document.getElementById('feedbackTrigger');
-
-const feedbackModal =
-    document.getElementById('feedbackModal');
-
-const feedbackClose =
-    document.getElementById('feedbackClose');
-
-const feedbackCancel =
-    document.getElementById('feedbackCancel');
-
-const feedbackSubmit =
-    document.getElementById('feedbackSubmit');
-
-const feedbackText =
-    document.getElementById('feedbackText');
-
-const feedbackCharCount =
-    document.getElementById('feedbackCharCount');
-
-const feedbackTypes =
-    document.querySelectorAll('.feedback-type');
-
-
-let selectedFeedbackType = 'Suggestion';
-
-
-/* ============================================================
-   OPEN FEEDBACK MODAL
-============================================================ */
-
-function openFeedbackModal() {
-
-    if (!feedbackModal) return;
-
-    feedbackModal.classList.add('show');
-
-    document.body.style.overflow = 'hidden';
-
-}
-
-
-/* ============================================================
-   CLOSE FEEDBACK MODAL
-============================================================ */
-
-function closeFeedbackModal() {
-
-    if (!feedbackModal) return;
-
-    feedbackModal.classList.remove('show');
-
-    document.body.style.overflow = '';
-
-}
-
-
-/* ============================================================
-   SIDEBAR FEEDBACK BUTTON
-============================================================ */
-
-if (feedbackTrigger) {
-
-    feedbackTrigger.addEventListener(
-        'click',
-        function (event) {
-
-            event.preventDefault();
-
-            openFeedbackModal();
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   CLOSE BUTTON
-============================================================ */
-
-if (feedbackClose) {
-
-    feedbackClose.addEventListener(
-        'click',
-        closeFeedbackModal
-    );
-
-}
-
-
-/* ============================================================
-   CANCEL BUTTON
-============================================================ */
-
-if (feedbackCancel) {
-
-    feedbackCancel.addEventListener(
-        'click',
-        closeFeedbackModal
-    );
-
-}
-
-
-/* ============================================================
-   FEEDBACK TYPE SELECTION
-============================================================ */
-
-feedbackTypes.forEach(function (button) {
-
-    button.addEventListener(
-        'click',
-        function () {
-
-            /* Remove active from all buttons */
-
-            feedbackTypes.forEach(function (item) {
-
-                item.classList.remove('active');
-
-            });
-
-
-            /* Add active to selected button */
-
-            button.classList.add('active');
-
-
-            /* Save selected feedback type */
-
-            selectedFeedbackType =
-                button.dataset.feedbackType;
-
-        }
-    );
-
-});
-
-
-/* ============================================================
-   CHARACTER COUNTER
-============================================================ */
-
-if (feedbackText) {
-
-    feedbackText.addEventListener(
-        'input',
-        function () {
-
-            if (feedbackCharCount) {
-
-                feedbackCharCount.textContent =
-                    feedbackText.value.length;
-
-            }
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   SUBMIT FEEDBACK
-============================================================ */
-
-if (feedbackSubmit) {
-
-    feedbackSubmit.addEventListener(
-        'click',
-        function () {
-
-            /* Get feedback message */
-
-            const message =
-                feedbackText.value.trim();
-
-
-            /* Don't allow empty feedback */
-
-            if (!message) {
-
-                feedbackText.focus();
-
-                return;
-
-            }
-
-
-            /* Your HALCYON Google Form */
-
-            const googleFormURL =
-                'https://forms.gle/qynARnBJsS2odeTd8';
-
-
-            /* Open Google Form */
-
-            window.open(
-                googleFormURL,
-                '_blank'
-            );
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   CLICK OUTSIDE MODAL TO CLOSE
-============================================================ */
-
-if (feedbackModal) {
-
-    feedbackModal.addEventListener(
-        'click',
-        function (event) {
-
-            if (
-                event.target === feedbackModal
-            ) {
-
-                closeFeedbackModal();
-
-            }
-
-        }
-    );
-
-}
-
-
-/* ============================================================
-   ESC KEY TO CLOSE
-============================================================ */
-
-document.addEventListener(
-    'keydown',
-    function (event) {
-
-        if (
-            event.key === 'Escape' &&
-            feedbackModal &&
-            feedbackModal.classList.contains('show')
-        ) {
-
-            closeFeedbackModal();
-
-        }
-
-    }
-);
-
-
-/* ---------- ESC ---------- */
-
-document.addEventListener(
-    'keydown',
-    function (event) {
-
-        if (
-            event.key === 'Escape' &&
-            feedbackModal &&
-            feedbackModal.classList.contains('show')
-        ) {
-
-            closeFeedbackModal();
-
-        }
-
-    }
-);
-
-/* ============================================================
-   HALCYON PROFILE AVATAR SYSTEM
-   ============================================================ */
-
-function openAvatarPicker() {
-
-    const picker =
-        document.getElementById('avatarPicker');
-
-    if (!picker) return;
-
-    picker.classList.add('show');
-
-    updateSelectedAvatar();
-}
-
-
-function closeAvatarPicker() {
-
-    const picker =
-        document.getElementById('avatarPicker');
-
-    if (!picker) return;
-
-    picker.classList.remove('show');
-}
-
-
-function selectAvatar(button) {
-
-    if (!button) return;
-
-    const avatarPath =
-        button.dataset.avatar;
-
-    if (!avatarPath) return;
-
-    const profileImage =
-        document.getElementById('profileAvatarImg');
-
-    if (profileImage) {
-        profileImage.src = avatarPath;
-    }
-
-    /* Save selected avatar */
-    lsSet('profileAvatar', avatarPath);
-
-    /* Update selected state */
-    document.querySelectorAll('.avatar-option').forEach(option => {
-
-        option.classList.remove('selected');
-
-    });
-
-    button.classList.add('selected');
-
-    showToast('✅ Profile picture updated');
-}
-
-
-function updateSelectedAvatar() {
-
-    const savedAvatar =
-        lsGet(
-            'profileAvatar',
-            'images/avatar-boy-1.jpeg'
-        );
-
-    const profileImage =
-        document.getElementById('profileAvatarImg');
-
-    if (profileImage) {
-        profileImage.src = savedAvatar;
-    }
-
-    document.querySelectorAll('.avatar-option').forEach(option => {
-
-        option.classList.toggle(
-            'selected',
-            option.dataset.avatar === savedAvatar
-        );
-
-    });
-}
-
-/* ============================================================
-   HALCYON EDIT PROFILE SYSTEM
-   ============================================================ */
-
-function editProfile() {
-
-    const modal = document.getElementById('editProfileModal');
-    const nameInput = document.getElementById('editProfileName');
-    const bioInput = document.getElementById('editProfileBio');
-
-    if (!modal || !nameInput || !bioInput) return;
-
-    const currentName =
-        document.querySelector('.profile-name')?.textContent.trim() || '';
-
-    const currentBio =
-        document.querySelector('.profile-bio')?.textContent.trim() || '';
-
-    nameInput.value = currentName;
-    bioInput.value = currentBio;
-
-    updateBioCharacterCount();
-
-    modal.classList.add('show');
-}
-
-
-function closeEditProfile() {
-
-    const modal =
-        document.getElementById('editProfileModal');
-
-    if (!modal) return;
-
-    modal.classList.remove('show');
-}
-
-
-function saveProfileChanges() {
-
-    const nameInput =
-        document.getElementById('editProfileName');
-
-    const bioInput =
-        document.getElementById('editProfileBio');
-
-    if (!nameInput || !bioInput) return;
-
-    const profileName =
-        nameInput.value.trim();
-
-    const profileBio =
-        bioInput.value.trim();
-
-
-    /* ================= VALIDATION ================= */
-
-    if (!profileName) {
-        showToast('⚠️ Please enter your name');
-        nameInput.focus();
-        return;
-    }
-
-    if (!profileBio) {
-        showToast('⚠️ Please enter a bio');
-        bioInput.focus();
-        return;
-    }
-
-
-    /* ================= UPDATE PROFILE ================= */
-
-    const nameElement =
-        document.querySelector('.profile-name');
-
-    const bioElement =
-        document.querySelector('.profile-bio');
-
-    if (nameElement) {
-        nameElement.textContent = profileName;
-    }
-    updateGlobalProfileName(profileName);
-    if (bioElement) {
-        bioElement.textContent = profileBio;
-    }
-
-
-    /* ================= SAVE LOCALLY ================= */
-
-    lsSet('profileName', profileName);
-    lsSet('profileBio', profileBio);
-
-
-    /* ================= CLOSE MODAL ================= */
-
-    closeEditProfile();
-
-    showToast('✅ Profile updated successfully');
-}
-
-
-/* ============================================================
-   BIO CHARACTER COUNTER
-   ============================================================ */
-
-function updateBioCharacterCount() {
-
-    const bioInput =
-        document.getElementById('editProfileBio');
-
-    const counter =
-        document.getElementById('bioCharCount');
-
-    if (!bioInput || !counter) return;
-
-    counter.textContent =
-        bioInput.value.length;
-}
-
-
-/* ============================================================
-   LOAD SAVED PROFILE DATA
-   ============================================================ */
-function updateGlobalProfileName(name) {
-
-    if (!name) return;
-
-    /* Top header */
-    const headerName =
-        document.querySelector('.student-name');
-
-    if (headerName) {
-
-        const parts = name.trim().split(/\s+/);
-        const firstName = parts.shift() || '';
-        const lastName = parts.join(' ');
-
-        headerName.innerHTML =
-            `${firstName} <span>${lastName}</span>`;
-    }
-
-
-    /* Sidebar */
-    const sidebarName =
-        document.querySelector('.sidebar-user .name');
-
-    if (sidebarName) {
-        sidebarName.textContent =
-            name.toUpperCase();
-    }
-}
-
-function loadSavedProfile() {
-
-    const savedName =
-        lsGet('profileName', null);
-
-    const savedBio =
-        lsGet('profileBio', null);
-
-
-        if (savedName) {
-        
-            const nameElement =
-                document.querySelector('.profile-name');
-        
-            if (nameElement) {
-                nameElement.textContent = savedName;
-            }
-
-            updateGlobalProfileName(savedName);
-        }
-}
-        
-        if (savedBio) {
-        
-            const bioElement =
-                document.querySelector('.profile-bio');
-        
-            if (bioElement) {
-                bioElement.textContent = savedBio;
-            }
-        }
-
-
-/* ============================================================
-   BIO CHARACTER COUNT
-   ============================================================ */
-
-document.addEventListener('input', function(event) {
-
-    if (
-        event.target &&
-        event.target.id === 'editProfileBio'
-    ) {
-        updateBioCharacterCount();
-    }
-
-});
-
 // ============================================================
-//  EXPOSE GLOBALLY
+//  EXPOSE GLOBALLY (for inline onclick="..." handlers)
 // ============================================================
 window.handleLogin = handleLogin;
 window.handleLogout = handleLogout;
@@ -1795,6 +1350,15 @@ window.showTimetable = showTimetable;
 window.fetchAttendance = fetchAttendance;
 window.setGoal = setGoal;
 window.editProfile = editProfile;
+window.closeEditProfile = closeEditProfile;
+window.saveProfileChanges = saveProfileChanges;
+window.openAvatarPicker = openAvatarPicker;
+window.closeAvatarPicker = closeAvatarPicker;
+window.selectAvatar = selectAvatar;
+window.openProModal = openProModal;
+window.closeProModal = closeProModal;
+window.openFeedbackModal = openFeedbackModal;
+window.closeFeedbackModal = closeFeedbackModal;
 window.switchTab = switchTab;
 window.switchTool = switchTool;
 window.toggleGroup = toggleGroup;
@@ -1820,4 +1384,3 @@ window.pomoToggle = pomoToggle;
 window.pomoReset = pomoReset;
 window.pomoSkip = pomoSkip;
 window.pomoClearHistory = pomoClearHistory;
-}
