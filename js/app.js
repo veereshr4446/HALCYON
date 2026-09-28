@@ -1037,6 +1037,7 @@ function initProgressBars() {
 document.addEventListener('DOMContentLoaded', function () {
     loadTheme();
     loadSavedProfile();
+    updateSelectedAvatar();
     const searchInput = document.getElementById('searchInput');
     if (searchInput) searchInput.addEventListener('input', (e) => performHeaderSearch(e.target.value));
 
