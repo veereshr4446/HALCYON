@@ -41,7 +41,7 @@ const facultyData = [
 
 // ----- FICTIONAL CLASSMATES (Social Hub — search & leaderboard) -----
 const classmatesData = [
-    { name: 'Aishwarya K', usn: '3VC25CS004', branch: 'CSE A', attendance: 98 },
+    { name: 'Aishwarya', usn: '3VC25CS904', branch: 'CSE A', attendance: 98 },
     { name: 'Chandan Kumar K', usn: '3VC25CS016', branch: 'CSE A', attendance: 85 },
     { name: 'Sneha Iyer', usn: '3VC25CS904', branch: 'CSE A', attendance: 82 },
     { name: 'Kiran Patel', usn: '3VC25CS905', branch: 'CSE B', attendance: 79 },
