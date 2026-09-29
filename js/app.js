@@ -593,40 +593,119 @@ function deleteNote(btn) {
 // ============================================================
 function addGpaRow() {
     const wrap = document.getElementById('gpaRows');
+
     const row = document.createElement('div');
     row.className = 'gpa-row';
-    const options = Object.keys(gradePoints).map(g => `<option>${g}</option>`).join('');
+
     row.innerHTML = `
-        <input type="text" placeholder="Subject">
-        <input type="number" value="4" min="1" max="6">
-        <select>${options}</select>
-        <button class="gpa-del" onclick="removeGpaRow(this)"><i class="fas fa-times"></i></button>`;
+        <input
+            type="text"
+            placeholder="Subject">
+
+        <input
+            type="number"
+            value="4"
+            min="1"
+            max="6">
+
+        <input
+            type="number"
+            value="0"
+            min="0"
+            max="100"
+            placeholder="Marks">
+
+        <button
+            class="gpa-del"
+            onclick="removeGpaRow(this)">
+            <i class="fas fa-times"></i>
+        </button>
+    `;
+
     wrap.appendChild(row);
     calcGpa();
 }
+
+
 function removeGpaRow(btn) {
     btn.closest('.gpa-row').remove();
     calcGpa();
 }
+
+
 function calcGpa() {
-    const rows = document.querySelectorAll('#gpaRows .gpa-row');
-    let totalCredits = 0, totalPoints = 0;
+
+    const rows =
+        document.querySelectorAll('#gpaRows .gpa-row');
+
+    let totalCredits = 0;
+    let totalPoints = 0;
+
     rows.forEach(row => {
-        const credit = parseFloat(row.querySelectorAll('input')[1]?.value) || 0;
-        const grade = row.querySelector('select')?.value;
-        const gp = gradePoints[grade] || 0;
+
+        const inputs =
+            row.querySelectorAll('input');
+
+        const credit =
+            parseFloat(inputs[1]?.value) || 0;
+
+        const marks =
+            parseFloat(inputs[2]?.value) || 0;
+
+        let gradePoint = 0;
+
+        // Convert marks to grade points
+        if (marks >= 90) {
+            gradePoint = 10;
+        } else if (marks >= 80) {
+            gradePoint = 9;
+        } else if (marks >= 70) {
+            gradePoint = 8;
+        } else if (marks >= 60) {
+            gradePoint = 7;
+        } else if (marks >= 50) {
+            gradePoint = 6;
+        } else if (marks >= 40) {
+            gradePoint = 5;
+        } else {
+            gradePoint = 0;
+        }
+
         totalCredits += credit;
-        totalPoints += credit * gp;
+        totalPoints += credit * gradePoint;
     });
-    const sgpa = totalCredits ? (totalPoints / totalCredits).toFixed(2) : '--';
-    const resultEl = document.getElementById('gpaResult');
-    if (resultEl) resultEl.textContent = sgpa;
+
+    const sgpa =
+        totalCredits
+            ? (totalPoints / totalCredits).toFixed(2)
+            : '--';
+
+    const resultEl =
+        document.getElementById('gpaResult');
+
+    if (resultEl) {
+        resultEl.textContent = sgpa;
+    }
 }
+
+
+// Recalculate when marks or credits are changed
 document.addEventListener('input', function (e) {
-    if (e.target.closest('#gpaRows')) calcGpa();
+
+    if (e.target.closest('#gpaRows')) {
+        calcGpa();
+    }
+
 });
+
+
+// Recalculate when a value changes
 document.addEventListener('change', function (e) {
-    if (e.target.closest('#gpaRows')) calcGpa();
+
+    if (e.target.closest('#gpaRows')) {
+        calcGpa();
+    }
+
 });
 
 // ============================================================
