@@ -1421,39 +1421,123 @@
                 <button class="tab-btn" data-tool="toolExam" onclick="switchTool('toolExam', this)">⏳ Exam Countdown</button>
             </div>
 
-            <!-- GPA Calculator -->
-            <div id="toolGpa" class="tab-panel active">
-                <div class="card">
-                    <div class="card-header"><h3>🎓 SGPA Calculator</h3><span class="see-all" onclick="addGpaRow()"><i class="fas fa-plus"></i> Add Subject</span></div>
-                    <div class="gpa-header-row">
-                        <span>Subject</span><span>Credits</span><span>Grade</span><span></span>
+        <!-- GPA Calculator -->
+        <div id="toolGpa" class="tab-panel active">
+            <div class="card">
+        
+                <div class="card-header">
+                    <h3>🎓 SGPA Calculator</h3>
+        
+                    <span class="see-all" onclick="addGpaRow()">
+                        <i class="fas fa-plus"></i> Add Subject
+                    </span>
+                </div>
+        
+                <div class="gpa-header-row">
+                    <span>Subject</span>
+                    <span>Credits</span>
+                    <span>Total Marks</span>
+                    <span></span>
+                </div>
+        
+                <div id="gpaRows">
+        
+                    <!-- SUBJECT 1 -->
+                    <div class="gpa-row">
+                        <input
+                            type="text"
+                            value="Statistics & Probability">
+        
+                        <input
+                            type="number"
+                            value="4"
+                            min="1"
+                            max="6">
+        
+                        <input
+                            type="number"
+                            value="70"
+                            min="0"
+                            max="100"
+                            placeholder="Marks">
+        
+                        <button
+                            class="gpa-del"
+                            onclick="removeGpaRow(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
-                    <div id="gpaRows">
-                        <div class="gpa-row">
-                            <input type="text" value="Statistics & Probability">
-                            <input type="number" value="4" min="1" max="6">
-                            <select><option>S (10)</option><option selected>A (9)</option><option>B (8)</option><option>C (7)</option></select>
-                            <button class="gpa-del" onclick="removeGpaRow(this)"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="gpa-row">
-                            <input type="text" value="Java Programming">
-                            <input type="number" value="3" min="1" max="6">
-                            <select><option selected>S (10)</option><option>A (9)</option><option>B (8)</option><option>C (7)</option></select>
-                            <button class="gpa-del" onclick="removeGpaRow(this)"><i class="fas fa-times"></i></button>
-                        </div>
-                        <div class="gpa-row">
-                            <input type="text" value="Data Structures and Applications">
-                            <input type="number" value="4" min="1" max="6">
-                            <select><option>S (10)</option><option selected>A (9)</option><option>B (8)</option><option>C (7)</option></select>
-                            <button class="gpa-del" onclick="removeGpaRow(this)"><i class="fas fa-times"></i></button>
-                        </div>
+        
+        
+                    <!-- SUBJECT 2 -->
+                    <div class="gpa-row">
+                        <input
+                            type="text"
+                            value="Java Programming">
+        
+                        <input
+                            type="number"
+                            value="3"
+                            min="1"
+                            max="6">
+        
+                        <input
+                            type="number"
+                            value="85"
+                            min="0"
+                            max="100"
+                            placeholder="Marks">
+        
+                        <button
+                            class="gpa-del"
+                            onclick="removeGpaRow(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
                     </div>
-                    <div class="result-box">
-                        <div class="result-number" id="gpaResult">9.14</div>
-                        <div class="result-label">Estimated SGPA</div>
+        
+        
+                    <!-- SUBJECT 3 -->
+                    <div class="gpa-row">
+                        <input
+                            type="text"
+                            value="Data Structures and Applications">
+        
+                        <input
+                            type="number"
+                            value="4"
+                            min="1"
+                            max="6">
+        
+                        <input
+                            type="number"
+                            value="92"
+                            min="0"
+                            max="100"
+                            placeholder="Marks">
+        
+                        <button
+                            class="gpa-del"
+                            onclick="removeGpaRow(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+        
+                </div>
+        
+                <div class="result-box">
+                    <div
+                        class="result-number"
+                        id="gpaResult">
+                        9.09
+                    </div>
+        
+                    <div class="result-label">
+                        Estimated SGPA
                     </div>
                 </div>
+        
             </div>
+        </div>
 
             <!-- What-If Calculator -->
             <div id="toolAtt" class="tab-panel">
