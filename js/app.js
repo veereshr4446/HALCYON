@@ -1086,6 +1086,10 @@ function selectAvatar(button) {
     const profileImage = document.getElementById('profileAvatarImg');
     if (profileImage) profileImage.src = avatarPath;
 
+    // Keep the sidebar avatar in sync with the profile page avatar
+    const sidebarImage = document.getElementById('sidebarAvatarImg');
+    if (sidebarImage) sidebarImage.src = avatarPath;
+
     lsSet('profileAvatar', avatarPath);
 
     document.querySelectorAll('.avatar-option').forEach(option => option.classList.remove('selected'));
@@ -1099,6 +1103,10 @@ function updateSelectedAvatar() {
 
     const profileImage = document.getElementById('profileAvatarImg');
     if (profileImage) profileImage.src = savedAvatar;
+
+    // Keep the sidebar avatar in sync with the profile page avatar
+    const sidebarImage = document.getElementById('sidebarAvatarImg');
+    if (sidebarImage) sidebarImage.src = savedAvatar;
 
     document.querySelectorAll('.avatar-option').forEach(option => {
         option.classList.toggle('selected', option.dataset.avatar === savedAvatar);
