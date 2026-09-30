@@ -2964,3 +2964,45 @@ a { color: inherit; }
         width: 100%;
     }
 }
+
+/* ============================================================
+   FIX — FEEDBACK MODAL OVERLAY
+============================================================ */
+
+.feedback-modal-overlay {
+    position: fixed !important;
+    inset: 0 !important;
+
+    display: none !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    z-index: 999999 !important;
+
+    padding: 20px !important;
+    box-sizing: border-box !important;
+
+    background: rgba(15, 23, 42, 0.68) !important;
+
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+.feedback-modal-overlay.show {
+    display: flex !important;
+}
+
+.feedback-modal {
+    position: relative !important;
+
+    width: min(680px, 100%) !important;
+    max-height: 90vh !important;
+
+    overflow-y: auto !important;
+
+    box-sizing: border-box !important;
+}
