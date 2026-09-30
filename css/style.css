@@ -1418,7 +1418,44 @@ a { color: inherit; }
     .gpa-row .gpa-del { grid-column: 3; grid-row: 2; }
 }
 
+/*
+
 /* ============================================================
+   COMMUNITY CARD — MOBILE
+   ============================================================ */
+
+.community-card {
+    padding: 20px 18px;
+    border-radius: 18px;
+    margin-bottom: 14px;
+}
+
+.community-card h3 {
+    font-size: 20px;
+}
+
+.community-tagline {
+    font-size: 14px;
+}
+
+.community-description {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.community-join-btn {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.community-features {
+    gap: 10px 16px;
+}
+
+.community-features span {
+    font-size: 10px;
+}
+ ============================================================
    HALCYON FEEDBACK MODAL
 ============================================================ */
 
