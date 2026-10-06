@@ -3521,3 +3521,26 @@ a { color: inherit; }
         padding-bottom: 12px;
     }
 }
+/* ============================================================
+   LOCK BACKGROUND WHILE EVENT MODAL IS OPEN
+============================================================ */
+
+body.modal-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    overscroll-behavior: none !important;
+}
+
+#detailModal {
+    overscroll-behavior: contain !important;
+    touch-action: none;
+}
+
+#detailModal .modal {
+    overscroll-behavior: contain !important;
+}
+
+.vh-carousel {
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+}
