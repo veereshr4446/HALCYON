@@ -3006,394 +3006,518 @@ a { color: inherit; }
 
     box-sizing: border-box !important;
 }
-/* =========================================
-   HALCYON - VIDHARA EVENTS MODAL
-   Clean red / white / black theme
-   ========================================= */
+/* ============================================================
+   VIDHARA 2K26–27 EVENT MODAL
+   HALCYON CLEAN BLUE / PURPLE / PINK THEME
+============================================================ */
 
-.event-fest-modal {
-    width: min(900px, 94vw) !important;
-    max-width: 900px !important;
-    border-radius: 24px !important;
-    overflow: hidden !important;
+#detailModal .modal {
+    width: min(900px, 94vw);
+    max-width: 900px;
+    max-height: 90vh;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 26px;
+    background: #ffffff;
 }
 
-/* Main event container */
-.vidhara-events {
+#detailModal .modal > h2,
+#detailModal .modal > .subtitle,
+#detailModal .modal > .close-btn {
+    display: none;
+}
+
+
+/* ---------- MAIN MODAL ---------- */
+
+.vh-modal {
+    width: 100%;
+    background: #ffffff;
+    color: #111b4d;
+    overflow: hidden;
+}
+
+
+/* ---------- HEADER ---------- */
+
+.vh-modal-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 24px 28px 18px;
+}
+
+.vh-modal-top h2 {
+    margin: 0;
+    color: #111b4d;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.vh-modal-top h2::first-letter {
+    color: #fbbf24;
+}
+
+.vh-modal-top p {
+    margin: 6px 0 0;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.vh-close {
+    flex: 0 0 auto;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: #eef4ff;
+    color: #64748b;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.vh-close:hover {
+    background: #e0eaff;
+    color: #111b4d;
+    transform: scale(1.05);
+}
+
+
+/* ---------- CAROUSEL ---------- */
+
+.vh-carousel {
     width: 100%;
     overflow: hidden;
+    padding: 0 22px;
     box-sizing: border-box;
-    background: #ffffff;
-    border-radius: 18px;
+    touch-action: pan-y;
 }
 
-/* Carousel window */
-.vidhara-carousel {
+.vh-track {
     display: flex;
     width: 100%;
-    transition: transform 0.35s ease;
-    overflow: hidden;
+    transition: transform 0.38s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
 }
 
-/* Each slide */
-.vidhara-slide-wrap {
+.vh-carousel-slide {
     flex: 0 0 100%;
     min-width: 100%;
     box-sizing: border-box;
-    padding: 4px;
+    padding: 4px 6px 8px;
 }
 
-/* Slide */
-.vidhara-slide {
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 20px;
-    background: linear-gradient(
-        135deg,
-        #ffffff 0%,
-        #fafafa 100%
-    );
-    overflow: hidden;
+
+/* ---------- SLIDE ---------- */
+
+.vh-slide {
+    padding: 20px;
+    border-radius: 22px;
+    background:
+        linear-gradient(
+            135deg,
+            #eef5ff 0%,
+            #f5f1ff 55%,
+            #fcefff 100%
+        );
+    border: 1px solid #e5eaff;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.08);
 }
 
-/* Slide header */
-.vidhara-slide-header {
+
+/* ---------- SLIDE HEADER ---------- */
+
+.vh-slide-header {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 20px;
-    margin-bottom: 14px;
-    border-radius: 18px;
-    background: linear-gradient(
-        135deg,
-        #fff5f5,
-        #ffffff
-    );
-    border: 1px solid #f1dede;
+    gap: 15px;
+    margin-bottom: 16px;
 }
 
-.vidhara-big-icon {
-    width: 62px;
-    height: 62px;
-    flex: 0 0 62px;
-
+.vh-category-icon {
+    width: 58px;
+    height: 58px;
+    flex: 0 0 58px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 16px;
-    background: #fff0f0;
-    font-size: 30px;
+    border-radius: 17px;
+    background: linear-gradient(
+        135deg,
+        #dceaff,
+        #eee5ff
+    );
+    font-size: 27px;
 }
 
-/* Small heading above title */
-.vidhara-kicker {
-    margin-bottom: 5px;
-    color: #e11d2e;
-    font-size: 11px;
+.vh-slide-header span {
+    display: block;
+    margin-bottom: 4px;
+    color: #7c3aed;
+    font-size: 10px;
     font-weight: 800;
-    letter-spacing: .5px;
-    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-/* Main slide title */
-.vidhara-slide-header h3 {
+.vh-slide-header h3 {
     margin: 0;
-    color: #111827;
+    color: #111b4d;
     font-size: 25px;
     font-weight: 800;
 }
 
-/* Event list */
-.vidhara-event-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
 
-    max-height: 430px;
-    overflow-y: auto;
-    overflow-x: hidden;
+/* ---------- EVENT CARD ---------- */
 
-    padding: 2px 4px 8px;
-
-    /* Hide scrollbar */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-}
-
-.vidhara-event-list::-webkit-scrollbar {
-    display: none;
-}
-
-/* Individual event card */
-.vidhara-event-item {
+.vh-event-card {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
-
-    width: 100%;
-    box-sizing: border-box;
-
-    padding: 16px;
-
-    border-radius: 18px !important;
-
+    gap: 15px;
+    margin-top: 12px;
+    padding: 17px;
+    border-radius: 19px;
     background: #ffffff;
-
-    border: 1px solid #e8eaf0;
-
-    box-shadow:
-        0 4px 14px rgba(15, 23, 42, 0.06);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+    border: 1px solid #e6eaf2;
+    box-shadow: 0 5px 16px rgba(15, 23, 42, 0.06);
+    box-sizing: border-box;
 }
 
-.vidhara-event-item:hover {
-    transform: translateY(-2px);
-    border-color: #f1b5bb;
-
-    box-shadow:
-        0 8px 22px rgba(15, 23, 42, 0.09);
-}
-
-/* Event icon */
-.vidhara-event-icon {
-    width: 48px;
-    height: 48px;
-    flex: 0 0 48px;
-
+.vh-event-icon {
+    width: 55px;
+    height: 55px;
+    flex: 0 0 55px;
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border-radius: 14px;
-
-    background: #fff0f0;
-
-    font-size: 23px;
+    border-radius: 16px;
+    background: #eef5ff;
+    font-size: 26px;
 }
 
-/* Event text */
-.vidhara-event-info {
+.vh-event-info {
     min-width: 0;
     flex: 1;
 }
 
-.vidhara-event-info h4 {
-    margin: 0 0 5px;
-
-    color: #111827;
-
-    font-size: 15px;
+.vh-event-info h4 {
+    margin: 1px 0 5px;
+    color: #111b4d;
+    font-size: 17px;
     font-weight: 800;
 }
 
-.vidhara-event-info p {
+.vh-event-info p {
     margin: 0;
-
-    color: #667085;
-
-    font-size: 12px;
+    color: #64748b;
+    font-size: 12.5px;
     line-height: 1.55;
 }
 
-/* Event format / extra information */
-.vidhara-event-format {
-    display: block;
-
-    width: fit-content;
-    max-width: 100%;
-
-    margin-top: 9px;
-    padding: 7px 11px;
-
-    box-sizing: border-box;
-
-    border-radius: 12px;
-
-    background: #fff1f2;
-    color: #dc2638;
-
+.vh-highlight {
+    margin-top: 10px;
+    padding: 8px 11px;
+    border-radius: 11px;
+    color: #2563eb;
+    background: #eef5ff;
     font-size: 10.5px;
-    font-weight: 700;
     line-height: 1.4;
+    font-weight: 700;
 }
 
-/* Navigation area */
-.vidhara-controls {
+
+/* ---------- CARD ACCENTS ---------- */
+
+.purple-card .vh-event-icon {
+    background: #f3edff;
+}
+
+.purple-card .vh-highlight {
+    color: #7c3aed;
+    background: #f4eeff;
+}
+
+.pink-card .vh-event-icon {
+    background: #fceeff;
+}
+
+.pink-card .vh-highlight {
+    color: #c026d3;
+    background: #fceeff;
+}
+
+.red-card .vh-event-icon {
+    background: #fff0f3;
+}
+
+.red-card .vh-highlight {
+    color: #e11d48;
+    background: #fff0f3;
+}
+
+
+/* ---------- ETHNIC DAY ---------- */
+
+.vh-final-slide {
+    min-height: 430px;
+}
+
+.vh-ethnic-hero {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+    padding: 25px;
+    text-align: center;
+    border-radius: 22px;
+    background:
+        linear-gradient(
+            135deg,
+            #f4eeff,
+            #fceeff
+        );
+}
+
+.vh-ethnic-icon {
+    width: 82px;
+    height: 82px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 24px;
-
-    margin-top: 16px;
-    padding-top: 4px;
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow: 0 8px 20px rgba(124, 58, 237, 0.12);
+    font-size: 38px;
 }
 
-/* Previous / next buttons */
-.vidhara-nav {
+.vh-ethnic-hero h3 {
+    margin: 16px 0 7px;
+    color: #111b4d;
+    font-size: 27px;
+}
+
+.vh-ethnic-hero p {
+    max-width: 450px;
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 13px;
+}
+
+.vh-photo-booth {
+    margin-top: 20px;
+    padding: 11px 22px;
+    border-radius: 14px;
+    background: #ffffff;
+    color: #7c3aed;
+    font-weight: 800;
+    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.1);
+}
+
+.vh-date-badge {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 12px;
+    padding: 13px;
+    text-align: center;
+    border-radius: 14px;
+    background: #ffffff;
+}
+
+.vh-date-badge strong {
+    color: #2563eb;
+    font-size: 14px;
+}
+
+.vh-date-badge span {
+    margin-top: 3px;
+    color: #64748b;
+    font-size: 11px;
+}
+
+
+/* ---------- NAVIGATION ---------- */
+
+.vh-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 16px 20px 5px;
+}
+
+.vh-nav-btn {
     width: 42px;
     height: 42px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #e4e7ec;
+    border: 0;
     border-radius: 50%;
-
-    background: #ffffff;
-    color: #111827;
-
+    background: #eef5ff;
+    color: #2563eb;
     cursor: pointer;
-
-    transition: all 0.2s ease;
+    font-size: 14px;
+    transition: 0.2s ease;
 }
 
-.vidhara-nav:hover {
-    background: #e11d2e;
-    border-color: #e11d2e;
+.vh-nav-btn:hover {
+    background: #2563eb;
     color: #ffffff;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
 }
 
-/* Dots */
-.vidhara-dots {
+.vh-dots {
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 7px;
 }
 
-.vidhara-dot {
+.vh-dot {
     width: 8px;
     height: 8px;
-
     padding: 0;
-    border: none;
+    border: 0;
     border-radius: 50%;
-
-    background: #d5d9e2;
-
+    background: #cbd5e1;
     cursor: pointer;
-
-    transition: all 0.2s ease;
+    transition: 0.25s ease;
 }
 
-.vidhara-dot.active {
-    width: 24px;
+.vh-dot.active {
+    width: 23px;
     border-radius: 10px;
-    background: #e11d2e;
+    background: #2563eb;
 }
 
-/* Swipe hint */
-.vidhara-swipe-hint {
-    margin-top: 10px;
-
+.vh-slide-count {
+    padding: 5px 0 16px;
     text-align: center;
-
-    color: #98a2b3;
-
+    color: #94a3b8;
     font-size: 10px;
+    font-weight: 600;
 }
 
-/* =========================================
+
+/* ============================================================
    MOBILE
-   ========================================= */
+============================================================ */
 
 @media (max-width: 600px) {
 
-    .event-fest-modal {
-        width: 94vw !important;
-        max-width: 94vw !important;
-        border-radius: 20px !important;
+    #detailModal {
+        padding: 12px !important;
+        box-sizing: border-box;
     }
 
-    .vidhara-events {
-        border-radius: 16px;
+    #detailModal .modal {
+        width: 100%;
+        max-width: 100%;
+        max-height: 88vh;
+        border-radius: 22px;
     }
 
-    .vidhara-slide-wrap {
-        padding: 2px;
+    .vh-modal-top {
+        padding: 18px 18px 14px;
     }
 
-    .vidhara-slide-header {
-        gap: 12px;
-        padding: 16px;
-        border-radius: 16px;
+    .vh-modal-top h2 {
+        font-size: 21px;
     }
 
-    .vidhara-big-icon {
-        width: 52px;
-        height: 52px;
-        flex-basis: 52px;
-        border-radius: 14px;
-        font-size: 25px;
+    .vh-modal-top p {
+        font-size: 12px;
+        line-height: 1.4;
     }
 
-    .vidhara-slide-header h3 {
-        font-size: 20px;
+    .vh-close {
+        width: 34px;
+        height: 34px;
+        font-size: 22px;
     }
 
-    .vidhara-kicker {
-        font-size: 9px;
+    .vh-carousel {
+        padding: 0 12px;
     }
 
-    .vidhara-event-list {
-        max-height: 390px;
-
-        /* Important: no visible side scrollbar */
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+    .vh-slide {
+        padding: 14px;
+        border-radius: 18px;
     }
 
-    .vidhara-event-list::-webkit-scrollbar {
-        display: none;
-        width: 0;
-    }
-
-    .vidhara-event-item {
-        padding: 13px;
+    .vh-slide-header {
         gap: 11px;
-        border-radius: 16px !important;
+        margin-bottom: 12px;
     }
 
-    .vidhara-event-icon {
-        width: 42px;
-        height: 42px;
-        flex-basis: 42px;
-        border-radius: 12px;
+    .vh-category-icon {
+        width: 48px;
+        height: 48px;
+        flex-basis: 48px;
+        border-radius: 14px;
+        font-size: 22px;
+    }
+
+    .vh-slide-header h3 {
         font-size: 20px;
     }
 
-    .vidhara-event-info h4 {
+    .vh-slide-header span {
+        font-size: 8.5px;
+    }
+
+    .vh-event-card {
+        gap: 11px;
+        margin-top: 9px;
+        padding: 13px;
+        border-radius: 17px;
+    }
+
+    .vh-event-icon {
+        width: 45px;
+        height: 45px;
+        flex-basis: 45px;
+        border-radius: 13px;
+        font-size: 21px;
+    }
+
+    .vh-event-info h4 {
         font-size: 14px;
     }
 
-    .vidhara-event-info p {
+    .vh-event-info p {
         font-size: 11px;
+        line-height: 1.45;
     }
 
-    .vidhara-event-format {
-        font-size: 9.5px;
-        padding: 6px 9px;
+    .vh-highlight {
+        margin-top: 7px;
+        padding: 7px 8px;
+        font-size: 9px;
     }
 
-    .vidhara-controls {
-        gap: 18px;
-        margin-top: 13px;
+    .vh-final-slide {
+        min-height: 390px;
     }
 
-    .vidhara-nav {
+    .vh-ethnic-hero {
+        min-height: 280px;
+    }
+
+    .vh-navigation {
+        gap: 20px;
+        padding-top: 12px;
+    }
+
+    .vh-nav-btn {
         width: 38px;
         height: 38px;
     }
 
-    .vidhara-swipe-hint {
-        font-size: 9px;
-        margin-top: 8px;
+    .vh-slide-count {
+        padding-bottom: 12px;
     }
 }
