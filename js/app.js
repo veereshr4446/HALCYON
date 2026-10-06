@@ -180,7 +180,20 @@ function openModal(title, subtitle, contentHtml) {
     document.getElementById('detailModal').classList.add('active');
 }
 function closeModal() {
-    document.getElementById('detailModal').classList.remove('active');
+
+    const detailModal =
+        document.getElementById('detailModal');
+
+    if (!detailModal) return;
+
+    detailModal.classList.remove('active');
+
+    const modal =
+        detailModal.querySelector('.modal');
+
+    if (modal) {
+        modal.classList.remove('event-fest-modal');
+    }
 }
 
 // ----- Stat card click handlers -----
@@ -220,11 +233,335 @@ function showBelow85() {
     openModal('⚠️ Below 85%', `${below.length} subject(s) need attention`, html);
 }
 function showCollegeEvents() {
-    openModal('📅 College Events', 'Coming soon', `
-        <div style="text-align:center; padding:20px;">
-            <div style="font-size:48px; margin-bottom:12px;">🚀</div>
-            <p style="color:var(--text-secondary);">Workshops, competitions, and guest lectures will show up here once added.</p>
-        </div>`);
+
+    const slides = [
+        {
+            className: 'event-slide-tech',
+            icon: '💻',
+            title: 'TECHNICAL EVENTS',
+            subtitle: 'VIDHARA 2K26–27 • CSE DEPARTMENT',
+            items: [
+                {
+                    icon: '🌐',
+                    name: 'Web Development',
+                    text: 'Develop a web-based solution for a real-world problem by integrating Artificial Intelligence.',
+                    format: 'AI tools/models, web technologies, databases and APIs can be used.'
+                },
+                {
+                    icon: '🧠',
+                    name: 'Mind Hack',
+                    text: 'Solve logic traps, pattern puzzles and misleading clues.',
+                    format: 'Tests logical thinking, observation, pattern recognition and problem-solving.'
+                },
+                {
+                    icon: '🐞',
+                    name: 'Coding & Debugging',
+                    text: 'Debugging Duel: identify and fix errors in a given program.',
+                    format: 'Reverse Coding: write the program that produces the given output.'
+                },
+                {
+                    icon: '🏆',
+                    name: 'Tech Quiz',
+                    text: 'A quiz focused completely on technology and computer science.',
+                    format: 'Programming, OS, DBMS, Cybersecurity, technologies, languages, gadgets and Rapid Fire.'
+                },
+                {
+                    icon: '🔎',
+                    name: 'Web Search Hunt',
+                    text: 'Solve riddles and puzzles using web search.',
+                    format: 'Tests logical thinking, web searching, observation, problem-solving and teamwork.'
+                },
+                {
+                    icon: '💡',
+                    name: 'Tech Pitch',
+                    text: 'Present and pitch a technology-based idea, product or solution.',
+                    format: 'Focus: problem statement, innovation, solution, technology, feasibility and presentation.'
+                }
+            ]
+        },
+
+        {
+            className: 'event-slide-games',
+            icon: '🎮',
+            title: 'GAMES & ACTIVITIES',
+            subtitle: 'FUN • TEAMWORK • COMPETITION',
+            items: [
+                {
+                    icon: '🗺️',
+                    name: 'Treasure Hunt',
+                    text: 'Find clues, solve challenges and reach the final destination.'
+                },
+                {
+                    icon: '🔥',
+                    name: 'Free Fire',
+                    text: 'Gaming activity open to all branches.'
+                },
+                {
+                    icon: '🎮',
+                    name: 'BGMI',
+                    text: 'Gaming activity open to all branches.'
+                },
+                {
+                    icon: '💃',
+                    name: 'Flash Mob',
+                    text: 'Group and individual dance performances.',
+                    format: '17 October'
+                },
+                {
+                    icon: '💪',
+                    name: 'Tug of War',
+                    text: 'Group game for the Department of DS & CY.'
+                },
+                {
+                    icon: '🏏',
+                    name: 'Mini Cricket',
+                    text: 'Group game for the Department of DS & CY.'
+                },
+                {
+                    icon: '🏸',
+                    name: 'Badminton / Football',
+                    text: 'Group sports activity open to all branches.'
+                },
+                {
+                    icon: '🧩',
+                    name: 'Tech Games',
+                    text: 'QR Tech Hunt, Tech Pictionary and Guessing Game.'
+                }
+            ]
+        },
+
+        {
+            className: 'event-slide-ethnic',
+            icon: '🎭',
+            title: 'ETHNIC DAY',
+            subtitle: '18 OCTOBER',
+            items: [
+                {
+                    icon: '📸',
+                    name: 'Photo Booth',
+                    text: 'Capture and share your Ethnic Day moments with friends.'
+                }
+            ]
+        }
+    ];
+
+    let currentSlide = 0;
+
+    function renderSlide(index) {
+
+        const slide = slides[index];
+
+        const itemsHTML = slide.items.map(item => `
+            <div class="vidhara-event-item">
+
+                <div class="vidhara-event-icon">
+                    ${item.icon}
+                </div>
+
+                <div class="vidhara-event-info">
+
+                    <h4>${item.name}</h4>
+
+                    <p>${item.text}</p>
+
+                    ${item.format ? `
+                        <span class="vidhara-event-format">
+                            ${item.format}
+                        </span>
+                    ` : ''}
+
+                </div>
+
+            </div>
+        `).join('');
+
+        return `
+            <div class="vidhara-slide ${slide.className}">
+
+                <div class="vidhara-slide-header">
+
+                    <div class="vidhara-big-icon">
+                        ${slide.icon}
+                    </div>
+
+                    <div>
+                        <div class="vidhara-kicker">
+                            ${slide.subtitle}
+                        </div>
+
+                        <h3>${slide.title}</h3>
+                    </div>
+
+                </div>
+
+                <div class="vidhara-event-list">
+                    ${itemsHTML}
+                </div>
+
+            </div>
+        `;
+    }
+
+    openModal(
+        '⚡ VIDHARA 2K26–27',
+        'CSE Department • Tech Fest • 16–18 October',
+        `
+            <div class="vidhara-events">
+
+                <div class="vidhara-carousel">
+                    ${slides.map((_, i) => `
+                        <div
+                            class="vidhara-slide-wrap"
+                            data-slide="${i}">
+                            ${renderSlide(i)}
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="vidhara-controls">
+
+                    <button
+                        class="vidhara-nav"
+                        id="vidharaPrev"
+                        type="button"
+                        aria-label="Previous">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div
+                        class="vidhara-dots"
+                        id="vidharaDots">
+                    </div>
+
+                    <button
+                        class="vidhara-nav"
+                        id="vidharaNext"
+                        type="button"
+                        aria-label="Next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                </div>
+
+                <div class="vidhara-swipe-hint">
+                    <i class="fas fa-arrows-left-right"></i>
+                    Swipe to explore events
+                </div>
+
+            </div>
+        `
+    );
+
+    const modal = document.querySelector(
+        '#detailModal .modal'
+    );
+
+    if (modal) {
+        modal.classList.add('event-fest-modal');
+    }
+
+    const carousel =
+        document.querySelector('.vidhara-carousel');
+
+    const wraps =
+        document.querySelectorAll('.vidhara-slide-wrap');
+
+    const dots =
+        document.getElementById('vidharaDots');
+
+    const prev =
+        document.getElementById('vidharaPrev');
+
+    const next =
+        document.getElementById('vidharaNext');
+
+    if (!carousel || !dots || !prev || !next) {
+        return;
+    }
+
+    dots.innerHTML = slides.map((_, i) => `
+        <button
+            class="vidhara-dot ${i === 0 ? 'active' : ''}"
+            data-slide="${i}"
+            aria-label="Slide ${i + 1}">
+        </button>
+    `).join('');
+
+    const dotButtons =
+        dots.querySelectorAll('.vidhara-dot');
+
+    function goToSlide(index) {
+
+        currentSlide =
+            (index + slides.length) % slides.length;
+
+        carousel.style.transform =
+            `translateX(-${currentSlide * 100}%)`;
+
+        dotButtons.forEach((dot, i) => {
+            dot.classList.toggle(
+                'active',
+                i === currentSlide
+            );
+        });
+    }
+
+    prev.addEventListener('click', () => {
+        goToSlide(currentSlide - 1);
+    });
+
+    next.addEventListener('click', () => {
+        goToSlide(currentSlide + 1);
+    });
+
+    dotButtons.forEach(dot => {
+
+        dot.addEventListener('click', () => {
+
+            goToSlide(
+                Number(dot.dataset.slide)
+            );
+
+        });
+
+    });
+
+    /* Mobile swipe */
+
+    let touchStartX = 0;
+
+    carousel.addEventListener(
+        'touchstart',
+        event => {
+            touchStartX =
+                event.changedTouches[0].screenX;
+        },
+        { passive: true }
+    );
+
+    carousel.addEventListener(
+        'touchend',
+        event => {
+
+            const touchEndX =
+                event.changedTouches[0].screenX;
+
+            const difference =
+                touchStartX - touchEndX;
+
+            if (Math.abs(difference) < 50) {
+                return;
+            }
+
+            if (difference > 0) {
+                goToSlide(currentSlide + 1);
+            } else {
+                goToSlide(currentSlide - 1);
+            }
+
+        },
+        { passive: true }
+    );
 }
 
 // ============================================================
