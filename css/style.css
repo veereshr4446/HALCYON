@@ -3662,3 +3662,55 @@ a { color: inherit; }
     }
     .vh-navigation, .vh-slide-count { flex-shrink: 0; }
 }
+/* ============================================================
+   VIDHARA — FIX VERTICAL SCROLL
+============================================================ */
+
+@media (max-width: 600px) {
+
+    #detailModal:has(.vh-modal) .modal {
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+    }
+
+    #detailModal:has(.vh-modal) #modalContent {
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+    }
+
+    #detailModal:has(.vh-modal) .vh-modal {
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        height: 100% !important;
+        overflow: hidden !important;
+    }
+
+    #detailModal:has(.vh-modal) .vh-carousel {
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        overflow: hidden !important;
+    }
+
+    #detailModal:has(.vh-modal) .vh-track {
+        height: 100% !important;
+    }
+
+    #detailModal:has(.vh-modal) .vh-carousel-slide {
+        height: 100% !important;
+        min-height: 0 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        touch-action: pan-y !important;
+        scrollbar-width: none !important;
+    }
+
+    #detailModal:has(.vh-modal) .vh-carousel-slide::-webkit-scrollbar {
+        display: none !important;
+    }
+}
