@@ -3006,338 +3006,394 @@ a { color: inherit; }
 
     box-sizing: border-box !important;
 }
-/* ============================================================
-   VIDHARA 2K26–27 COLLEGE EVENTS
-   ============================================================ */
+/* =========================================
+   HALCYON - VIDHARA EVENTS MODAL
+   Clean red / white / black theme
+   ========================================= */
 
 .event-fest-modal {
-    width: min(820px, 94vw) !important;
-    max-width: 820px !important;
-    background: #05070d !important;
-    color: #fff !important;
-    border: 1px solid rgba(0, 108, 255, 0.45);
-    box-shadow:
-        0 0 35px rgba(0, 108, 255, 0.18),
-        0 0 80px rgba(123, 44, 255, 0.12);
+    width: min(900px, 94vw) !important;
+    max-width: 900px !important;
+    border-radius: 24px !important;
     overflow: hidden !important;
 }
 
-.event-fest-modal h2 {
-    color: #fff !important;
-    margin-bottom: 5px;
-}
-
-.event-fest-modal > .subtitle {
-    color: rgba(255,255,255,0.62) !important;
-}
-
-/* Main wrapper */
-
+/* Main event container */
 .vidhara-events {
-    position: relative;
+    width: 100%;
     overflow: hidden;
-    margin-top: 18px;
-    border-radius: 20px;
-    background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(0,108,255,0.20),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 90% 90%,
-            rgba(123,44,255,0.20),
-            transparent 35%
-        ),
-        #070b16;
-    border: 1px solid rgba(0,108,255,0.28);
+    box-sizing: border-box;
+    background: #ffffff;
+    border-radius: 18px;
 }
 
-/* Carousel */
-
+/* Carousel window */
 .vidhara-carousel {
     display: flex;
     width: 100%;
-    transition: transform 0.45s cubic-bezier(.22,.61,.36,1);
-    touch-action: pan-y;
-}
-
-.vidhara-slide-wrap {
-    min-width: 100%;
-    box-sizing: border-box;
-}
-
-/* Slide */
-
-.vidhara-slide {
-    min-height: 430px;
-    padding: 24px;
-    box-sizing: border-box;
-    position: relative;
+    transition: transform 0.35s ease;
     overflow: hidden;
 }
 
-.vidhara-slide::before {
-    content: "";
-    position: absolute;
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    right: -90px;
-    top: -90px;
-    background: rgba(0,108,255,0.13);
-    filter: blur(3px);
-    pointer-events: none;
+/* Each slide */
+.vidhara-slide-wrap {
+    flex: 0 0 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+    padding: 4px;
 }
 
-.vidhara-slide::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        linear-gradient(
-            135deg,
-            transparent 0 48%,
-            rgba(0,108,255,0.04) 50%,
-            transparent 52%
-        );
+/* Slide */
+.vidhara-slide {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background: linear-gradient(
+        135deg,
+        #ffffff 0%,
+        #fafafa 100%
+    );
+    overflow: hidden;
 }
 
-/* Different event themes */
-
-.event-slide-tech {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(0,108,255,0.15),
-            rgba(123,44,255,0.10)
-        );
-}
-
-.event-slide-games {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(229,9,20,0.13),
-            rgba(0,108,255,0.10)
-        );
-}
-
-.event-slide-ethnic {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(123,44,255,0.17),
-            rgba(229,9,20,0.10)
-        );
-}
-
-/* Header */
-
+/* Slide header */
 .vidhara-slide-header {
-    position: relative;
-    z-index: 1;
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+    background: linear-gradient(
+        135deg,
+        #fff5f5,
+        #ffffff
+    );
+    border: 1px solid #f1dede;
 }
 
 .vidhara-big-icon {
-    width: 58px;
-    height: 58px;
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
+    width: 62px;
+    height: 62px;
+    flex: 0 0 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border-radius: 16px;
-    background:
-        linear-gradient(
-            135deg,
-            #006cff,
-            #7b2cff
-        );
-    box-shadow:
-        0 0 22px rgba(0,108,255,0.35);
-    font-size: 29px;
+    background: #fff0f0;
+    font-size: 30px;
 }
 
+/* Small heading above title */
 .vidhara-kicker {
-    color: #ffd400;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 1px;
     margin-bottom: 5px;
+    color: #e11d2e;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    text-transform: uppercase;
 }
 
-.vidhara-slide h3 {
+/* Main slide title */
+.vidhara-slide-header h3 {
     margin: 0;
-    color: #fff;
+    color: #111827;
     font-size: 25px;
-    font-weight: 900;
-    letter-spacing: .4px;
+    font-weight: 800;
 }
 
 /* Event list */
-
 .vidhara-event-list {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    max-height: 430px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 2px 4px 8px;
+
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
+.vidhara-event-list::-webkit-scrollbar {
+    display: none;
+}
+
+/* Individual event card */
 .vidhara-event-item {
     display: flex;
     align-items: flex-start;
-    gap: 11px;
-    padding: 13px;
-    min-height: 82px;
+    gap: 14px;
+
+    width: 100%;
     box-sizing: border-box;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.055);
-    border: 1px solid rgba(255,255,255,0.08);
+
+    padding: 16px;
+
+    border-radius: 18px !important;
+
+    background: #ffffff;
+
+    border: 1px solid #e8eaf0;
+
+    box-shadow:
+        0 4px 14px rgba(15, 23, 42, 0.06);
+
     transition:
-        transform .2s ease,
-        border-color .2s ease,
-        background .2s ease;
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .vidhara-event-item:hover {
     transform: translateY(-2px);
-    background: rgba(255,255,255,0.08);
-    border-color: rgba(0,108,255,0.45);
+    border-color: #f1b5bb;
+
+    box-shadow:
+        0 8px 22px rgba(15, 23, 42, 0.09);
 }
 
+/* Event icon */
 .vidhara-event-icon {
-    width: 38px;
-    height: 38px;
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    border-radius: 11px;
-    background: rgba(0,108,255,0.14);
-    font-size: 20px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: #fff0f0;
+
+    font-size: 23px;
+}
+
+/* Event text */
+.vidhara-event-info {
+    min-width: 0;
+    flex: 1;
 }
 
 .vidhara-event-info h4 {
-    margin: 0 0 4px;
-    color: #fff;
-    font-size: 13px;
+    margin: 0 0 5px;
+
+    color: #111827;
+
+    font-size: 15px;
     font-weight: 800;
 }
 
 .vidhara-event-info p {
     margin: 0;
-    color: rgba(255,255,255,0.64);
-    font-size: 11px;
-    line-height: 1.45;
+
+    color: #667085;
+
+    font-size: 12px;
+    line-height: 1.55;
 }
 
+/* Event format / extra information */
 .vidhara-event-format {
-    display: inline-block;
-    margin-top: 6px;
-    padding: 3px 7px;
-    border-radius: 20px;
-    background: rgba(229,9,20,0.16);
-    color: #ff6670;
-    font-size: 9px;
-    font-weight: 800;
+    display: block;
+
+    width: fit-content;
+    max-width: 100%;
+
+    margin-top: 9px;
+    padding: 7px 11px;
+
+    box-sizing: border-box;
+
+    border-radius: 12px;
+
+    background: #fff1f2;
+    color: #dc2638;
+
+    font-size: 10.5px;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
-/* Navigation */
-
+/* Navigation area */
 .vidhara-controls {
-    position: relative;
-    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 18px;
-    padding: 15px 18px 4px;
+    gap: 24px;
+
+    margin-top: 16px;
+    padding-top: 4px;
 }
 
+/* Previous / next buttons */
 .vidhara-nav {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(0,108,255,0.45);
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #e4e7ec;
     border-radius: 50%;
-    background: rgba(0,108,255,0.12);
-    color: #fff;
+
+    background: #ffffff;
+    color: #111827;
+
     cursor: pointer;
-    transition: .2s ease;
+
+    transition: all 0.2s ease;
 }
 
 .vidhara-nav:hover {
-    background: #006cff;
-    transform: scale(1.06);
+    background: #e11d2e;
+    border-color: #e11d2e;
+    color: #ffffff;
+    transform: translateY(-1px);
 }
 
+/* Dots */
 .vidhara-dots {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 7px;
 }
 
 .vidhara-dot {
     width: 8px;
     height: 8px;
+
     padding: 0;
-    border: 0;
+    border: none;
     border-radius: 50%;
-    background: rgba(255,255,255,0.25);
+
+    background: #d5d9e2;
+
     cursor: pointer;
-    transition: .25s ease;
+
+    transition: all 0.2s ease;
 }
 
 .vidhara-dot.active {
     width: 24px;
     border-radius: 10px;
-    background: #006cff;
-    box-shadow: 0 0 10px rgba(0,108,255,0.65);
+    background: #e11d2e;
 }
 
+/* Swipe hint */
 .vidhara-swipe-hint {
-    position: relative;
-    z-index: 2;
+    margin-top: 10px;
+
     text-align: center;
-    padding: 8px 0 15px;
-    color: rgba(255,255,255,0.35);
-    font-size: 9px;
+
+    color: #98a2b3;
+
+    font-size: 10px;
 }
 
-/* Mobile */
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media (max-width: 600px) {
 
     .event-fest-modal {
         width: 94vw !important;
-        max-height: 88vh !important;
+        max-width: 94vw !important;
+        border-radius: 20px !important;
     }
 
-    .vidhara-slide {
-        min-height: 0;
-        padding: 17px;
+    .vidhara-events {
+        border-radius: 16px;
     }
 
-    .vidhara-event-list {
-        grid-template-columns: 1fr;
-        max-height: 47vh;
-        overflow-y: auto;
-        padding-right: 2px;
+    .vidhara-slide-wrap {
+        padding: 2px;
     }
 
-    .vidhara-slide h3 {
-        font-size: 20px;
+    .vidhara-slide-header {
+        gap: 12px;
+        padding: 16px;
+        border-radius: 16px;
     }
 
     .vidhara-big-icon {
-        width: 48px;
-        height: 48px;
-        font-size: 23px;
+        width: 52px;
+        height: 52px;
+        flex-basis: 52px;
+        border-radius: 14px;
+        font-size: 25px;
+    }
+
+    .vidhara-slide-header h3 {
+        font-size: 20px;
+    }
+
+    .vidhara-kicker {
+        font-size: 9px;
+    }
+
+    .vidhara-event-list {
+        max-height: 390px;
+
+        /* Important: no visible side scrollbar */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .vidhara-event-list::-webkit-scrollbar {
+        display: none;
+        width: 0;
     }
 
     .vidhara-event-item {
-        min-height: 70px;
+        padding: 13px;
+        gap: 11px;
+        border-radius: 16px !important;
+    }
+
+    .vidhara-event-icon {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+        border-radius: 12px;
+        font-size: 20px;
+    }
+
+    .vidhara-event-info h4 {
+        font-size: 14px;
+    }
+
+    .vidhara-event-info p {
+        font-size: 11px;
+    }
+
+    .vidhara-event-format {
+        font-size: 9.5px;
+        padding: 6px 9px;
+    }
+
+    .vidhara-controls {
+        gap: 18px;
+        margin-top: 13px;
+    }
+
+    .vidhara-nav {
+        width: 38px;
+        height: 38px;
+    }
+
+    .vidhara-swipe-hint {
+        font-size: 9px;
+        margin-top: 8px;
     }
 }
