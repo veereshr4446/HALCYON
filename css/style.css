@@ -3007,11 +3007,14 @@ a { color: inherit; }
     box-sizing: border-box !important;
 }
 /* ============================================================
-   VIDHARA 2K26–27 EVENT MODAL
-   HALCYON CLEAN BLUE / PURPLE / PINK THEME
+   VIDHARA 2K26–27 FEST EVENT MODAL
+   HALCYON BLUE / PURPLE / PINK THEME
+   Scoped ONLY to the VIDHARA modal
 ============================================================ */
 
-#detailModal .modal {
+/* ---------- VIDHARA MODAL ONLY ---------- */
+
+#detailModal:has(.vh-modal) .modal {
     width: min(900px, 94vw);
     max-width: 900px;
     max-height: 90vh;
@@ -3019,22 +3022,24 @@ a { color: inherit; }
     overflow: hidden;
     border-radius: 26px;
     background: #ffffff;
+    box-sizing: border-box;
 }
 
-#detailModal .modal > h2,
-#detailModal .modal > .subtitle,
-#detailModal .modal > .close-btn {
+#detailModal:has(.vh-modal) .modal > h2,
+#detailModal:has(.vh-modal) .modal > .subtitle,
+#detailModal:has(.vh-modal) .modal > .close-btn {
     display: none;
 }
 
 
-/* ---------- MAIN MODAL ---------- */
+/* ---------- MAIN VIDHARA MODAL ---------- */
 
 .vh-modal {
     width: 100%;
     background: #ffffff;
     color: #111b4d;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 
@@ -3046,6 +3051,7 @@ a { color: inherit; }
     justify-content: space-between;
     gap: 18px;
     padding: 24px 28px 18px;
+    box-sizing: border-box;
 }
 
 .vh-modal-top h2 {
@@ -3056,15 +3062,12 @@ a { color: inherit; }
     letter-spacing: -0.5px;
 }
 
-.vh-modal-top h2::first-letter {
-    color: #fbbf24;
-}
-
 .vh-modal-top p {
     margin: 6px 0 0;
     color: #64748b;
     font-size: 14px;
     font-weight: 500;
+    line-height: 1.4;
 }
 
 .vh-close {
@@ -3088,7 +3091,9 @@ a { color: inherit; }
 }
 
 
-/* ---------- CAROUSEL ---------- */
+/* ============================================================
+   CAROUSEL
+============================================================ */
 
 .vh-carousel {
     width: 100%;
@@ -3096,6 +3101,7 @@ a { color: inherit; }
     padding: 0 22px;
     box-sizing: border-box;
     touch-action: pan-y;
+    overscroll-behavior: contain;
 }
 
 .vh-track {
@@ -3108,6 +3114,7 @@ a { color: inherit; }
 .vh-carousel-slide {
     flex: 0 0 100%;
     min-width: 100%;
+    width: 100%;
     box-sizing: border-box;
     padding: 4px 6px 8px;
 }
@@ -3116,6 +3123,7 @@ a { color: inherit; }
 /* ---------- SLIDE ---------- */
 
 .vh-slide {
+    width: 100%;
     padding: 20px;
     border-radius: 22px;
     background:
@@ -3127,6 +3135,7 @@ a { color: inherit; }
         );
     border: 1px solid #e5eaff;
     box-shadow: 0 8px 25px rgba(37, 99, 235, 0.08);
+    box-sizing: border-box;
 }
 
 
@@ -3169,15 +3178,19 @@ a { color: inherit; }
     color: #111b4d;
     font-size: 25px;
     font-weight: 800;
+    line-height: 1.15;
 }
 
 
-/* ---------- EVENT CARD ---------- */
+/* ============================================================
+   EVENT CARDS
+============================================================ */
 
 .vh-event-card {
     display: flex;
     align-items: flex-start;
     gap: 15px;
+    width: 100%;
     margin-top: 12px;
     padding: 17px;
     border-radius: 19px;
@@ -3209,6 +3222,7 @@ a { color: inherit; }
     color: #111b4d;
     font-size: 17px;
     font-weight: 800;
+    line-height: 1.25;
 }
 
 .vh-event-info p {
@@ -3260,7 +3274,9 @@ a { color: inherit; }
 }
 
 
-/* ---------- ETHNIC DAY ---------- */
+/* ============================================================
+   ETHNIC DAY
+============================================================ */
 
 .vh-final-slide {
     min-height: 430px;
@@ -3281,6 +3297,7 @@ a { color: inherit; }
             #f4eeff,
             #fceeff
         );
+    box-sizing: border-box;
 }
 
 .vh-ethnic-icon {
@@ -3342,7 +3359,9 @@ a { color: inherit; }
 }
 
 
-/* ---------- NAVIGATION ---------- */
+/* ============================================================
+   NAVIGATION
+============================================================ */
 
 .vh-navigation {
     display: flex;
@@ -3408,16 +3427,19 @@ a { color: inherit; }
 
 @media (max-width: 600px) {
 
-    #detailModal {
+    /* ONLY VIDHARA gets these modal dimensions */
+    #detailModal:has(.vh-modal) {
         padding: 12px !important;
         box-sizing: border-box;
     }
 
-    #detailModal .modal {
+    #detailModal:has(.vh-modal) .modal {
         width: 100%;
         max-width: 100%;
         max-height: 88vh;
         border-radius: 22px;
+        padding: 0;
+        overflow: hidden;
     }
 
     .vh-modal-top {
@@ -3441,9 +3463,16 @@ a { color: inherit; }
 
     .vh-carousel {
         padding: 0 12px;
+        overflow: hidden;
+        touch-action: pan-y;
+    }
+
+    .vh-carousel-slide {
+        padding: 4px 3px 8px;
     }
 
     .vh-slide {
+        width: 100%;
         padding: 14px;
         border-radius: 18px;
     }
@@ -3521,56 +3550,13 @@ a { color: inherit; }
         padding-bottom: 12px;
     }
 }
+
+
 /* ============================================================
-   LOCK BACKGROUND WHILE EVENT MODAL IS OPEN
+   IMPORTANT:
+   No global #detailModal rules here.
+   No global body.modal-open rules here.
+   No global touch-action rules here.
+   This keeps CIE, attendance and other existing
+   detail modals completely unaffected.
 ============================================================ */
-
-body.modal-open {
-    overflow: hidden !important;
-    height: 100vh !important;
-    overscroll-behavior: none !important;
-}
-
-#detailModal {
-    overscroll-behavior: contain !important;
-    touch-action: none;
-}
-
-#detailModal .modal {
-    overscroll-behavior: contain !important;
-}
-
-.vh-carousel {
-    overscroll-behavior: contain;
-    -webkit-overflow-scrolling: touch;
-}
-/* ============================================================
-   FIX OTHER DETAIL MODALS
-   Keep VIDHARA carousel controlled, but allow
-   normal detail modals to scroll properly.
-============================================================ */
-
-#detailModal .modal:not(:has(.vh-modal)) {
-    overflow-y: auto !important;
-    overflow-x: hidden !important;
-    max-height: 90vh !important;
-}
-
-#detailModal .modal:not(:has(.vh-modal)) #modalContent {
-    max-height: none !important;
-    overflow: visible !important;
-}
-
-/* Keep VIDHARA modal itself clean */
-#detailModal .modal:has(.vh-modal) {
-    overflow: hidden !important;
-}
-#detailModal .modal:not(:has(.vh-modal)) {
-    box-sizing: border-box !important;
-    padding: 0 !important;
-}
-
-#detailModal .modal:not(:has(.vh-modal)) #modalContent {
-    width: 100% !important;
-    box-sizing: border-box !important;
-}
