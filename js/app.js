@@ -235,335 +235,455 @@ function showBelow85() {
 function showCollegeEvents() {
 
     const slides = [
-        {
-            className: 'event-slide-tech',
-            icon: '💻',
-            title: 'TECHNICAL EVENTS',
-            subtitle: 'VIDHARA 2K26–27 • CSE DEPARTMENT',
-            items: [
-                {
-                    icon: '🌐',
-                    name: 'Web Development',
-                    text: 'Develop a web-based solution for a real-world problem by integrating Artificial Intelligence.',
-                    format: 'AI tools/models, web technologies, databases and APIs can be used.'
-                },
-                {
-                    icon: '🧠',
-                    name: 'Mind Hack',
-                    text: 'Solve logic traps, pattern puzzles and misleading clues.',
-                    format: 'Tests logical thinking, observation, pattern recognition and problem-solving.'
-                },
-                {
-                    icon: '🐞',
-                    name: 'Coding & Debugging',
-                    text: 'Debugging Duel: identify and fix errors in a given program.',
-                    format: 'Reverse Coding: write the program that produces the given output.'
-                },
-                {
-                    icon: '🏆',
-                    name: 'Tech Quiz',
-                    text: 'A quiz focused completely on technology and computer science.',
-                    format: 'Programming, OS, DBMS, Cybersecurity, technologies, languages, gadgets and Rapid Fire.'
-                },
-                {
-                    icon: '🔎',
-                    name: 'Web Search Hunt',
-                    text: 'Solve riddles and puzzles using web search.',
-                    format: 'Tests logical thinking, web searching, observation, problem-solving and teamwork.'
-                },
-                {
-                    icon: '💡',
-                    name: 'Tech Pitch',
-                    text: 'Present and pitch a technology-based idea, product or solution.',
-                    format: 'Focus: problem statement, innovation, solution, technology, feasibility and presentation.'
-                }
-            ]
-        },
 
-        {
-            className: 'event-slide-games',
-            icon: '🎮',
-            title: 'GAMES & ACTIVITIES',
-            subtitle: 'FUN • TEAMWORK • COMPETITION',
-            items: [
-                {
-                    icon: '🗺️',
-                    name: 'Treasure Hunt',
-                    text: 'Find clues, solve challenges and reach the final destination.'
-                },
-                {
-                    icon: '🔥',
-                    name: 'Free Fire',
-                    text: 'Gaming activity open to all branches.'
-                },
-                {
-                    icon: '🎮',
-                    name: 'BGMI',
-                    text: 'Gaming activity open to all branches.'
-                },
-                {
-                    icon: '💃',
-                    name: 'Flash Mob',
-                    text: 'Group and individual dance performances.',
-                    format: '17 October'
-                },
-                {
-                    icon: '💪',
-                    name: 'Tug of War',
-                    text: 'Group game for the Department of DS & CY.'
-                },
-                {
-                    icon: '🏏',
-                    name: 'Mini Cricket',
-                    text: 'Group game for the Department of DS & CY.'
-                },
-                {
-                    icon: '🏸',
-                    name: 'Badminton / Football',
-                    text: 'Group sports activity open to all branches.'
-                },
-                {
-                    icon: '🧩',
-                    name: 'Tech Games',
-                    text: 'QR Tech Hunt, Tech Pictionary and Guessing Game.'
-                }
-            ]
-        },
+        /* =========================
+           SLIDE 1
+        ========================= */
+        `
+        <div class="vh-slide">
+            <div class="vh-slide-header">
+                <div class="vh-category-icon">💻</div>
+                <div>
+                    <span>VIDHARA 2K26–27 • CSE DEPARTMENT</span>
+                    <h3>TECHNICAL EVENTS</h3>
+                </div>
+            </div>
 
-        {
-            className: 'event-slide-ethnic',
-            icon: '🎭',
-            title: 'ETHNIC DAY',
-            subtitle: '18 OCTOBER',
-            items: [
-                {
-                    icon: '📸',
-                    name: 'Photo Booth',
-                    text: 'Capture and share your Ethnic Day moments with friends.'
-                }
-            ]
-        }
+            <div class="vh-event-card blue-card">
+                <div class="vh-event-icon">🌐</div>
+                <div class="vh-event-info">
+                    <h4>Web Development</h4>
+                    <p>
+                        Develop a web-based solution for a real-world
+                        problem by integrating Artificial Intelligence.
+                    </p>
+                    <div class="vh-highlight">
+                        AI tools/models, web technologies, databases and APIs can be used.
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card purple-card">
+                <div class="vh-event-icon">🧠</div>
+                <div class="vh-event-info">
+                    <h4>Mind Hack</h4>
+                    <p>
+                        Solve logic traps, pattern puzzles and
+                        misleading clues.
+                    </p>
+                    <div class="vh-highlight">
+                        Tests logical thinking, observation, pattern recognition and problem-solving.
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card pink-card">
+                <div class="vh-event-icon">🐞</div>
+                <div class="vh-event-info">
+                    <h4>Coding & Debugging</h4>
+                    <p>
+                        Debugging Duel: identify and fix errors in
+                        a given program within the specified time limit.
+                    </p>
+                    <div class="vh-highlight">
+                        Reverse Coding: write the program that produces the given output.
+                    </div>
+                </div>
+            </div>
+        </div>
+        `,
+
+        /* =========================
+           SLIDE 2
+        ========================= */
+        `
+        <div class="vh-slide">
+            <div class="vh-slide-header">
+                <div class="vh-category-icon">🏆</div>
+                <div>
+                    <span>VIDHARA 2K26–27 • CSE DEPARTMENT</span>
+                    <h3>TECHNICAL EVENTS</h3>
+                </div>
+            </div>
+
+            <div class="vh-event-card blue-card">
+                <div class="vh-event-icon">🏆</div>
+                <div class="vh-event-info">
+                    <h4>Tech Quiz</h4>
+                    <p>
+                        A quiz focused completely on technology
+                        and computer science.
+                    </p>
+                    <div class="vh-highlight">
+                        Programming • OS • DBMS • Cybersecurity • Technologies • Gadgets • Rapid Fire
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card purple-card">
+                <div class="vh-event-icon">🔎</div>
+                <div class="vh-event-info">
+                    <h4>Web Search Hunt</h4>
+                    <p>
+                        A multiplayer online search challenge where
+                        participants solve riddles and puzzles using the web.
+                    </p>
+                    <div class="vh-highlight">
+                        Logical thinking • Web searching • Observation • Teamwork
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card pink-card">
+                <div class="vh-event-icon">💡</div>
+                <div class="vh-event-info">
+                    <h4>Tech Pitch</h4>
+                    <p>
+                        Present and pitch a technology-based idea,
+                        product or solution before the judges.
+                    </p>
+                    <div class="vh-highlight">
+                        Problem statement • Innovation • Solution • Technology • Feasibility
+                    </div>
+                </div>
+            </div>
+        </div>
+        `,
+
+        /* =========================
+           SLIDE 3
+        ========================= */
+        `
+        <div class="vh-slide">
+            <div class="vh-slide-header">
+                <div class="vh-category-icon">🎮</div>
+                <div>
+                    <span>VIDHARA 2K26–27</span>
+                    <h3>GAMES</h3>
+                </div>
+            </div>
+
+            <div class="vh-event-card blue-card">
+                <div class="vh-event-icon">🗺️</div>
+                <div class="vh-event-info">
+                    <h4>Treasure Hunt</h4>
+                    <p>
+                        Find clues, solve challenges and race
+                        towards the final treasure.
+                    </p>
+                </div>
+            </div>
+
+            <div class="vh-event-card red-card">
+                <div class="vh-event-icon">🔥</div>
+                <div class="vh-event-info">
+                    <h4>Free Fire</h4>
+                    <p>
+                        Competitive gaming event open to
+                        participating students.
+                    </p>
+                    <div class="vh-highlight">
+                        Open to all branches
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card purple-card">
+                <div class="vh-event-icon">🎮</div>
+                <div class="vh-event-info">
+                    <h4>BGMI</h4>
+                    <p>
+                        Competitive multiplayer gaming event
+                        for participating students.
+                    </p>
+                    <div class="vh-highlight">
+                        Open to all branches
+                    </div>
+                </div>
+            </div>
+        </div>
+        `,
+
+        /* =========================
+           SLIDE 4
+        ========================= */
+        `
+        <div class="vh-slide">
+            <div class="vh-slide-header">
+                <div class="vh-category-icon">🎭</div>
+                <div>
+                    <span>17 OCTOBER • ACTIVITIES</span>
+                    <h3>GROUP & FUN ACTIVITIES</h3>
+                </div>
+            </div>
+
+            <div class="vh-event-card blue-card">
+                <div class="vh-event-icon">💃</div>
+                <div class="vh-event-info">
+                    <h4>Flash Mob</h4>
+                    <p>
+                        Dance performance featuring both
+                        group and individual participation.
+                    </p>
+                    <div class="vh-highlight">
+                        17 October
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card purple-card">
+                <div class="vh-event-icon">💪</div>
+                <div class="vh-event-info">
+                    <h4>Tug of War</h4>
+                    <p>
+                        Team-based competition between
+                        participating departments.
+                    </p>
+                    <div class="vh-highlight">
+                        Department of DS & CY
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card pink-card">
+                <div class="vh-event-icon">🏏</div>
+                <div class="vh-event-info">
+                    <h4>Mini Cricket</h4>
+                    <p>
+                        Short-format cricket competition
+                        between participating teams.
+                    </p>
+                    <div class="vh-highlight">
+                        Department of DS & CY
+                    </div>
+                </div>
+            </div>
+
+            <div class="vh-event-card blue-card">
+                <div class="vh-event-icon">🏸</div>
+                <div class="vh-event-info">
+                    <h4>Badminton / Football</h4>
+                    <p>
+                        Choose between badminton or football
+                        and participate with students across branches.
+                    </p>
+                    <div class="vh-highlight">
+                        Open to all branches
+                    </div>
+                </div>
+            </div>
+        </div>
+        `,
+
+        /* =========================
+           SLIDE 5
+        ========================= */
+        `
+        <div class="vh-slide vh-final-slide">
+            <div class="vh-slide-header">
+                <div class="vh-category-icon">👗</div>
+                <div>
+                    <span>18 OCTOBER</span>
+                    <h3>ETHNIC DAY</h3>
+                </div>
+            </div>
+
+            <div class="vh-ethnic-hero">
+                <div class="vh-ethnic-icon">📸</div>
+                <h3>Ethnic Day</h3>
+                <p>
+                    Celebrate the day with traditional
+                    outfits and capture memorable moments.
+                </p>
+
+                <div class="vh-photo-booth">
+                    📸 Photo Booth
+                </div>
+            </div>
+
+            <div class="vh-date-badge">
+                <strong>18 OCTOBER</strong>
+                <span>Ethnic Day Celebration</span>
+            </div>
+        </div>
+        `
     ];
 
     let currentSlide = 0;
 
-    function renderSlide(index) {
+    const content = `
+        <div class="vh-modal">
 
-        const slide = slides[index];
-
-        const itemsHTML = slide.items.map(item => `
-            <div class="vidhara-event-item">
-
-                <div class="vidhara-event-icon">
-                    ${item.icon}
+            <div class="vh-modal-top">
+                <div>
+                    <h2>⚡ VIDHARA 2K26–27</h2>
+                    <p>CSE Department • Tech Fest • 16–18 October</p>
                 </div>
 
-                <div class="vidhara-event-info">
-
-                    <h4>${item.name}</h4>
-
-                    <p>${item.text}</p>
-
-                    ${item.format ? `
-                        <span class="vidhara-event-format">
-                            ${item.format}
-                        </span>
-                    ` : ''}
-
-                </div>
-
+                <button
+                    class="vh-close"
+                    onclick="closeModal()"
+                    aria-label="Close">
+                    &times;
+                </button>
             </div>
-        `).join('');
 
-        return `
-            <div class="vidhara-slide ${slide.className}">
+            <div class="vh-carousel">
 
-                <div class="vidhara-slide-header">
-
-                    <div class="vidhara-big-icon">
-                        ${slide.icon}
-                    </div>
-
-                    <div>
-                        <div class="vidhara-kicker">
-                            ${slide.subtitle}
-                        </div>
-
-                        <h3>${slide.title}</h3>
-                    </div>
-
-                </div>
-
-                <div class="vidhara-event-list">
-                    ${itemsHTML}
-                </div>
-
-            </div>
-        `;
-    }
-
-    openModal(
-        '⚡ VIDHARA 2K26–27',
-        'CSE Department • Tech Fest • 16–18 October',
-        `
-            <div class="vidhara-events">
-
-                <div class="vidhara-carousel">
-                    ${slides.map((_, i) => `
-                        <div
-                            class="vidhara-slide-wrap"
-                            data-slide="${i}">
-                            ${renderSlide(i)}
+                <div class="vh-track" id="vhTrack">
+                    ${slides.map(slide => `
+                        <div class="vh-carousel-slide">
+                            ${slide}
                         </div>
                     `).join('')}
                 </div>
 
-                <div class="vidhara-controls">
+            </div>
 
-                    <button
-                        class="vidhara-nav"
-                        id="vidharaPrev"
-                        type="button"
-                        aria-label="Previous">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
+            <div class="vh-navigation">
 
-                    <div
-                        class="vidhara-dots"
-                        id="vidharaDots">
-                    </div>
+                <button
+                    class="vh-nav-btn"
+                    id="vhPrev"
+                    type="button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
 
-                    <button
-                        class="vidhara-nav"
-                        id="vidharaNext"
-                        type="button"
-                        aria-label="Next">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-
+                <div class="vh-dots" id="vhDots">
+                    ${slides.map((_, index) => `
+                        <button
+                            class="vh-dot ${index === 0 ? 'active' : ''}"
+                            data-slide="${index}"
+                            type="button">
+                        </button>
+                    `).join('')}
                 </div>
 
-                <div class="vidhara-swipe-hint">
-                    <i class="fas fa-arrows-left-right"></i>
-                    Swipe to explore events
-                </div>
+                <button
+                    class="vh-nav-btn"
+                    id="vhNext"
+                    type="button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
 
             </div>
-        `
+
+            <div class="vh-slide-count" id="vhSlideCount">
+                1 / ${slides.length}
+            </div>
+
+        </div>
+    `;
+
+    openModal(
+        '⚡ VIDHARA 2K26–27',
+        'CSE Department • Tech Fest • 16–18 October',
+        content
     );
 
-    const modal = document.querySelector(
-        '#detailModal .modal'
-    );
+    setTimeout(() => {
 
-    if (modal) {
-        modal.classList.add('event-fest-modal');
-    }
+        const track = document.getElementById('vhTrack');
+        const prev = document.getElementById('vhPrev');
+        const next = document.getElementById('vhNext');
+        const dots = document.querySelectorAll('.vh-dot');
+        const count = document.getElementById('vhSlideCount');
 
-    const carousel =
-        document.querySelector('.vidhara-carousel');
+        if (!track || !prev || !next) return;
 
-    const wraps =
-        document.querySelectorAll('.vidhara-slide-wrap');
+        function updateSlide() {
 
-    const dots =
-        document.getElementById('vidharaDots');
+            track.style.transform =
+                `translateX(-${currentSlide * 100}%)`;
 
-    const prev =
-        document.getElementById('vidharaPrev');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle(
+                    'active',
+                    index === currentSlide
+                );
+            });
 
-    const next =
-        document.getElementById('vidharaNext');
-
-    if (!carousel || !dots || !prev || !next) {
-        return;
-    }
-
-    dots.innerHTML = slides.map((_, i) => `
-        <button
-            class="vidhara-dot ${i === 0 ? 'active' : ''}"
-            data-slide="${i}"
-            aria-label="Slide ${i + 1}">
-        </button>
-    `).join('');
-
-    const dotButtons =
-        dots.querySelectorAll('.vidhara-dot');
-
-    function goToSlide(index) {
-
-        currentSlide =
-            (index + slides.length) % slides.length;
-
-        carousel.style.transform =
-            `translateX(-${currentSlide * 100}%)`;
-
-        dotButtons.forEach((dot, i) => {
-            dot.classList.toggle(
-                'active',
-                i === currentSlide
-            );
-        });
-    }
-
-    prev.addEventListener('click', () => {
-        goToSlide(currentSlide - 1);
-    });
-
-    next.addEventListener('click', () => {
-        goToSlide(currentSlide + 1);
-    });
-
-    dotButtons.forEach(dot => {
-
-        dot.addEventListener('click', () => {
-
-            goToSlide(
-                Number(dot.dataset.slide)
-            );
-
-        });
-
-    });
-
-    /* Mobile swipe */
-
-    let touchStartX = 0;
-
-    carousel.addEventListener(
-        'touchstart',
-        event => {
-            touchStartX =
-                event.changedTouches[0].screenX;
-        },
-        { passive: true }
-    );
-
-    carousel.addEventListener(
-        'touchend',
-        event => {
-
-            const touchEndX =
-                event.changedTouches[0].screenX;
-
-            const difference =
-                touchStartX - touchEndX;
-
-            if (Math.abs(difference) < 50) {
-                return;
+            if (count) {
+                count.textContent =
+                    `${currentSlide + 1} / ${slides.length}`;
             }
+        }
 
-            if (difference > 0) {
-                goToSlide(currentSlide + 1);
-            } else {
-                goToSlide(currentSlide - 1);
-            }
+        function nextSlide() {
 
-        },
-        { passive: true }
-    );
+            currentSlide =
+                (currentSlide + 1) % slides.length;
+
+            updateSlide();
+        }
+
+        function previousSlide() {
+
+            currentSlide =
+                (currentSlide - 1 + slides.length) %
+                slides.length;
+
+            updateSlide();
+        }
+
+        next.addEventListener('click', nextSlide);
+        prev.addEventListener('click', previousSlide);
+
+        dots.forEach(dot => {
+
+            dot.addEventListener('click', () => {
+
+                currentSlide =
+                    Number(dot.dataset.slide);
+
+                updateSlide();
+
+            });
+
+        });
+
+        /* =========================
+           TOUCH SWIPE
+        ========================= */
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener(
+            'touchstart',
+            event => {
+                touchStartX =
+                    event.changedTouches[0].screenX;
+            },
+            { passive: true }
+        );
+
+        track.addEventListener(
+            'touchend',
+            event => {
+
+                touchEndX =
+                    event.changedTouches[0].screenX;
+
+                const difference =
+                    touchStartX - touchEndX;
+
+                if (Math.abs(difference) < 50) return;
+
+                if (difference > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+
+            },
+            { passive: true }
+        );
+
+        updateSlide();
+
+    }, 50);
 }
-
 // ============================================================
 //  FACULTY RATINGS
 // ============================================================
