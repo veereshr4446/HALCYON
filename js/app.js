@@ -178,24 +178,14 @@ function openModal(title, subtitle, contentHtml) {
     document.getElementById('modalSubtitle').textContent = subtitle;
     document.getElementById('modalContent').innerHTML = contentHtml;
     document.getElementById('detailModal').classList.add('active');
+
+    document.body.classList.add('modal-open');
 }
 function closeModal() {
+    document.getElementById('detailModal').classList.remove('active');
 
-    const detailModal =
-        document.getElementById('detailModal');
-
-    if (!detailModal) return;
-
-    detailModal.classList.remove('active');
-
-    const modal =
-        detailModal.querySelector('.modal');
-
-    if (modal) {
-        modal.classList.remove('event-fest-modal');
-    }
+    document.body.classList.remove('modal-open');
 }
-
 // ----- Stat card click handlers -----
 function showStreakDetails() {
     document.getElementById('streakModal').classList.add('active');
