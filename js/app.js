@@ -16,12 +16,24 @@ function lsSet(key, val) {
 // ============================================================
 function handleLogin() {
     document.getElementById('loginOverlay').classList.add('hidden');
+
+    // Remember login after refresh
+    localStorage.setItem('halcyonLoggedIn', 'true');
 }
 
 function handleLogout() {
     document.getElementById('loginOverlay').classList.remove('hidden');
-}
 
+    // Forget login only when user logs out
+    localStorage.removeItem('halcyonLoggedIn');
+}
+document.addEventListener('DOMContentLoaded', function () {
+    const loggedIn = localStorage.getItem('halcyonLoggedIn');
+
+    if (loggedIn === 'true') {
+        document.getElementById('loginOverlay').classList.add('hidden');
+    }
+});
 // ============================================================
 //  SIDEBAR
 // ============================================================
