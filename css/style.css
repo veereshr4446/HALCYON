@@ -3565,3 +3565,12 @@ body.modal-open {
 #detailModal .modal:has(.vh-modal) {
     overflow: hidden !important;
 }
+#detailModal .modal:not(:has(.vh-modal)) {
+    box-sizing: border-box !important;
+    padding: 0 !important;
+}
+
+#detailModal .modal:not(:has(.vh-modal)) #modalContent {
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
