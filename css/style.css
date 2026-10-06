@@ -3544,3 +3544,24 @@ body.modal-open {
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
 }
+/* ============================================================
+   FIX OTHER DETAIL MODALS
+   Keep VIDHARA carousel controlled, but allow
+   normal detail modals to scroll properly.
+============================================================ */
+
+#detailModal .modal:not(:has(.vh-modal)) {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    max-height: 90vh !important;
+}
+
+#detailModal .modal:not(:has(.vh-modal)) #modalContent {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+/* Keep VIDHARA modal itself clean */
+#detailModal .modal:has(.vh-modal) {
+    overflow: hidden !important;
+}
