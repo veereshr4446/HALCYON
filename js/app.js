@@ -521,11 +521,13 @@ function showCollegeEvents() {
             <div class="vh-carousel">
 
                 <div class="vh-track" id="vhTrack">
+
                     ${slides.map(slide => `
                         <div class="vh-carousel-slide">
                             ${slide}
                         </div>
                     `).join('')}
+
                 </div>
 
             </div>
@@ -535,25 +537,34 @@ function showCollegeEvents() {
                 <button
                     class="vh-nav-btn"
                     id="vhPrev"
-                    type="button">
+                    type="button"
+                    aria-label="Previous slide">
+
                     <i class="fas fa-chevron-left"></i>
+
                 </button>
 
                 <div class="vh-dots" id="vhDots">
+
                     ${slides.map((_, index) => `
                         <button
                             class="vh-dot ${index === 0 ? 'active' : ''}"
                             data-slide="${index}"
-                            type="button">
+                            type="button"
+                            aria-label="Go to slide ${index + 1}">
                         </button>
                     `).join('')}
+
                 </div>
 
                 <button
                     class="vh-nav-btn"
                     id="vhNext"
-                    type="button">
+                    type="button"
+                    aria-label="Next slide">
+
                     <i class="fas fa-chevron-right"></i>
+
                 </button>
 
             </div>
@@ -581,94 +592,218 @@ function showCollegeEvents() {
 
         if (!track || !prev || !next) return;
 
+
+        /* =====================================================
+           UPDATE CAROUSEL
+        ===================================================== */
+
         function updateSlide() {
 
             track.style.transform =
                 `translateX(-${currentSlide * 100}%)`;
 
             dots.forEach((dot, index) => {
+
                 dot.classList.toggle(
                     'active',
                     index === currentSlide
                 );
+
             });
 
             if (count) {
+
                 count.textContent =
                     `${currentSlide + 1} / ${slides.length}`;
+
             }
+
+
+            /* -----------------------------------------------
+               Disable arrows at the beginning/end
+            ----------------------------------------------- */
+
+            prev.disabled = currentSlide === 0;
+            next.disabled = currentSlide === slides.length - 1;
+
+            prev.style.opacity =
+                currentSlide === 0 ? '0.45' : '1';
+
+            next.style.opacity =
+                currentSlide === slides.length - 1 ? '0.45' : '1';
+
+            prev.style.pointerEvents =
+                currentSlide === 0 ? 'none' : 'auto';
+
+            next.style.pointerEvents =
+                currentSlide === slides.length - 1 ? 'none' : 'auto';
         }
+
+
+        /* =====================================================
+           NEXT
+        ===================================================== */
 
         function nextSlide() {
 
-            currentSlide =
-                (currentSlide + 1) % slides.length;
+            if (currentSlide >= slides.length - 1) {
+                return;
+            }
+
+            currentSlide++;
 
             updateSlide();
         }
+
+
+        /* =====================================================
+           PREVIOUS
+        ===================================================== */
 
         function previousSlide() {
 
-            currentSlide =
-                (currentSlide - 1 + slides.length) %
-                slides.length;
+            if (currentSlide <= 0) {
+                return;
+            }
+
+            currentSlide--;
 
             updateSlide();
         }
 
-        next.addEventListener('click', nextSlide);
-        prev.addEventListener('click', previousSlide);
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        next.addEventListener(
+            'click',
+            nextSlide
+        );
+
+        prev.addEventListener(
+            'click',
+            previousSlide
+        );
+
+
+        /* =====================================================
+           DOTS
+        ===================================================== */
 
         dots.forEach(dot => {
 
-            dot.addEventListener('click', () => {
+            dot.addEventListener(
+                'click',
+                () => {
 
-                currentSlide =
-                    Number(dot.dataset.slide);
+                    const target =
+                        Number(dot.dataset.slide);
 
-                updateSlide();
+                    if (
+                        Number.isNaN(target) ||
+                        target < 0 ||
+                        target >= slides.length
+                    ) {
+                        return;
+                    }
 
-            });
+                    currentSlide = target;
+
+                    updateSlide();
+
+                }
+            );
 
         });
 
-        /* =========================
+
+        /* =====================================================
            TOUCH SWIPE
-        ========================= */
+        ===================================================== */
 
         let touchStartX = 0;
+        let touchStartY = 0;
         let touchEndX = 0;
+        let touchEndY = 0;
 
         track.addEventListener(
             'touchstart',
             event => {
-                touchStartX =
-                    event.changedTouches[0].screenX;
+
+                const touch =
+                    event.changedTouches[0];
+
+                touchStartX = touch.screenX;
+                touchStartY = touch.screenY;
+
             },
             { passive: true }
         );
+
 
         track.addEventListener(
             'touchend',
             event => {
 
-                touchEndX =
-                    event.changedTouches[0].screenX;
+                const touch =
+                    event.changedTouches[0];
 
-                const difference =
+                touchEndX = touch.screenX;
+                touchEndY = touch.screenY;
+
+                const diffX =
                     touchStartX - touchEndX;
 
-                if (Math.abs(difference) < 50) return;
+                const diffY =
+                    touchStartY - touchEndY;
 
-                if (difference > 0) {
-                    nextSlide();
-                } else {
-                    previousSlide();
+
+                /* Ignore mostly vertical scrolling */
+
+                if (
+                    Math.abs(diffX) < 50 ||
+                    Math.abs(diffX) < Math.abs(diffY)
+                ) {
+                    return;
+                }
+
+
+                /* Swipe LEFT → NEXT */
+
+                if (diffX > 0) {
+
+                    if (
+                        currentSlide <
+                        slides.length - 1
+                    ) {
+                        currentSlide++;
+                        updateSlide();
+                    }
+
+                    return;
+                }
+
+
+                /* Swipe RIGHT → PREVIOUS */
+
+                if (diffX < 0) {
+
+                    if (currentSlide > 0) {
+                        currentSlide--;
+                        updateSlide();
+                    }
+
                 }
 
             },
             { passive: true }
         );
+
+
+        /* =====================================================
+           INITIAL STATE
+        ===================================================== */
 
         updateSlide();
 
