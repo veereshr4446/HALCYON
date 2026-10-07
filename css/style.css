@@ -3758,3 +3758,32 @@ a { color: inherit; }
 .vh-slide-count {
     flex-shrink: 0;
 }
+/* Stop grid columns from growing wider than the screen */
+.dashboard-grid {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+@media (max-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.dashboard-grid > div,
+.chart-grid > div {
+    min-width: 0;
+}
+
+.chart-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.chart-wrapper {
+    min-width: 0;
+    overflow: hidden;
+}
+
+.timetable-container {
+    min-width: 0;
+    overflow: hidden;
+}
