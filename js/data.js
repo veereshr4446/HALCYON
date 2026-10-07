@@ -5,15 +5,6 @@
 //  Social Hub (search / leaderboard) demo.
 // ============================================================
 
-// ----- SUBJECTS — Semester 3, Section A (updated from the official
-// timetable/course-handling sheet). No CIE marks exist for this semester
-// yet, so the old demo attendance/CIE numbers are carried over as
-// placeholders, just reassigned to these new subjects.
-//
-// EXAM PATTERN UPDATE: the college now runs 2 CIEs per subject
-// (50 marks each) instead of 3 CIEs (25 marks each), and only the
-// HIGHER of the two scores is considered — not a sum of the best two.
-// `cie` below is therefore a 2-element array, each value out of 50. -----
 const subjectsData = [
     { code: '1BMATCS301', name: 'Distributions and Statistics Probability', faculty: 'Prof. G. Gangamma', attendance: 84, cie: [50, 50] },
     { code: '1BCS302', name: 'Object Oriented Programming with Java', faculty: 'Dr. H. Girisha', attendance: 90, cie: [50, 50] },
@@ -41,9 +32,9 @@ const facultyData = [
 
 // ----- FICTIONAL CLASSMATES (Social Hub — search & leaderboard) -----
 const classmatesData = [
-    { name: 'Aishwarya', usn: '3VC25CS904', branch: 'CSE A', attendance: 98 },
+    { name: 'Aishwarya', usn: '3VC25CS604', branch: 'CSE A', attendance: 98 },
     { name: 'Yashwant G', usn: '3VC25CS907', branch: 'CSE B', attendance: 85 },
-    { name: 'Sneha Iyer', usn: '3VC25CS904', branch: 'CSE A', attendance: 82 },
+    { name: 'Sneha Iyer', usn: '3VC25CS908', branch: 'CSE A', attendance: 82 },
     { name: 'Chandan Kumar', usn: '3VC25CS016', branch: 'CSE A', attendance: 79 },
     { name: 'Ritu B', usn: '3VC25CS906', branch: 'CSE A', attendance: 91 },
     { name: 'K yogesh', usn: '3VC25CS038', branch: 'CSE A', attendance: 74 },
