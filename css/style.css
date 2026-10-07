@@ -3714,3 +3714,47 @@ a { color: inherit; }
         display: none !important;
     }
 }
+/* VIDHARA — desktop layout fix (applies at all widths) */
+#detailModal:has(.vh-modal) .modal {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#detailModal:has(.vh-modal) #modalContent {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#detailModal:has(.vh-modal) .vh-modal {
+    flex: 1 1 auto;
+    min-height: 0;
+    height: 100%;
+}
+
+#detailModal:has(.vh-modal) .vh-carousel {
+    flex: 1 1 auto;
+    min-height: 0;
+    padding: 0; /* stops the next slide peeking in from the right */
+}
+
+#detailModal:has(.vh-modal) .vh-track {
+    height: 100%;
+}
+
+#detailModal:has(.vh-modal) .vh-carousel-slide {
+    height: 100%;
+    min-height: 0;
+    padding: 4px 22px 8px; /* the side padding moves here from .vh-carousel */
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.vh-navigation,
+.vh-slide-count {
+    flex-shrink: 0;
+}
