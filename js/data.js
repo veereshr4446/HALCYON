@@ -41,15 +41,16 @@ const facultyData = [
 
 // ----- FICTIONAL CLASSMATES (Social Hub — search & leaderboard) -----
 const classmatesData = [
-    { name: 'Ananya Rao', usn: '3VC25CS904', branch: 'CSE A', attendance: 98 },
-    { name: 'Vikram', usn: '3VC25CS907', branch: 'CSE A', attendance: 85 },
+    { name: 'Aishwarya', usn: '3VC25CS904', branch: 'CSE A', attendance: 98 },
+    { name: '', usn: '3VC25CS907', branch: 'CSE A', attendance: 85 },
     { name: 'Sneha Iyer', usn: '3VC25CS904', branch: 'CSE A', attendance: 82 },
-    { name: 'Kiran Patel', usn: '3VC25CS905', branch: 'CSE B', attendance: 79 },
+    { name: 'Chandan Kumar', usn: '3VC25CS905', branch: 'CSE B', attendance: 79 },
     { name: 'Anjali Rao', usn: '3VC25CS906', branch: 'CSE B', attendance: 91 },
-    { name: 'Vikram Naidu', usn: '3VC25CS908', branch: 'CSE B', attendance: 74 },
+    { name: 'K yogesh', usn: '3VC25CS908', branch: 'CSE B', attendance: 74 },
     { name: 'Meera Reddy', usn: '3VC25CS909', branch: 'ECE', attendance: 86 },
     { name: 'Deepika Joshi', usn: '3VC25EC901', branch: 'ECE', attendance: 83 },
-    { name: 'Nikhil Sharma', usn: '3VC25ME901', branch: 'ME', attendance: 77 }
+{ name: 'H uthej', usn: '3VC25EC901', branch: 'ECE', attendance: 83 },
+    { name: 'BB Santhosh', usn: '3VC25CS926', branch: 'CSE', attendance: 77 }
 ];
 
 // ----- STUDY GROUPS -----
