@@ -622,6 +622,13 @@ function showCollegeEvents() {
                 );
 
             });
+                        if (count) {
+            
+                            count.textContent =
+                                `${currentSlide + 1} / ${slides.length}`;
+            
+                        }
+            
             function onKey(e) {
                 if (!track.isConnected) {            // modal was closed, so clean up
                     document.removeEventListener('keydown', onKey);
@@ -631,12 +638,6 @@ function showCollegeEvents() {
                 if (e.key === 'ArrowLeft')  previousSlide();
             }
             document.addEventListener('keydown', onKey);
-                        if (count) {
-            
-                            count.textContent =
-                                `${currentSlide + 1} / ${slides.length}`;
-            
-                        }
 
 
             /* -----------------------------------------------
